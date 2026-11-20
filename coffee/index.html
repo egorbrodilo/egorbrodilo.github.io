@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="ru" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тёплый двор — кофейня-пекарня у дома</title>
+<meta name="description" content="Кофейня-пекарня «Тёплый двор»: выпечка из печи три раза в день, кофе на зерне свежей обжарки, предзаказ навынос без очереди. По будням с 7:30, в выходные с 8:30.">
+<meta name="theme-color" content="#FBF5EC">
+<meta property="og:title" content="Тёплый двор — кофейня-пекарня у дома">
+<meta property="og:description" content="Выпечка из печи в 7:00, 12:00 и 17:00. Закажите заранее — заберёте без очереди.">
+<!-- Соцсети и мессенджеры берут превью только по абсолютному адресу: замените teplyj-dvor.example на реальный домен. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://teplyj-dvor.example/">
+<meta property="og:image" content="https://teplyj-dvor.example/img/og-image.jpg">
+<link rel="canonical" href="https://teplyj-dvor.example/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%232F5D45'/%3E%3Cpath d='M18 28h24v6a12 12 0 0 1-24 0z' fill='%23FBF5EC'/%3E%3Cpath d='M42 30h3a4 4 0 0 1 0 8h-4' fill='none' stroke='%23FBF5EC' stroke-width='3'/%3E%3Cpath d='M26 14c-2 3 2 5 0 8M33 12c-2 3 2 5 0 8' stroke='%23FBF5EC' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<!-- Шрифты лежат на самом сайте (папка fonts/): страница не обращается к серверам Google и другим сторонним сервисам. -->
+<link rel="preload" href="fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/playfair-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="preload" as="image" href="img/hero-latte.jpg" fetchpriority="high">
+<style>
+:root{
+  --cream:#FBF5EC; --foam:#FFFDF9; --latte:#F1E4D1; --latte-2:#E6D3B8;
+  --coffee:#2E1F17; --coffee-soft:#6A5142; --roast:#2A1D15; --roast-2:#3A2A20;
+  --on-roast:#F6EBDC; --on-roast-soft:#CDB9A2;
+  --green:#2F5D45; --green-2:#3E7556; --green-pale:#DCE8DD; --green-on-dark:#9DC3A6;
+  --caramel:#9A5B22; --caramel-light:#D9A066; --error:#B4442E;
+  --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:"Golos Text", "Segoe UI", Roboto, Arial, sans-serif;
+  --radius:22px; --radius-s:14px;
+  --shadow:0 1px 2px rgba(46,31,23,.06), 0 12px 32px -12px rgba(46,31,23,.22);
+  --wrap:1200px; --gutter:20px; --header-h:68px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--cream);color:var(--coffee);font:400 17px/1.6 var(--sans);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(2rem,1.4rem + 2.4vw,3.1rem)}
+h3{font-size:1.35rem}
+h1 em,h2 em{font-style:italic;color:var(--green)}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+[hidden]{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;background:var(--green);color:#fff;padding:10px 14px;border-radius:10px;z-index:100}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--caramel-light);outline-offset:3px;border-radius:6px}
+section[id]{scroll-margin-top:calc(var(--header-h) + 8px)}
+
+/* ---------- Кнопки ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 16px/1 var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .2s,color .2s,transform .2s,box-shadow .2s}
+.btn-primary{background:var(--green);color:var(--foam);box-shadow:0 10px 24px -10px rgba(47,93,69,.7)}
+.btn-primary:hover{background:var(--green-2);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--coffee);color:var(--coffee);background:transparent}
+.btn-ghost:hover{background:var(--coffee);color:var(--cream)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- Шапка ---------- */
+.header{position:sticky;top:0;z-index:50;background:rgba(251,245,236,.88);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid rgba(46,31,23,.08)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:var(--header-h)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.logo svg{width:42px;height:42px;flex:none}
+.logo b{display:block;font:600 1.3rem/1.05 var(--serif)}
+.logo small{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coffee-soft)}
+.nav{display:none}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
+.nav ul a{display:block;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15.5px}
+.nav ul a:hover{background:var(--latte)}
+.header-cta{display:none}
+.burger{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:14px;border:1.5px solid rgba(46,31,23,.2);background:var(--foam);cursor:pointer;color:var(--coffee)}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .25s,background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+/* мобильное меню (с JS) */
+.js .nav.is-open{display:block;position:absolute;left:0;right:0;top:100%;background:var(--cream);border-bottom:1px solid rgba(46,31,23,.1);box-shadow:0 18px 30px -18px rgba(46,31,23,.35);padding:8px var(--gutter) 20px}
+.js .nav.is-open ul{flex-direction:column}
+.js .nav.is-open ul a{padding:14px 12px;font-size:18px;border-radius:12px}
+.nav .nav-mobile-cta{display:none}
+.js .nav.is-open .nav-mobile-cta{display:flex;margin-top:10px;width:100%}
+/* без JS: меню всегда видно строкой под логотипом */
+.no-js .burger{display:none}
+.no-js .header{position:relative}
+.no-js .header .wrap{flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.no-js .nav{display:block;width:100%}
+.no-js .nav ul{flex-wrap:wrap}
+.no-js .nav ul a{padding:8px 12px}
+
+/* ---------- Первый экран ---------- */
+.hero{position:relative;padding:28px 0 56px;background:
+  radial-gradient(1200px 500px at 85% -10%, rgba(230,211,184,.75), transparent 60%),
+  radial-gradient(700px 400px at -10% 110%, rgba(220,232,221,.8), transparent 60%)}
+.hero .wrap{display:grid;gap:36px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 10px;border-radius:999px;background:var(--foam);border:1px solid rgba(46,31,23,.1);font-size:14.5px;font-weight:500;color:var(--coffee-soft)}
+.dot{width:9px;height:9px;border-radius:50%;background:#3E9B62;box-shadow:0 0 0 4px rgba(62,155,98,.18);flex:none}
+.hero h1{font-size:clamp(2.3rem,1.4rem + 3.2vw,3.4rem);margin:18px 0 18px;font-weight:600}
+.hero h1 em{white-space:nowrap}
+.hero-lead{font-size:clamp(1.05rem,1rem + .3vw,1.2rem);color:var(--coffee-soft);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero-actions .btn{flex:1 1 220px}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:10px 22px;margin:28px 0 0;padding:0;list-style:none}
+.facts li{display:flex;flex-direction:column;font-size:13.5px;line-height:1.35;color:var(--coffee-soft)}
+.facts b{font:600 1.3rem/1.25 var(--serif);color:var(--coffee);white-space:nowrap}
+/* у Playfair по умолчанию «старостильные» цифры — включаем ровные */
+.price,.facts b,.steps li::before,.hero-badge b{font-variant-numeric:lining-nums tabular-nums}
+.hero-visual{position:relative;max-width:560px;width:100%;margin:0 auto;padding:0 0 26px}
+.hero-arch{border-radius:999px 999px 28px 28px;overflow:hidden;aspect-ratio:4/4.4;box-shadow:var(--shadow);background:var(--latte-2)}
+.hero-arch img{width:100%;height:100%;object-fit:cover}
+.hero-round{position:absolute;left:-6px;bottom:0;width:38%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:7px solid var(--cream);box-shadow:var(--shadow)}
+.hero-round img{width:100%;height:100%;object-fit:cover}
+.hero-badge{position:absolute;right:-4px;top:12%;background:var(--foam);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);max-width:220px;font-size:14px;line-height:1.4}
+.hero-badge b{display:block;font:600 1.05rem/1.25 var(--serif);margin-bottom:4px}
+.hero-badge .times{display:flex;gap:6px;margin-top:8px}
+.hero-badge .times span{background:var(--green-pale);color:var(--green);font-weight:600;border-radius:8px;padding:3px 8px;font-size:13.5px}
+
+/* ---------- Преимущества ---------- */
+.perks{background:var(--roast);color:var(--on-roast)}
+.perks ul{list-style:none;margin:0;padding:26px 0;display:grid;gap:18px}
+.perks li{display:flex;gap:14px;align-items:flex-start}
+.perks svg{width:40px;height:40px;flex:none;color:var(--caramel-light)}
+.perks b{display:block;font-weight:600;font-size:16.5px}
+.perks span{color:var(--on-roast-soft);font-size:15px;line-height:1.45}
+
+/* ---------- Секции ---------- */
+.section{padding:72px 0}
+.section-head{display:grid;gap:12px;margin-bottom:34px;max-width:840px}
+.kicker{font-size:13.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--caramel)}
+.section-head p{color:var(--coffee-soft);font-size:1.05rem}
+
+/* ---------- Выпечка дня ---------- */
+.bakes{display:grid;gap:18px;grid-template-columns:1fr}
+.bake{background:var(--foam);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.bake-photo{position:relative;aspect-ratio:4/3;overflow:hidden}
+.bake-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.bake:hover .bake-photo img{transform:scale(1.04)}
+.tag{position:absolute;left:12px;top:12px;background:var(--foam);color:var(--coffee);font-size:13px;font-weight:600;padding:5px 10px;border-radius:999px}
+.tag.green{background:var(--green);color:var(--foam)}
+.bake-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.bake-body p{color:var(--coffee-soft);font-size:15.5px;line-height:1.5}
+.bake-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:10px}
+.price{font:600 1.4rem/1 var(--serif)}
+.add{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;min-height:44px;padding:0 16px;border-radius:999px;background:var(--green-pale);color:var(--green);font-weight:600;font-size:15px;text-decoration:none;border:0;cursor:pointer;transition:background .2s,color .2s}
+.add:hover{background:var(--green);color:var(--foam)}
+.add.is-added{background:var(--green);color:var(--foam)}
+.swipe-hint{display:none}
+.evening{margin-top:22px;display:flex;gap:14px;align-items:center;background:var(--latte);border-radius:var(--radius-s);padding:16px 18px;font-size:15.5px}
+.evening svg{width:28px;height:28px;flex:none;color:var(--caramel)}
+
+/* ---------- Меню ---------- */
+.menu-sec{background:var(--latte)}
+.menu-sec .kicker{color:#87501D}
+.menu-grid{display:grid;gap:18px}
+.menu-card{background:var(--foam);border-radius:var(--radius);padding:24px 22px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.menu-foot{margin-top:auto;padding-top:14px}
+.menu-note{background:var(--latte);border-radius:12px;padding:10px 14px;font-size:14.5px;line-height:1.45;color:var(--coffee-soft)}
+.menu-card h3{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-bottom:12px;margin-bottom:6px;border-bottom:2px solid var(--coffee)}
+.menu-card h3 small{font:500 13px/1.2 var(--sans);color:var(--coffee-soft)}
+.menu-list{list-style:none;margin:0;padding:0}
+.menu-list li{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:16px}
+.menu-list .name{flex:0 1 auto;min-width:0}
+.menu-list .name small{display:block;color:var(--coffee-soft);font-size:13.5px;line-height:1.35}
+.menu-list .lead{flex:1;border-bottom:2px dotted rgba(46,31,23,.28);transform:translateY(-4px);min-width:16px}
+.menu-list .cost{flex:none;font-weight:600;white-space:nowrap}
+.menu-list .new{display:inline-block;margin-left:6px;background:var(--caramel);color:#fff;font-size:11.5px;font-weight:600;border-radius:6px;padding:1px 6px;vertical-align:2px;letter-spacing:.02em}
+.menu-side{display:grid;gap:18px}
+.menu-photo{border-radius:var(--radius);overflow:hidden;min-height:220px;box-shadow:var(--shadow)}
+.menu-photo img{width:100%;height:100%;object-fit:cover}
+.menu-extras{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.menu-extras span{background:var(--foam);border:1px solid rgba(46,31,23,.12);padding:7px 13px;border-radius:999px;font-size:14.5px}
+
+/* ---------- Галерея ---------- */
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:10px}
+.gallery figure{margin:0;position:relative;border-radius:var(--radius-s);overflow:hidden;background:var(--latte-2)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figure::after{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;max-height:120px;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.6));pointer-events:none}
+.gallery figcaption{position:absolute;z-index:1;left:12px;bottom:10px;right:12px;color:#fff;font-size:13.5px;font-weight:500;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.g1{grid-column:span 2;grid-row:span 2}
+.g6{grid-column:span 2}
+
+/* ---------- Отзывы (шаблон) ---------- */
+.reviews{margin-top:28px;border:2px dashed rgba(46,31,23,.22);border-radius:var(--radius);padding:22px;display:grid;gap:8px;text-align:center;color:var(--coffee-soft)}
+.reviews b{font:600 1.25rem/1.3 var(--serif);color:var(--coffee)}
+
+/* ---------- Как добраться ---------- */
+.visit{background:var(--roast);color:var(--on-roast)}
+.visit .kicker{color:var(--caramel-light)}
+.visit h2 em{color:var(--green-on-dark)}
+.visit .section-head p{color:var(--on-roast-soft)}
+.visit-grid{display:grid;gap:18px}
+.map{background:var(--latte);border-radius:var(--radius);overflow:hidden}
+.map svg{width:100%;height:auto;display:block}
+/* на телефоне — отдельная схема с крупными подписями */
+.map .map-narrow{display:none}
+@media (max-width:599px){.map .map-wide{display:none}.map .map-narrow{display:block}}
+.map-note{padding:12px 16px;font-size:14px;color:var(--coffee-soft);background:var(--foam)}
+.info{display:grid;gap:14px}
+.info-card{background:var(--roast-2);border-radius:var(--radius);padding:22px}
+.info-card h3{font-size:1.2rem;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.info-card h3 svg{width:22px;height:22px;color:var(--caramel-light)}
+.info-card p{color:var(--on-roast-soft)}
+.info-card p strong{color:var(--on-roast);font-weight:600}
+.hours{width:100%;border-collapse:collapse;font-size:16px}
+.hours td{padding:7px 0;border-bottom:1px solid rgba(246,235,220,.12)}
+.hours td:last-child{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+.hours tr:last-child td{border-bottom:0}
+.placeholder{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--roast);background:var(--caramel-light);border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+
+/* ---------- Предзаказ ---------- */
+.order-grid{display:grid;gap:28px}
+.steps{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{display:flex;gap:14px;align-items:flex-start}
+.steps li::before{counter-increment:s;content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--green);color:var(--foam);display:grid;place-items:center;font:600 1.05rem/1 var(--serif)}
+.steps b{display:block}
+.steps span{color:var(--coffee-soft);font-size:15.5px}
+.order-photo{margin-top:26px;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/10;display:none}
+.order-photo img{width:100%;height:100%;object-fit:cover}
+.form{background:var(--foam);border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow);display:grid;gap:18px}
+.form h3{font-size:1.5rem}
+.form .req-note{font-size:14px;color:var(--coffee-soft);margin-top:-8px}
+.field{display:grid;gap:6px}
+.field label,.field .label{font-weight:600;font-size:15.5px}
+.field .req{color:var(--error)}
+.field .hint{font-size:13.5px;color:var(--coffee-soft)}
+.field input,.field select,.field textarea{width:100%;font:400 16.5px/1.4 var(--sans);color:var(--coffee);background:var(--cream);border:1.5px solid rgba(46,31,23,.28);border-radius:12px;padding:13px 14px;min-height:50px;transition:border-color .2s,box-shadow .2s}
+.field textarea{min-height:104px;resize:vertical}
+.field select{-webkit-appearance:none;appearance:none;padding-right:44px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E1F17' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:20px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(47,93,69,.16)}
+.field [aria-invalid="true"]{border-color:var(--error);background:#FFF6F3}
+.error{display:none;color:var(--error);font-size:14px;font-weight:500}
+.error.is-on{display:block}
+.field .check{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;font-weight:400;cursor:pointer}
+.check input{width:24px;height:24px;margin:1px 0 0;flex:none;accent-color:var(--green);cursor:pointer}
+.check a{color:var(--green);font-weight:600}
+.form .btn{width:100%}
+.form-status{display:none;border-radius:14px;padding:14px 16px;background:var(--green-pale);color:var(--green);font-weight:500;font-size:15.5px}
+.form-status.is-on{display:block}
+.pay-note{font-size:14px;color:var(--coffee-soft);text-align:center}
+.consent-note{font-size:13.5px;line-height:1.5;color:var(--coffee-soft);text-align:center;margin-top:-6px}
+.consent-note a{color:var(--green);font-weight:600}
+
+/* ---------- Подвал ---------- */
+.footer{background:var(--roast);color:var(--on-roast-soft);padding:48px 0 28px;font-size:15px}
+.footer-grid{display:grid;gap:26px}
+.footer .logo b{color:var(--on-roast)}
+.footer .logo small{color:var(--on-roast-soft)}
+.footer h4{margin:0 0 10px;color:var(--on-roast);font:600 1.05rem/1.3 var(--serif)}
+.footer a{color:var(--on-roast)}
+.footer ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.legal{margin-top:34px;padding-top:20px;border-top:1px solid rgba(246,235,220,.14);display:grid;gap:8px;font-size:13.5px}
+
+/* ---------- Анимации появления (только с JS) ---------- */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
+/* ================= < 600 px: выпечка — горизонтальная лента ================= */
+@media (max-width:599px){
+  .bakes{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1 * var(--gutter));padding:4px var(--gutter) 20px;scroll-padding:0 var(--gutter);overscroll-behavior-x:contain;scrollbar-width:none}
+  .bakes::-webkit-scrollbar{display:none}
+  .bake{scroll-snap-align:start}
+  .bake-photo{aspect-ratio:16/10}
+  .swipe-hint{display:flex;align-items:center;gap:8px;margin:-18px 0 12px;font-size:14px;font-weight:500;color:var(--coffee-soft)}
+}
+/* ================= ≥ 600 px ================= */
+@media (min-width:600px){
+  :root{--gutter:28px}
+  .bakes{grid-template-columns:repeat(2,1fr)}
+  .perks ul{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:repeat(3,1fr);grid-auto-rows:180px}
+  .g1{grid-column:span 2;grid-row:span 2}
+  .g5{grid-column:span 2}
+  .g6{grid-column:span 3}
+  .hero-actions .btn{flex:0 0 auto}
+}
+/* ================= ≥ 900 px ================= */
+@media (min-width:900px){
+  :root{--header-h:76px}
+  .burger{display:none}
+  .nav{display:block}
+  .header-cta{display:inline-flex;min-height:46px;padding:0 20px;font-size:15px}
+  .no-js .header .wrap{flex-wrap:nowrap}
+  .no-js .nav{width:auto}
+  .hero{padding:40px 0 70px}
+  .hero .wrap{grid-template-columns:1.12fr .88fr;align-items:center;gap:56px}
+  .facts{gap:10px 36px}
+  .facts b{font-size:1.45rem}
+  .facts li{font-size:14px}
+  .hero-visual{margin:0 0 0 auto}
+  .hero-arch{aspect-ratio:4/4.5}
+  .section{padding:96px 0}
+  .menu-grid{grid-template-columns:repeat(3,1fr)}
+  .visit-grid{grid-template-columns:1.25fr 1fr;align-items:stretch}
+  .map{display:flex;flex-direction:column}
+  .map svg{flex:1}
+  .order-grid{grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .order-photo{display:block}
+  .form{padding:32px 30px}
+  .footer-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}
+}
+/* ================= ≥ 1100 px ================= */
+@media (min-width:1100px){
+  .bakes{grid-template-columns:repeat(4,1fr)}
+  .perks ul{grid-template-columns:repeat(4,1fr);padding:30px 0}
+  .gallery{grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:14px}
+  .g1{grid-column:span 2;grid-row:span 2}
+  .g3{grid-row:span 2}
+  .g5,.g6{grid-column:span 2}
+  .hero-badge{right:-28px}
+  .hero-round{left:-34px}
+}
+</style>
+</head>
+<body><div style="position:relative;z-index:9999;background:#1B44C8;color:#fff;font:500 14px/1.4 system-ui,sans-serif;padding:9px 16px;text-align:center">Демо-сайт из портфолио Егора Бродило: кофейня, цены и адрес вымышлены. <a href="../" style="color:#fff;font-weight:700">Вернуться к портфолио</a></div>
+<a class="skip" href="#main">Перейти к&nbsp;содержимому</a>
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Тёплый двор — на главную">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#2F5D45"/><path d="M17 29h26v6a13 13 0 0 1-26 0z" fill="#FBF5EC"/><path d="M43 31h3.5a4.5 4.5 0 0 1 0 9H42" fill="none" stroke="#FBF5EC" stroke-width="3"/><path d="M25 14c-2.5 3.5 2.5 5.5 0 9M32 12c-2.5 3.5 2.5 5.5 0 9" stroke="#D9A066" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M14 50h36" stroke="#D9A066" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <span><b>Тёплый двор</b><small>кофейня · пекарня</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="#bakes">Выпечка дня</a></li>
+        <li><a href="#menu">Меню</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#visit">Как добраться</a></li>
+        <li><a href="#order">Предзаказ</a></li>
+      </ul>
+      <a class="btn btn-primary nav-mobile-cta" href="#order">Заказать навынос</a>
+    </nav>
+    <a class="btn btn-primary header-cta" href="#order">Заказать навынос</a>
+    <button class="burger" type="button" aria-controls="nav" aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ===== Первый экран ===== -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Будни с&nbsp;7:30 · выходные с&nbsp;8:30</span>
+        <h1>Кофе и&nbsp;выпечка <em>прямо из&nbsp;печи</em>&nbsp;— в&nbsp;двух шагах от&nbsp;дома</h1>
+        <p class="hero-lead">Печём на&nbsp;месте с&nbsp;шести утра и&nbsp;варим кофе на&nbsp;зерне свежей обжарки. Оставьте предзаказ&nbsp;— заберёте ещё тёплым и&nbsp;без&nbsp;очереди.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#order">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            Предзаказ навынос
+          </a>
+          <a class="btn btn-ghost" href="#menu">Смотреть меню</a>
+        </div>
+        <ul class="facts">
+          <li><b>от&nbsp;240&nbsp;₽</b>капучино 0,2&nbsp;л</li>
+          <li><b>3&nbsp;раза</b>в&nbsp;день свежая выпечка</li>
+          <li><b>10&nbsp;минут</b>и&nbsp;заказ готов</li>
+        </ul>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-arch"><img src="img/hero-latte.jpg" width="790" height="850" alt="Капучино с рисунком-листиком в коричневой чашке" fetchpriority="high"></div>
+        <div class="hero-round"><img src="img/croissants.jpg" width="900" height="599" alt="Круассаны на тёмном подносе"></div>
+        <div class="hero-badge">
+          <b>Круассаны из&nbsp;печи</b>
+          Выкладываем на&nbsp;витрину трижды в&nbsp;день:
+          <div class="times"><span>7:00</span><span>12:00</span><span>17:00</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Почему к нам ===== -->
+  <div class="perks">
+    <div class="wrap">
+      <ul>
+        <li>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 26c0-7 5-12 12-12s12 5 12 12z"/><path d="M5 30h30"/><path d="M15 9c-1.5 2 1.5 3 0 5M21 7c-1.5 2 1.5 3 0 5M27 9c-1.5 2 1.5 3 0 5"/></svg>
+          <div><b>Печём на&nbsp;месте</b><span>Тесто ставим с&nbsp;вечера, печь включаем в&nbsp;6:00</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="20" cy="20" rx="9" ry="13" transform="rotate(30 20 20)"/><path d="M15 10c5 5 5 15 10 20"/></svg>
+          <div><b>Свежая обжарка</b><span>Зерно обжарено не&nbsp;раньше чем две недели назад</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="21" r="13"/><path d="M20 13v8l5 4"/><path d="M16 5h8"/></svg>
+          <div><b>Без&nbsp;очереди</b><span>По&nbsp;предзаказу всё готово к&nbsp;вашему приходу</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 12h18l-2.5 22h-13z"/><path d="M9 8h22v4H9z"/><path d="M15 21h10"/></svg>
+          <div><b>Со&nbsp;своим стаканом</b><span>Нальём в&nbsp;вашу кружку и&nbsp;сделаем скидку 20&nbsp;₽</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== Выпечка дня ===== -->
+  <section class="section" id="bakes" aria-labelledby="bakes-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Сегодня на&nbsp;витрине</span>
+        <h2 id="bakes-title">Выпечка <em>дня</em></h2>
+        <p>Небольшие партии, чтобы всё было свежим. Нажмите «В&nbsp;предзаказ»&nbsp;— позиция сама появится в&nbsp;форме заказа.</p>
+      </div>
+      <p class="swipe-hint" aria-hidden="true">Листайте вбок <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></p>
+      <div class="bakes">
+        <article class="bake reveal">
+          <div class="bake-photo"><img loading="lazy" decoding="async" src="img/croissants.jpg" width="900" height="599" alt="Сливочные круассаны на подносе"><span class="tag green">Хит утра</span></div>
+          <div class="bake-body">
+            <h3>Круассан сливочный</h3>
+            <p>Слоёное тесто на&nbsp;сливочном масле, хрустит снаружи и&nbsp;тянется внутри.</p>
+            <div class="bake-foot"><span class="price">190&nbsp;₽</span><a class="add" href="#order" data-add="Круассан сливочный">+ В&nbsp;предзаказ</a></div>
+          </div>
+        </article>
+        <article class="bake reveal">
+          <div class="bake-photo"><img loading="lazy" decoding="async" src="img/pain-au-chocolat.jpg" width="900" height="599" alt="Противень с булочками с шоколадом"><span class="tag">Из&nbsp;печи в&nbsp;12:00</span></div>
+          <div class="bake-body">
+            <h3>Пен-о-шоколя</h3>
+            <p>Тот же круассан, только внутри две палочки тёмного шоколада.</p>
+            <div class="bake-foot"><span class="price">220&nbsp;₽</span><a class="add" href="#order" data-add="Пен-о-шоколя">+ В&nbsp;предзаказ</a></div>
+          </div>
+        </article>
+        <article class="bake reveal">
+          <div class="bake-photo"><img loading="lazy" decoding="async" src="img/orange-muffins.jpg" width="688" height="860" alt="Маффины с дольками апельсина на тарелке"><span class="tag">Сезонное</span></div>
+          <div class="bake-body">
+            <h3>Маффин апельсиновый</h3>
+            <p>Влажный, с&nbsp;цедрой в&nbsp;тесте и&nbsp;тонкой долькой апельсина сверху.</p>
+            <div class="bake-foot"><span class="price">170&nbsp;₽</span><a class="add" href="#order" data-add="Маффин апельсиновый">+ В&nbsp;предзаказ</a></div>
+          </div>
+        </article>
+        <article class="bake reveal">
+          <div class="bake-photo"><img loading="lazy" decoding="async" src="img/cookies.jpg" width="800" height="533" alt="Печенье с кусочками шоколада на противне"><span class="tag">Из&nbsp;печи в&nbsp;17:00</span></div>
+          <div class="bake-body">
+            <h3>Печенье с&nbsp;шоколадом</h3>
+            <p>Хрустящий край, мягкая середина, тёмный шоколад и&nbsp;апельсиновая цедра.</p>
+            <div class="bake-foot"><span class="price">130&nbsp;₽</span><a class="add" href="#order" data-add="Печенье с шоколадом">+ В&nbsp;предзаказ</a></div>
+          </div>
+        </article>
+      </div>
+      <p class="evening reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <span><strong>После 20:00&nbsp;— минус 30% на&nbsp;выпечку дня.</strong> Не&nbsp;выбрасываем то, что испекли, а&nbsp;отдаём дешевле.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Меню ===== -->
+  <section class="section menu-sec" id="menu" aria-labelledby="menu-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Меню</span>
+        <h2 id="menu-title">Варим, печём, <em>заворачиваем с&nbsp;собой</em></h2>
+        <p>Где две цены&nbsp;— это малый и&nbsp;большой объём. Любой напиток нальём в&nbsp;вашу кружку.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card reveal">
+          <h3>Кофе <small>0,2 / 0,3&nbsp;л</small></h3>
+          <ul class="menu-list">
+            <li><span class="name">Эспрессо</span><span class="lead"></span><span class="cost">160&nbsp;₽</span></li>
+            <li><span class="name">Американо</span><span class="lead"></span><span class="cost">190 / 230&nbsp;₽</span></li>
+            <li><span class="name">Капучино</span><span class="lead"></span><span class="cost">240 / 290&nbsp;₽</span></li>
+            <li><span class="name">Латте</span><span class="lead"></span><span class="cost">260 / 310&nbsp;₽</span></li>
+            <li><span class="name">Флэт уайт</span><span class="lead"></span><span class="cost">290&nbsp;₽</span></li>
+            <li><span class="name">Раф ванильный</span><span class="lead"></span><span class="cost">320 / 370&nbsp;₽</span></li>
+            <li><span class="name">Фильтр-кофе дня<small>спросите, какое зерно сегодня</small></span><span class="lead"></span><span class="cost">200 / 240&nbsp;₽</span></li>
+            <li><span class="name">Тыквенный латте<span class="new">осень</span></span><span class="lead"></span><span class="cost">340&nbsp;₽</span></li>
+          </ul>
+          <div class="menu-foot"><p class="menu-note">Молоко&nbsp;— коровье 3,2% или растительное: овсяное, миндальное, кокосовое (+60&nbsp;₽).</p></div>
+        </div>
+        <div class="menu-card reveal">
+          <h3>Не&nbsp;кофе <small>0,3 / 0,5&nbsp;л</small></h3>
+          <ul class="menu-list">
+            <li><span class="name">Какао на&nbsp;молоке</span><span class="lead"></span><span class="cost">250 / 300&nbsp;₽</span></li>
+            <li><span class="name">Матча-латте</span><span class="lead"></span><span class="cost">320 / 370&nbsp;₽</span></li>
+            <li><span class="name">Облепиховый чай с&nbsp;мёдом</span><span class="lead"></span><span class="cost">290 / 340&nbsp;₽</span></li>
+            <li><span class="name">Чай листовой<small>чайник 0,5&nbsp;л</small></span><span class="lead"></span><span class="cost">260&nbsp;₽</span></li>
+            <li><span class="name">Апельсиновый фреш<small>0,25&nbsp;л</small></span><span class="lead"></span><span class="cost">330&nbsp;₽</span></li>
+          </ul>
+          <div class="menu-photo" style="margin-top:16px;height:170px;min-height:0;box-shadow:none"><img loading="lazy" decoding="async" src="img/green-cup.jpg" width="1000" height="666" alt="Кофе с пенкой в зелёной чашке на деревянном столе"></div>
+        </div>
+        <div class="menu-card reveal">
+          <h3>Выпечка и&nbsp;хлеб <small>за&nbsp;1&nbsp;шт.</small></h3>
+          <ul class="menu-list">
+            <li><span class="name">Круассан сливочный</span><span class="lead"></span><span class="cost">190&nbsp;₽</span></li>
+            <li><span class="name">Пен-о-шоколя</span><span class="lead"></span><span class="cost">220&nbsp;₽</span></li>
+            <li><span class="name">Улитка с&nbsp;корицей</span><span class="lead"></span><span class="cost">210&nbsp;₽</span></li>
+            <li><span class="name">Маффин апельсиновый</span><span class="lead"></span><span class="cost">170&nbsp;₽</span></li>
+            <li><span class="name">Печенье с&nbsp;шоколадом</span><span class="lead"></span><span class="cost">130&nbsp;₽</span></li>
+            <li><span class="name">Кофейный кекс<small>кусочек</small></span><span class="lead"></span><span class="cost">180&nbsp;₽</span></li>
+            <li><span class="name">Киш с&nbsp;курицей и&nbsp;шпинатом</span><span class="lead"></span><span class="cost">340&nbsp;₽</span></li>
+            <li><span class="name">Хлеб на&nbsp;закваске<small>600&nbsp;г, с&nbsp;7:00</small></span><span class="lead"></span><span class="cost">290&nbsp;₽</span></li>
+          </ul>
+          <div class="menu-foot"><p class="menu-note">Хлеб и&nbsp;киш можно отложить заранее&nbsp;— напишите об&nbsp;этом в&nbsp;предзаказе.</p></div>
+        </div>
+      </div>
+      <div class="menu-extras reveal">
+        <span>Растительное молоко +60&nbsp;₽</span>
+        <span>Сироп +40&nbsp;₽</span>
+        <span>Двойной шот +70&nbsp;₽</span>
+        <span>Свой стакан −20&nbsp;₽</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Галерея ===== -->
+  <section class="section" id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Атмосфера</span>
+        <h2 id="gallery-title">Заходите <em>погреться</em></h2>
+        <p>Восемь мест у&nbsp;окна, тёплый свет и&nbsp;запах хлеба с&nbsp;самого утра. Можно с&nbsp;ноутбуком, с&nbsp;собакой и&nbsp;с&nbsp;детьми.</p>
+      </div>
+      <div class="gallery reveal">
+        <figure class="g1"><img loading="lazy" decoding="async" src="img/bakery-corner.jpg" width="820" height="825" alt="Корзины с хлебом и выпечкой у печи" style="object-position:50% 68%"><figcaption>Хлебная полка&nbsp;— свежее с&nbsp;7:00</figcaption></figure>
+        <figure class="g2"><img loading="lazy" decoding="async" src="img/espresso.jpg" width="1000" height="666" alt="Эспрессо льётся из кофемашины в чашку"><figcaption>Эспрессо</figcaption></figure>
+        <figure class="g3"><img loading="lazy" decoding="async" src="img/bread-shelves.jpg" width="1000" height="665" alt="Буханки хлеба на деревянных полках" style="object-position:40% 50%"><figcaption>Хлеб из&nbsp;печи</figcaption></figure>
+        <figure class="g4"><img loading="lazy" decoding="async" src="img/latte-top.jpg" width="900" height="599" alt="Латте с рисунком-тюльпаном, вид сверху"><figcaption>Латте-арт</figcaption></figure>
+        <figure class="g5"><img loading="lazy" decoding="async" src="img/cappuccino-table.jpg" width="1000" height="666" alt="Капучино и кусочек кекса на круглом деревянном столе"><figcaption>Капучино и&nbsp;кекс&nbsp;— классика утра</figcaption></figure>
+        <figure class="g6"><img loading="lazy" decoding="async" src="img/long-table.jpg" width="1000" height="666" alt="Длинный деревянный стол у окна с чашкой кофе"><figcaption>Общий стол у&nbsp;окна</figcaption></figure>
+      </div>
+      <div class="reviews reveal">
+        <b>Здесь будут отзывы гостей</b>
+        <span>Публикуем отзывы с&nbsp;именем или фото только с&nbsp;отдельного согласия автора.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Как добраться ===== -->
+  <section class="section visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Как добраться</span>
+        <h2 id="visit-title">Мы в&nbsp;соседнем дворе&nbsp;— <em>ищите зелёную дверь</em></h2>
+        <p>Три минуты пешком от&nbsp;остановки. Вход со&nbsp;двора, рядом есть место для&nbsp;коляски и&nbsp;велосипеда.</p>
+      </div>
+      <div class="visit-grid">
+        <figure class="map reveal" style="margin:0">
+          <svg class="map-wide" viewBox="0 0 640 440" role="img" aria-labelledby="map-t map-d">
+            <title id="map-t">Схема проезда</title>
+            <desc id="map-d">От&nbsp;остановки «Примерная» пройти 200&nbsp;метров по&nbsp;улице Примерной, повернуть в&nbsp;арку дома 12 и&nbsp;пройти во&nbsp;двор&nbsp;— кофейня с&nbsp;зелёной дверью справа.</desc>
+            <rect width="640" height="440" fill="#F1E4D1"/>
+            <!-- кварталы -->
+            <g fill="#E6D3B8">
+              <rect x="20" y="20" width="170" height="150" rx="10"/>
+              <rect x="20" y="250" width="170" height="170" rx="10"/>
+              <rect x="270" y="20" width="350" height="150" rx="10"/>
+              <rect x="270" y="250" width="160" height="170" rx="10"/>
+              <rect x="510" y="250" width="110" height="170" rx="10"/>
+            </g>
+            <!-- двор -->
+            <rect x="290" y="40" width="190" height="110" rx="8" fill="#DCE8DD"/>
+            <g fill="#9DC3A6"><circle cx="320" cy="70" r="12"/><circle cx="345" cy="120" r="10"/><circle cx="455" cy="62" r="9"/></g>
+            <!-- улицы -->
+            <g fill="#FFFDF9">
+              <rect x="0" y="180" width="640" height="60"/>
+              <rect x="200" y="0" width="60" height="440"/>
+              <rect x="440" y="250" width="60" height="190"/>
+            </g>
+            <g stroke="#E6D3B8" stroke-width="2" stroke-dasharray="14 12"><path d="M0 210h640"/><path d="M230 0v440"/></g>
+            <!-- арка -->
+            <rect x="372" y="150" width="34" height="22" fill="#FFFDF9"/>
+            <!-- маршрут -->
+            <path d="M120 226 H389 V100 H415" fill="none" stroke="#2F5D45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 11"/>
+            <!-- остановка -->
+            <g transform="translate(120 226)">
+              <circle r="15" fill="#2E1F17"/>
+              <path d="M-6 -6h12v10h-12z M-4 4v3 M4 4v3" stroke="#FBF5EC" stroke-width="2" fill="none"/>
+            </g>
+            <!-- кофейня -->
+            <g transform="translate(432 100)">
+              <circle r="26" fill="#2F5D45"/>
+              <path d="M-11 -4h20v5a10 10 0 0 1-20 0z" fill="#FBF5EC"/>
+              <path d="M9 -2h3a3.5 3.5 0 0 1 0 7h-3" fill="none" stroke="#FBF5EC" stroke-width="2.4"/>
+              <path d="M-4 -16c-2 3 2 4 0 7M2 -17c-2 3 2 4 0 7" stroke="#D9A066" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </g>
+            <!-- подписи -->
+            <g font-family="Golos Text, Arial, sans-serif" fill="#2E1F17">
+              <text x="600" y="217" font-size="18" font-weight="600" text-anchor="end">ул. Примерная</text>
+              <text x="0" y="0" font-size="17" font-weight="600" transform="translate(236 410) rotate(-90)">Тихий пер.</text>
+              <text x="40" y="272" font-size="16" font-weight="600">Остановка</text>
+              <text x="40" y="292" font-size="16">«Примерная»</text>
+              <text x="466" y="96" font-size="19" font-weight="700">Тёплый двор</text>
+              <text x="466" y="118" font-size="15">вход со&nbsp;двора</text>
+              <text x="414" y="168" font-size="14" fill="#6A5142">арка, д. 12</text>
+              <text x="284" y="350" font-size="15" fill="#6A5142">Парковка</text>
+              <text x="284" y="368" font-size="15" fill="#6A5142">во&nbsp;дворе</text>
+            </g>
+            <g transform="translate(590 400)" font-family="Golos Text, Arial, sans-serif">
+              <circle r="20" fill="#FFFDF9"/><path d="M0 -14 L5 1 L0 -2 L-5 1z" fill="#2E1F17"/><text y="15" font-size="11" font-weight="700" text-anchor="middle" fill="#2E1F17">С</text>
+            </g>
+          </svg>
+          <svg class="map-narrow" viewBox="0 0 400 460" role="img" aria-labelledby="map-t2 map-d2">
+            <title id="map-t2">Схема проезда</title>
+            <desc id="map-d2">От&nbsp;остановки «Примерная» пройти 200&nbsp;метров по&nbsp;улице Примерной, повернуть в&nbsp;арку дома 12 и&nbsp;пройти во&nbsp;двор&nbsp;— кофейня с&nbsp;зелёной дверью справа.</desc>
+            <rect width="400" height="460" fill="#F1E4D1"/>
+            <g fill="#E6D3B8">
+              <rect x="12" y="12" width="128" height="176" rx="10"/>
+              <rect x="200" y="12" width="188" height="176" rx="10"/>
+              <rect x="12" y="276" width="128" height="172" rx="10"/>
+              <rect x="200" y="276" width="188" height="172" rx="10"/>
+            </g>
+            <rect x="212" y="24" width="164" height="132" rx="8" fill="#DCE8DD"/>
+            <g fill="#9DC3A6"><circle cx="234" cy="132" r="10"/><circle cx="258" cy="146" r="6"/></g>
+            <g fill="#FFFDF9">
+              <rect x="0" y="196" width="400" height="72"/>
+              <rect x="148" y="0" width="44" height="460"/>
+              <rect x="272" y="154" width="28" height="44"/>
+            </g>
+            <g stroke="#E6D3B8" stroke-width="2" stroke-dasharray="14 12"><path d="M0 234h400"/><path d="M170 0v196M170 268v192"/></g>
+            <path d="M70 252 H286 V118 H302" fill="none" stroke="#2F5D45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 11"/>
+            <g transform="translate(70 252)">
+              <circle r="16" fill="#2E1F17"/>
+              <path d="M-6 -6h12v10h-12z M-4 4v3 M4 4v3" stroke="#FBF5EC" stroke-width="2" fill="none"/>
+            </g>
+            <g transform="translate(330 118)">
+              <circle r="26" fill="#2F5D45"/>
+              <path d="M-11 -4h20v5a10 10 0 0 1-20 0z" fill="#FBF5EC"/>
+              <path d="M9 -2h3a3.5 3.5 0 0 1 0 7h-3" fill="none" stroke="#FBF5EC" stroke-width="2.4"/>
+              <path d="M-4 -16c-2 3 2 4 0 7M2 -17c-2 3 2 4 0 7" stroke="#D9A066" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            </g>
+            <g font-family="Golos Text, Arial, sans-serif" fill="#2E1F17">
+              <text x="16" y="224" font-size="19" font-weight="600">ул. Примерная</text>
+              <text x="0" y="0" font-size="17" font-weight="600" transform="translate(177 440) rotate(-90)">Тихий пер.</text>
+              <text x="24" y="310" font-size="18" font-weight="600">Остановка</text>
+              <text x="24" y="333" font-size="18">«Примерная»</text>
+              <text x="220" y="58" font-size="22" font-weight="700">Тёплый двор</text>
+              <text x="220" y="83" font-size="18">вход со&nbsp;двора</text>
+              <text x="306" y="181" font-size="16" fill="#6A5142">арка, д. 12</text>
+              <text x="218" y="330" font-size="18" fill="#6A5142">Парковка</text>
+              <text x="218" y="353" font-size="18" fill="#6A5142">во&nbsp;дворе</text>
+            </g>
+            <g transform="translate(360 418)" font-family="Golos Text, Arial, sans-serif">
+              <circle r="22" fill="#FFFDF9"/><path d="M0 -15 L6 2 L0 -1 L-6 2z" fill="#2E1F17"/><text y="17" font-size="12" font-weight="700" text-anchor="middle" fill="#2E1F17">С</text>
+            </g>
+          </svg>
+          <figcaption class="map-note">Схема условная, не&nbsp;в&nbsp;масштабе. На&nbsp;реальном сайте здесь будет ссылка на&nbsp;карточку в&nbsp;Яндекс Картах.</figcaption>
+        </figure>
+        <div class="info">
+          <div class="info-card reveal">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Адрес</h3>
+            <p><strong>ул. Примерная, д. 12, вход со&nbsp;двора</strong><span class="placeholder">адрес-пример</span></p>
+            <p style="margin-top:6px">Остановка «Примерная»&nbsp;— 200&nbsp;м, около 3&nbsp;минут пешком.</p>
+          </div>
+          <div class="info-card reveal">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Часы работы</h3>
+            <table class="hours">
+              <tr><td>Будни</td><td>7:30&nbsp;— 21:00</td></tr>
+              <tr><td>Выходные</td><td>8:30&nbsp;— 21:00</td></tr>
+              <tr><td>Свежая выпечка</td><td>7:00 · 12:00 · 17:00</td></tr>
+            </table>
+          </div>
+          <div class="info-card reveal">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Телефон</h3>
+            <p><strong>+7 (XXX) XXX-XX-XX</strong><span class="placeholder">заглушка</span></p>
+            <p style="margin-top:6px">Ответим и&nbsp;примем заказ в&nbsp;часы работы.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Предзаказ ===== -->
+  <section class="section" id="order" aria-labelledby="order-title">
+    <div class="wrap order-grid">
+      <div class="reveal">
+        <span class="kicker">Предзаказ навынос</span>
+        <h2 id="order-title" style="margin-top:12px">Закажите заранее&nbsp;— <em>заберёте без&nbsp;очереди</em></h2>
+        <ol class="steps">
+          <li><div><b>Оставьте заявку</b><span>Напишите, что приготовить и&nbsp;к&nbsp;какому времени.</span></div></li>
+          <li><div><b>Подтвердим за&nbsp;5&nbsp;минут</b><span>Перезвоним или напишем, если чего&#8209;то нет в&nbsp;наличии.</span></div></li>
+          <li><div><b>Заберите на&nbsp;кассе</b><span>Назовите имя&nbsp;— оплатите картой, по&nbsp;QR или наличными.</span></div></li>
+        </ol>
+        <div class="order-photo"><img loading="lazy" decoding="async" src="img/coffee-cake.jpg" width="1000" height="666" alt="Кофейный кекс в бумаге и чашка кофе"></div>
+      </div>
+
+      <!--
+        ФОРМА ПРЕДЗАКАЗА — сейчас демонстрационная, данные никуда не уходят.
+        Как подключить реальную отправку (данные должны сначала записываться в базы на территории РФ — ч. 5 ст. 18 152-ФЗ):
+          1) своя облачная функция в Yandex Cloud Functions (+ письмо через Yandex Cloud Postbox, антиспам — Yandex SmartCaptcha):
+             в sendOrder() ниже заменить демо-блок на fetch('https://functions.yandexcloud.net/<ID функции>', { method: 'POST', body: JSON.stringify(data) });
+          2) или встроить Яндекс Форму (HTML-код из конструктора) вместо этой формы;
+          3) или собрать сайт на Tilda (tilda.ru) и принимать заявки её формами.
+        Не делать основным каналом Telegram или Google Таблицы: это трансграничная передача, а для Таблиц — ещё и нарушение локализации.
+        Перед запуском владелец сайта должен уведомить Роскомнадзор об обработке ПДн и заполнить policy.html и consent.html.
+      -->
+      <!-- novalidate ставит скрипт: без JS сработает браузерная проверка обязательных полей и галочки согласия. action/method заменить на адрес обработчика. -->
+      <form class="form reveal" id="order-form" action="#order" method="get">
+        <h3>Предзаказ</h3>
+        <p class="req-note">Поля со&nbsp;звёздочкой <span class="req" aria-hidden="true">*</span> обязательны.</p>
+
+        <div class="field">
+          <label for="f-name">Как к&nbsp;вам обращаться <span class="req" aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="given-name" required aria-describedby="e-name">
+          <span class="error" id="e-name">Напишите имя&nbsp;— назовёте его на&nbsp;кассе.</span>
+        </div>
+
+        <div class="field">
+          <label for="f-phone">Телефон <span class="req" aria-hidden="true">*</span></label>
+          <span class="hint" id="h-phone">10 цифр после +7. Позвоним только для&nbsp;подтверждения заказа.</span>
+          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 900 000-00-00" required aria-describedby="h-phone e-phone">
+          <span class="error" id="e-phone">Проверьте номер: нужно 10 цифр после +7.</span>
+        </div>
+
+        <div class="field">
+          <label for="f-time">Когда заберёте</label>
+          <select id="f-time" name="time">
+            <option>Как можно скорее (~10 мин)</option>
+            <option>Через 30&nbsp;минут</option>
+            <option>Через час</option>
+            <option value="exact">Ко времени&nbsp;— укажу ниже</option>
+          </select>
+        </div>
+
+        <div class="field" id="at-field">
+          <label for="f-at">Ко скольки подойдёте</label>
+          <span class="hint" id="h-at">Нужно, если выбрали «Ко времени». Работаем по&nbsp;будням с&nbsp;7:30, в&nbsp;выходные с&nbsp;8:30, до&nbsp;21:00.</span>
+          <input id="f-at" name="at" type="time" min="07:30" max="21:00" step="300" aria-describedby="h-at e-at">
+          <span class="error" id="e-at">Укажите время с&nbsp;7:30 до&nbsp;21:00.</span>
+        </div>
+
+        <div class="field">
+          <label for="f-order">Что приготовить <span class="req" aria-hidden="true">*</span></label>
+          <span class="hint" id="h-order">Например: капучино 0,3 на&nbsp;овсяном, два круассана.</span>
+          <textarea id="f-order" name="order" required aria-describedby="h-order e-order"></textarea>
+          <span class="error" id="e-order">Напишите хотя бы одну позицию.</span>
+        </div>
+
+        <div class="field">
+          <label class="check" for="f-consent">
+            <input id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
+            <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на&nbsp;обработку персональных данных</a> <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <span class="error" id="e-consent">Без&nbsp;согласия мы не&nbsp;можем принять заявку.</span>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Отправить предзаказ</button>
+        <p class="consent-note">Нажимая кнопку, вы подтверждаете, что ознакомились с <a href="policy.html" target="_blank" rel="noopener">политикой обработки персональных данных</a>.</p>
+        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        <p class="pay-note">Оплата при получении. Предоплата не&nbsp;нужна.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Тёплый двор — наверх">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#2F5D45"/><path d="M17 29h26v6a13 13 0 0 1-26 0z" fill="#FBF5EC"/><path d="M43 31h3.5a4.5 4.5 0 0 1 0 9H42" fill="none" stroke="#FBF5EC" stroke-width="3"/><path d="M25 14c-2.5 3.5 2.5 5.5 0 9M32 12c-2.5 3.5 2.5 5.5 0 9" stroke="#D9A066" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M14 50h36" stroke="#D9A066" stroke-width="2.6" stroke-linecap="round"/></svg>
+          <span><b>Тёплый двор</b><small>кофейня · пекарня</small></span>
+        </a>
+        <p style="margin-top:14px;max-width:24em">Кофе на&nbsp;зерне свежей обжарки и&nbsp;выпечка из&nbsp;печи&nbsp;— у&nbsp;дома. По&nbsp;будням с&nbsp;7:30, в&nbsp;выходные с&nbsp;8:30.</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>+7 (XXX) XXX-XX-XX</li>
+          <li>ул. Примерная, д. 12 (адрес-пример)</li>
+          <li>Вход со&nbsp;двора, зелёная дверь</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Часы работы</h4>
+        <ul>
+          <li>Пн&nbsp;— пт: 7:30&nbsp;— 21:00</li>
+          <li>Сб&nbsp;— вс: 8:30&nbsp;— 21:00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <ul>
+          <li><a href="policy.html">Политика обработки персональных данных</a></li>
+          <li><a href="consent.html">Согласие на&nbsp;обработку данных</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>ИП [ФИО], ОГРНИП [номер], ИНН [номер], зарегистрирован [наименование регистрирующего органа]. Адрес: [адрес].</span>
+      <span>Сайт не&nbsp;использует cookie и&nbsp;счётчики и&nbsp;не&nbsp;обращается к&nbsp;сторонним сервисам: шрифты и&nbsp;фото загружаются с&nbsp;самого сайта.</span>
+      <span>Демо-проект для&nbsp;портфолио: кофейня, цены и&nbsp;контакты вымышлены. Фото&nbsp;— Wikimedia Commons (CC0).</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* --- Мобильное меню --- */
+  var burger = document.querySelector('.burger'), nav = document.getElementById('nav');
+  function closeNav(){ nav.classList.remove('is-open'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','Открыть меню'); }
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  });
+  nav.addEventListener('click', function(e){ if (e.target.closest('a')) closeNav(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeNav(); });
+  window.matchMedia('(min-width:900px)').addEventListener('change', closeNav);
+
+  /* --- Появление блоков при прокрутке --- */
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function(el){ io.observe(el); });
+  } else { items.forEach(function(el){ el.classList.add('is-in'); }); }
+
+  /* --- «В предзаказ» из карточек выпечки --- */
+  var orderField = document.getElementById('f-order');
+  document.querySelectorAll('[data-add]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.getAttribute('data-add') + ' — 1 шт.';
+      orderField.value = orderField.value.trim() ? orderField.value.trim() + '\n' + item : item;
+      setError(orderField, false);
+      btn.classList.add('is-added'); btn.textContent = '✓ Добавлено';
+      setTimeout(function(){ btn.classList.remove('is-added'); btn.textContent = '+ В предзаказ'; }, 1800);
+    });
+  });
+
+  /* --- Форма предзаказа: проверка и демо-отправка --- */
+  var form = document.getElementById('order-form'), status = document.getElementById('form-status');
+  form.noValidate = true; // свою проверку делает скрипт; без JS работает браузерная
+  function F(id){ return document.getElementById(id); }
+  function setError(field, on){
+    var err = document.getElementById('e-' + field.id.replace('f-',''));
+    field.setAttribute('aria-invalid', on ? 'true' : 'false');
+    if (err) err.classList.toggle('is-on', on);
+  }
+  function phoneOk(v){ var d = v.replace(/\D/g,''); if (d.length === 11 && (d[0] === '7' || d[0] === '8')) d = d.slice(1); return d.length === 10; }
+  function check(){
+    var bad = [];
+    var name = F('f-name'), phone = F('f-phone'), order = F('f-order'), consent = F('f-consent'), at = F('f-at');
+    var rules = [[name, name.value.trim().length >= 2], [phone, phoneOk(phone.value)]];
+    if (exact()) rules.push([at, /^\d\d:\d\d$/.test(at.value) && at.value >= '07:30' && at.value <= '21:00']);
+    rules.push([order, order.value.trim().length >= 2], [consent, consent.checked]);
+    rules
+      .forEach(function(p){ setError(p[0], !p[1]); if (!p[1]) bad.push(p[0]); });
+    return bad;
+  }
+  /* «Ко времени» — показываем поле со временем только при этом варианте */
+  var timeSel = F('f-time'), atField = F('at-field');
+  function exact(){ return timeSel.value === 'exact'; }
+  function syncAt(){ atField.hidden = !exact(); F('f-at').required = exact(); if (!exact()) setError(F('f-at'), false); }
+  timeSel.addEventListener('change', function(){ syncAt(); if (exact()) F('f-at').focus(); });
+  syncAt();
+
+  ['f-name','f-phone','f-at','f-order'].forEach(function(id){
+    var el = document.getElementById(id);
+    el.addEventListener('blur', function(){ if (el.getAttribute('aria-invalid') === 'true') check(); });
+  });
+  F('f-consent').addEventListener('change', function(){ setError(F('f-consent'), !F('f-consent').checked); });
+
+  function sendOrder(data){
+    // ДЕМО: здесь подключается реальная отправка (см. комментарий над формой).
+    // Пример: return fetch('https://functions.yandexcloud.net/<ID>', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+    return Promise.resolve();
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.classList.remove('is-on');
+    var bad = check();
+    if (bad.length){ bad[0].focus(); return; }
+    var data = { name: F('f-name').value.trim(), phone: F('f-phone').value.trim(), time: exact() ? 'Ко времени: ' + F('f-at').value : timeSel.value, order: F('f-order').value.trim() };
+    sendOrder(data).then(function(){
+      status.textContent = 'Демо: заявка не отправляется. На настоящем сайте ' + data.name + ' получил(а) бы звонок для подтверждения заказа.';
+      status.classList.add('is-on');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Страница не найдена — Тёплый двор</title>
+<meta name="robots" content="noindex">
+<!-- Пути от корня сайта (/...): 404 может открыться по любому вложенному адресу. В nginx: error_page 404 /404.html; -->
+<link rel="stylesheet" href="/fonts/fonts.css">
+<style>
+:root{--cream:#FBF5EC;--foam:#FFFDF9;--latte:#F1E4D1;--coffee:#2E1F17;--soft:#6A5142;--green:#2F5D45;--green-2:#3E7556;--caramel-light:#D9A066}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--cream) radial-gradient(900px 420px at 85% -10%,rgba(230,211,184,.75),transparent 60%);color:var(--coffee);font:400 17px/1.6 "Golos Text","Segoe UI",Roboto,Arial,sans-serif;display:grid;place-items:center;padding:32px 20px}
+.box{max-width:520px;text-align:center}
+.cup{width:96px;height:96px;margin:0 auto 18px}
+.code{font:600 15px/1 "Golos Text",Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#87501D;margin:0 0 10px}
+h1{font:600 clamp(2rem,1.5rem + 2.4vw,2.9rem)/1.12 "Playfair Display",Georgia,serif;margin:0 0 14px;letter-spacing:-.01em}
+h1 em{color:var(--green)}
+p{margin:0 0 26px;color:var(--soft)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;font:600 16px/1 "Golos Text",Arial,sans-serif;text-decoration:none;border:2px solid transparent}
+.btn-primary{background:var(--green);color:var(--foam)}
+.btn-primary:hover{background:var(--green-2)}
+.btn-ghost{border-color:var(--coffee);color:var(--coffee)}
+.btn-ghost:hover{background:var(--coffee);color:var(--cream)}
+:focus-visible{outline:3px solid var(--caramel-light);outline-offset:3px}
+</style>
+</head>
+<body>
+<main class="box">
+  <svg class="cup" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#2F5D45"/><path d="M17 29h26v6a13 13 0 0 1-26 0z" fill="#FBF5EC"/><path d="M43 31h3.5a4.5 4.5 0 0 1 0 9H42" fill="none" stroke="#FBF5EC" stroke-width="3"/><path d="M25 14c-2.5 3.5 2.5 5.5 0 9M32 12c-2.5 3.5 2.5 5.5 0 9" stroke="#D9A066" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M14 50h36" stroke="#D9A066" stroke-width="2.6" stroke-linecap="round"/></svg>
+  <p class="code">Ошибка 404</p>
+  <h1>Такой страницы нет, <em>а&nbsp;круассаны есть</em></h1>
+  <p>Возможно, ссылка устарела или в&nbsp;адресе опечатка. Загляните на&nbsp;главную&nbsp;— там меню, выпечка дня и&nbsp;предзаказ навынос.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="/">На&nbsp;главную</a>
+    <a class="btn btn-ghost" href="/#menu">Смотреть меню</a>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+Фотографии демо-сайта «Тёплый двор»
+Источник всех фото — Wikimedia Commons (импорт с Unsplash). Лицензия всех фото — CC0 1.0 (общественное достояние): можно использовать, изменять и показывать без указания автора, в том числе в коммерческих целях. Авторы указаны из уважения.
+Фото уменьшены и пересжаты (до 1280 px по длинной стороне, JPEG), каждое меньше 250 КБ.
+
+hero-latte.jpg        — Athena Lam, «Athena Lam 2016 (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Athena_Lam_2016_(Unsplash).jpg
+croissants.jpg        — Alisa Anton, «Alisa Anton 2016-03-12 (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Alisa_Anton_2016-03-12_(Unsplash).jpg
+pain-au-chocolat.jpg  — Mink Mingle, «Mink Mingle 2017 (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Mink_Mingle_2017_(Unsplash).jpg
+orange-muffins.jpg    — Jennifer Pallian, «Orange Muffins (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Orange_Muffins_(Unsplash).jpg
+cookies.jpg           — Jade Wulfraat, «Gourmet Cookies (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Gourmet_Cookies_(Unsplash).jpg
+green-cup.jpg         — Clem Onojeghuo, «Frothy coffee in a green cup (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Frothy_coffee_in_a_green_cup_(Unsplash).jpg
+bakery-corner.jpg     — Drew Coffman, «Artisan Loaves of Bread (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Artisan_Loaves_of_Bread_(Unsplash).jpg
+espresso.jpg          — Gold Coast Media Lab (Helensvale Library), «Machine pouring coffee (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Machine_pouring_coffee_(Unsplash).jpg
+bread-shelves.jpg     — Clark Young, «Loaves of Bread (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Loaves_of_Bread_(Unsplash).jpg
+latte-top.jpg         — Drew Coffman, «Two Hands Cafe latte art (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Two_Hands_Cafe_latte_art_(Unsplash).jpg
+cappuccino-table.jpg  — Alisa Anton, «Cappuccinos and cake (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Cappuccinos_and_cake_(Unsplash).jpg
+long-table.jpg        — Luke Chesser, «Coffee in Montreal (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Coffee_in_Montreal_(Unsplash).jpg
+coffee-cake.jpg       — Stephanie McCabe, «Coffee and coffee cake (Unsplash).jpg», CC0
+                        https://commons.wikimedia.org/wiki/File:Coffee_and_coffee_cake_(Unsplash).jpg
+
+Людей с узнаваемыми лицами крупным планом и чужих логотипов на фото нет (на long-table.jpg вдали два размытых силуэта).
+Логотип «Тёплый двор», иконки и схема проезда нарисованы вручную (SVG прямо в коде).

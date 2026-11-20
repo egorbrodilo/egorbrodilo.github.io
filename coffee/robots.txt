@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# После публикации добавить карту сайта с реальным доменом:
+# Sitemap: https://teplyj-dvor.example/sitemap.xml

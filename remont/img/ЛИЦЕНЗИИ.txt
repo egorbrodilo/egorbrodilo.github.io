@@ -1,0 +1,69 @@
+ФОТОГРАФИИ НА САЙТЕ — ИСТОЧНИКИ И ЛИЦЕНЗИИ
+Все фото взяты с Wikimedia Commons (импорт с Unsplash), лицензия CC0 1.0 (общественное достояние).
+Указание авторства по CC0 не обязательно, оно приведено для прозрачности.
+Файлы уменьшены (до 1000–1280 px по длинной стороне) и пересжаты в JPG, без иных изменений.
+
+img/gostinaya-divan.jpg
+  Оригинал: File:At Home (Unsplash).jpg
+  Автор: Naomi Hébert naomish
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:At_Home_(Unsplash).jpg
+
+img/gostinaya-okno.jpg
+  Оригинал: File:Coffee table corner in a London apartment (Unsplash).jpg
+  Автор: Alexander Pemberton socios
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Coffee_table_corner_in_a_London_apartment_(Unsplash).jpg
+
+img/hero-gostinaya.jpg
+  Оригинал: File:Living room (Unsplash).jpg
+  Автор: Jarosław Ceborski jarson
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Living_room_(Unsplash).jpg
+
+img/koridor.jpg
+  Оригинал: File:Home Sweet Home Pt. 4 (Unsplash).jpg
+  Автор: Kari Shea karishea
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Home_Sweet_Home_Pt._4_(Unsplash).jpg
+
+img/kuhnya-belaya.jpg
+  Оригинал: File:Kitchen (Unsplash).jpg
+  Автор: Naomi Hébert naomish
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Kitchen_(Unsplash).jpg
+
+img/kuhnya-ostrov.jpg
+  Оригинал: File:Blue white kitchen interior (Unsplash).jpg
+  Автор: NeONBRAND neonbrand
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Blue_white_kitchen_interior_(Unsplash).jpg
+
+img/sanuzel-mozaika.jpg
+  Оригинал: File:Dan Watson 2014 (Unsplash).jpg
+  Автор: Dan Watson danwatson
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Dan_Watson_2014_(Unsplash).jpg
+
+img/stena-torsher.jpg
+  Оригинал: File:Floor lamp near a wall (Unsplash).jpg
+  Автор: David van Dijk dvandijk
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Floor_lamp_near_a_wall_(Unsplash).jpg
+
+img/stolovaya-ugol.jpg
+  Оригинал: File:Round table in a bright room (Unsplash).jpg
+  Автор: Nirzar Pangarkar nirzar
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Round_table_in_a_bright_room_(Unsplash).jpg
+
+img/stolovaya.jpg
+  Оригинал: File:Minimal creative interior (Unsplash).jpg
+  Автор: Breather breather
+  Лицензия: CC0
+  Страница: https://commons.wikimedia.org/wiki/File:Minimal_creative_interior_(Unsplash).jpg
+
+
+ШРИФТ
+fonts/onest-*.woff2 — Onest (The Onest Project Authors), SIL Open Font License 1.1, текст лицензии: fonts/OFL-Onest.txt.
+Файлы шрифта лежат рядом с сайтом, запросов к Google Fonts нет.
