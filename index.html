@@ -136,10 +136,19 @@ h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:600;letter-spacing:-.02e
 .rv{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
 .rv.in{opacity:1;transform:none}
 
+/* тексты: было / стало */
+.ba{display:grid;gap:14px}
+.ba-card{border-radius:22px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);padding:22px 24px}
+.ba-card small{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.ba-card p{margin:0;font-size:15.5px;line-height:1.6}
+.ba-card.before p{color:var(--muted)}
+.ba-card.before mark{background:none;color:inherit;text-decoration:line-through;text-decoration-color:#E0566B;text-decoration-thickness:2px}
+.ba-card.after{border-color:color-mix(in srgb,var(--blue) 45%,var(--line))}
+.ba-card.after small{color:var(--blue)}
+.work .ba-card.after p{color:var(--text)}
 /* услуги */
 .svcs{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
 .svc{grid-column:span 2;position:relative;display:flex;flex-direction:column;min-height:300px;padding:30px;border-radius:24px;background:var(--card);border:1px solid var(--line);text-decoration:none;overflow:hidden;isolation:isolate;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s,opacity .9s}
-.svc:nth-child(4),.svc:nth-child(5){grid-column:span 3}
 .svc::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),var(--glow),transparent 60%);opacity:0;transition:opacity .4s}
 .svc:hover{border-color:color-mix(in srgb,var(--blue) 50%,var(--line));transform:translateY(-6px)}
 .svc:hover::before{opacity:1}
@@ -149,8 +158,8 @@ h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:600;letter-spacing:-.02e
 .svc p{margin:0 0 22px;color:var(--muted);font-size:15.5px}
 .svc .price{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:16px;padding-top:18px;border-top:1px solid var(--line)}
 .svc .price span{color:var(--blue)}
-@media (max-width:960px){.svcs{grid-template-columns:1fr 1fr}.svc,.svc:nth-child(4),.svc:nth-child(5){grid-column:span 1}.svc:nth-child(5){grid-column:span 2}}
-@media (max-width:600px){.svcs{grid-template-columns:1fr}.svc,.svc:nth-child(5){grid-column:span 1}.svc{min-height:0}}
+@media (max-width:960px){.svcs{grid-template-columns:1fr 1fr}.svc{grid-column:span 1}}
+@media (max-width:600px){.svcs{grid-template-columns:1fr}.svc{grid-column:span 1;min-height:0}}
 
 /* блок направления в работах */
 .dir{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin:110px 0 40px;padding-top:28px;border-top:1px solid var(--line)}
@@ -402,8 +411,8 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
 
   <div class="marquee" aria-hidden="true">
     <div class="mq">
-      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы</span>
-      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы</span>
+      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы<i></i><em>Тексты без следов ИИ</em></span>
+      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы<i></i><em>Тексты без следов ИИ</em></span>
     </div>
   </div>
 
@@ -411,7 +420,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
     <div class="wrap">
       <div class="sec-head">
         <h2 class="rv">Чем могу помочь</h2>
-        <p class="rv" style="--d:.1s">Пять направлений, в каждом беру задачу целиком. Цены ориентировочные, точную назову после короткого брифа.</p>
+        <p class="rv" style="--d:.1s">Шесть направлений, в каждом беру задачу целиком. Цены ориентировочные, точную назову после короткого брифа.</p>
       </div>
       <div class="svcs">
         <a class="svc rv" href="#w-analytics">
@@ -443,6 +452,12 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           <h3>ИИ-помощники</h3>
           <p>Забираю рутину на нейросеть: черновики ответов, сводки из таблиц и документов.</p>
           <div class="price">Цена<span>от 3 000 ₽</span></div>
+        </a>
+        <a class="svc rv" style="--d:.16s" href="#w-texts">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M4 11h7M4 16h5"/><path d="M14.5 19.5l7-7-2.5-2.5-7 7-.5 3z"/></svg></div>
+          <h3>Тексты без следов ИИ</h3>
+          <p>Переписываю тексты после нейросети живым языком, рерайт с уникальностью от 95% по text.ru.</p>
+          <div class="price">Цена<span>от 200 ₽ за 1 000 знаков</span></div>
         </a>
       </div>
     </div>
@@ -813,6 +828,28 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
         </div>
       </article>
 
+      <div class="dir rv" id="w-texts"><h3>Тексты</h3><span>Пример правки, компания вымышлена</span></div>
+      <article class="work">
+        <div class="media rv">
+          <div class="ba">
+            <div class="ba-card before"><small>Было: текст из нейросети</small><p><mark>В современном мире</mark> качественная мебель играет <mark>важную роль</mark> в создании уюта. Наша компания <mark>является командой профессионалов</mark>, которые <mark>стремятся предоставить</mark> клиентам <mark>лучшие решения</mark>. Мы предлагаем <mark>широкий ассортимент</mark> продукции, отвечающей <mark>самым высоким стандартам качества</mark>. <mark>Важно отметить</mark>, что индивидуальный подход к каждому клиенту является нашим <mark>ключевым приоритетом</mark>.</p></div>
+            <div class="ba-card after"><small>Стало: после редактуры</small><p>Делаем кухни и шкафы на заказ из массива дуба и ясеня. Замерщик приезжает бесплатно, проект в 3D показываем до оплаты. Изготовление от 21 дня, на корпус и фурнитуру даём гарантию 2 года.</p></div>
+          </div>
+        </div>
+        <div class="rv">
+          <span class="tag">Редактура и рерайт</span>
+          <h4>Убираю следы ИИ: штампы, воду и одинаковые фразы</h4>
+          <p>Нейросеть пишет быстро, но читатель узнаёт её по общим словам. Переписываю текст так, чтобы он звучал как написанный человеком и говорил о деле.</p>
+          <ul>
+            <li>вычёркиваю штампы и пустые обороты, вместо них ставлю факты о вашем товаре или услуге;</li>
+            <li>меняю ритм: короткие и длинные предложения, без однотипных конструкций;</li>
+            <li>рерайт с уникальностью от 95% по text.ru, скриншот проверки прикладываю;</li>
+            <li>статьи, описания товаров, тексты для сайтов и постов; учебные работы не беру.</li>
+          </ul>
+          <p class="res">Первую 1 000 знаков правлю бесплатно, чтобы вы оценили результат до оплаты.</p>
+        </div>
+      </article>
+
       <div class="dir rv" id="w-ai"><h3>ИИ-помощники</h3><span>Свой проект, работает каждый день</span></div>
       <article class="work flip">
         <div class="media rv">
@@ -854,7 +891,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           <div class="stat rv"><b data-count="4">4</b><span>года учился по гранту ректора</span></div>
           <div class="stat rv" style="--d:.08s"><b data-count="2" data-suf="×">2×</b><span>чемпион Москвы и области по дзюдо</span></div>
           <div class="stat rv" style="--d:.16s"><b data-count="6">6</b><span>лет в борьбе: дисциплина и упорство</span></div>
-          <div class="stat rv" style="--d:.24s"><b data-count="5">5</b><span>направлений, в которых беру задачу целиком</span></div>
+          <div class="stat rv" style="--d:.24s"><b data-count="6">6</b><span>направлений, в которых беру задачу целиком</span></div>
         </div>
       </div>
     </div>
