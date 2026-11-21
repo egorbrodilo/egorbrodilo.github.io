@@ -86,7 +86,7 @@ header .icons svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-wi
 /* ===== 3. Две коллекции ===== */
 .coll{position:relative;background:#143640}
 .strip{position:relative;height:46vh;overflow:hidden;display:flex;justify-content:center}
-.strip .door{width:min(16vw,170px);background:url(img/door-linea.svg) top center/100% auto no-repeat;height:100%;
+.strip .door{width:min(16vw,170px);background:url(img/door-linea.jpg) top center/100% auto no-repeat;height:100%;
   transform:translateY(-100%);transition:transform 1.6s cubic-bezier(.6,0,.2,1);filter:drop-shadow(0 30px 30px rgba(0,0,0,.4))}
 .strip.on .door{transform:translateY(0)}
 .strip::after{content:"";position:absolute;left:0;right:0;bottom:0;height:60%;background:linear-gradient(transparent,#143640)}
@@ -179,13 +179,13 @@ footer a{display:block;margin:6px 0}
     <h1>Двери, которые <i>создают</i> пространство</h1>
   </div>
   <div class="row" id="row">
-    <img src="img/door-arco.svg" alt="">
-    <img src="img/door-puro.svg" alt="">
-    <img src="img/door-classico.svg" alt="">
-    <img src="img/door-linea.svg" alt="">
-    <img src="img/door-verso.svg" alt="">
-    <img src="img/door-orbita.svg" alt="">
-    <img src="img/door-luce.svg" alt="">
+    <img src="img/door-palazzo.jpg" alt="">
+    <img src="img/door-puro.jpg" alt="">
+    <img src="img/door-classico.jpg" alt="">
+    <img src="img/door-linea.jpg" alt="">
+    <img src="img/door-rovere.jpg" alt="">
+    <img src="img/door-bianco.jpg" alt="">
+    <img src="img/door-sole.jpg" alt="">
   </div>
   <div class="scroll">ЛИСТАЙТЕ ↓</div>
 </section>
@@ -206,8 +206,8 @@ footer a{display:block;margin:6px 0}
   <div class="pair">
     <a class="card rv" href="#drum"><div class="ph" style="background-image:url(img/coll-linea.jpg);background-position:50% 60%"></div>
       <div class="lab"><small>Коллекция</small><h3>LINEA</h3><span>Смотреть коллекцию</span></div></a>
-    <a class="card rv" href="#drum"><div class="ph" style="background-image:url(img/coll-orbita.jpg);background-position:50% 60%"></div>
-      <div class="lab"><small>Коллекция</small><h3>ORBITA</h3><span>Смотреть коллекцию</span></div></a>
+    <a class="card rv" href="#drum"><div class="ph" style="background-image:url(img/coll-palazzo.jpg);background-position:50% 60%"></div>
+      <div class="lab"><small>Коллекция</small><h3>PALAZZO</h3><span>Смотреть коллекцию</span></div></a>
   </div>
 </section>
 
@@ -257,10 +257,10 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.rv,#strip').forEach(el=>io.observe(el));
 
 // барабан
-const D=[['LINEA','латунные вставки'],['VERSO','вертикальные рейки'],['CLASSICO','неоклассика'],['PURO','минимализм'],
-  ['ARCO','арка со стеклом'],['ORBITA','круговой рельеф'],['INVISO','скрытый монтаж'],['LUCE','со стеклом'],['FRATTURA','арт-разлом']];
+const D=[['LINEA','массив сосны, латунные рейки'],['INVISO','скрытый монтаж под покраску'],['CLASSICO','шесть филёнок'],['PURO','шпон американского ореха'],
+  ['BIANCO','классика в белой эмали'],['ROVERE','дуб, скрытая ручка'],['SOLE','тёплый дуб, без наличника'],['PALAZZO','двустворчатая неоклассика']];
 const ring=document.getElementById('ring'),N=D.length,step=360/N,R=520;
-ring.innerHTML=D.map((d,i)=>`<figure style="transform:rotateY(${i*step}deg) translateZ(${R}px)"><img src="img/door-${d[0].toLowerCase()}.svg" alt="${d[0]}"></figure>`).join('');
+ring.innerHTML=D.map((d,i)=>`<figure style="transform:rotateY(${i*step}deg) translateZ(${R}px)"><img src="img/door-${d[0].toLowerCase()}.jpg" alt="${d[0]}"></figure>`).join('');
 const figs=[...ring.children],dn=document.getElementById('dname');let cur=0;
 function show(){ring.style.transform=`translateZ(-${R}px) rotateY(${-cur*step}deg)`;
   const k=((cur%N)+N)%N;figs.forEach((f,i)=>{const d=Math.min((i-k+N)%N,(k-i+N)%N);f.classList.toggle('far',d>1)});
