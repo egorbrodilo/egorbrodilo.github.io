@@ -1,12 +1,12 @@
 /* Aster Pay mini app concept: tokens, layout shell and shared components.
    Screen-specific styles live next to the screens (app/css/screens/<name>.css), with class names prefixed by the screen. */
-@font-face{font-family:CG;font-weight:400;src:url(../fonts/CormorantGaramond-Regular.ttf)}
-@font-face{font-family:CG;font-weight:400;font-style:italic;src:url(../fonts/CormorantGaramond-Italic.ttf)}
-@font-face{font-family:CG;font-weight:500;src:url(../fonts/CormorantGaramond-Medium.ttf)}
-@font-face{font-family:CG;font-weight:500;font-style:italic;src:url(../fonts/CormorantGaramond-MediumItalic.ttf)}
-@font-face{font-family:CG;font-weight:600;src:url(../fonts/CormorantGaramond-SemiBold.ttf)}
-@font-face{font-family:CG;font-weight:600;font-style:italic;src:url(../fonts/CormorantGaramond-SemiBoldItalic.ttf)}
-@font-face{font-family:CG;font-weight:700;src:url(../fonts/CormorantGaramond-Bold.ttf)}
+@font-face{font-family:CG;font-weight:400;src:url(../fonts/FiraSansCondensed-Light.ttf);size-adjust:88%}
+@font-face{font-family:CG;font-weight:400;font-style:italic;src:url(../fonts/FiraSansCondensed-LightItalic.ttf);size-adjust:88%}
+@font-face{font-family:CG;font-weight:500;src:url(../fonts/FiraSansCondensed-Regular.ttf);size-adjust:88%}
+@font-face{font-family:CG;font-weight:500;font-style:italic;src:url(../fonts/FiraSansCondensed-Italic.ttf);size-adjust:88%}
+@font-face{font-family:CG;font-weight:600;src:url(../fonts/FiraSansCondensed-Medium.ttf);size-adjust:88%}
+@font-face{font-family:CG;font-weight:600;font-style:italic;src:url(../fonts/FiraSansCondensed-MediumItalic.ttf);size-adjust:88%}
+@font-face{font-family:CG;font-weight:700;src:url(../fonts/FiraSansCondensed-SemiBold.ttf);size-adjust:88%}
 
 :root{
   --cream:#FFF0E5; --paper:rgba(255,255,255,.6); --paper2:rgba(255,255,255,.82);
