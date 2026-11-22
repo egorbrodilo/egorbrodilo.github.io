@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вера Лунина, психолог · демо-сайт</title>
+<meta name="description" content="Демо-сайт психолога для портфолио: понимающая психотерапия, онлайн и очно. Психолог и контакты вымышлены."><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF7F1; --milk:#FFFDF9; --beige:#F1E6D8; --sand:#E3D2BD;
+  --pink:#F6DEDA; --rose:#E9B9B3; --rose-deep:#C98A84;
+  --sky:#E2EDF6; --blue:#AFC8DE; --blue-deep:#6F93B4;
+  --sage:#DDE3D0; --olive:#8A9670;
+  --ink:#3B302A; --ink-soft:#6E625A; --line:#E8DCCD;
+  --radius:28px; --shadow:0 18px 40px -22px rgba(92,64,45,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--cream);color:var(--ink);font:400 17px/1.65 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(38px,5vw,60px);margin-bottom:18px}
+h2 em,h1 em{font-style:italic;color:var(--rose-deep)}
+h3{font-size:28px;margin-bottom:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+.lead{font-size:19px;color:var(--ink-soft);max-width:640px}
+.hand{font-family:Caveat,cursive;font-weight:500}
+
+/* Кнопки — крупные и мягкие */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:20px 34px;border-radius:999px;font:600 17px Manrope,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{background:var(--ink);color:var(--milk);box-shadow:var(--shadow)}
+.btn-main:hover{background:#54453c}
+.btn-soft{background:var(--milk);color:var(--ink);border:1.5px solid var(--sand)}
+.btn-pink{background:var(--rose);color:var(--ink)}
+.btn small{font-weight:500;opacity:.75}
+
+/* Шапка */
+header{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.86);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:28px;height:82px}
+header .wrap.nav{max-width:1400px}
+.logo{white-space:nowrap;font-family:"Cormorant Garamond",serif;font-size:26px;font-style:italic;text-decoration:none;line-height:1.05;flex-shrink:0}
+.logo span{display:block;font-style:normal;font-family:Manrope;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px}
+.menu{display:flex;gap:8px;white-space:nowrap;list-style:none;font-size:14px;font-weight:600}
+.menu a{display:block;text-decoration:none;padding:9px 15px;border-radius:999px;background:var(--milk);border:1px solid var(--line);color:var(--ink);transition:background .2s,border-color .2s,transform .2s}
+.menu a:hover{background:var(--beige);border-color:var(--sand);transform:translateY(-1px)}
+.nav .btn{padding:13px 22px;font-size:15px;flex-shrink:0}
+.burger{display:none;background:none;border:0;font-size:28px;cursor:pointer;color:var(--ink)}
+
+/* Первый экран */
+.hero{padding:56px 0 96px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--pink) 0,transparent 68%);right:-120px;top:-140px;z-index:-1}
+.hero::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--sky) 0,transparent 68%);left:-200px;bottom:-200px;z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(46px,6.4vw,84px);margin:6px 0 24px}
+.hero .lead{margin-bottom:36px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+.hero-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.chip{background:var(--milk);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;color:var(--ink-soft)}
+.hero-photo{position:relative}
+.hero-photo img{border-radius:220px 220px var(--radius) var(--radius);aspect-ratio:3/4;object-fit:cover;width:100%;box-shadow:var(--shadow)}
+.hero-note{position:absolute;left:-46px;bottom:38px;background:var(--milk);border-radius:22px;padding:16px 22px;box-shadow:var(--shadow);max-width:250px;font-size:15px;line-height:1.4}
+.hero-note b{display:block;font-family:"Cormorant Garamond";font-size:24px;font-weight:600}
+
+/* Знакомо? */
+.know{background:var(--milk)}
+.know-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.know-card{border-radius:var(--radius);padding:30px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s}
+.know-card:hover{transform:translateY(-4px)}
+.know-card p{font-family:"Cormorant Garamond";font-style:italic;font-size:25px;line-height:1.25}
+.know-card span{font-size:14px;color:var(--ink-soft);margin-top:18px}
+.c-pink{background:var(--pink)}.c-sky{background:var(--sky)}.c-beige{background:var(--beige)}.c-sage{background:var(--sage)}
+.know-cta{margin-top:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+
+/* С чем работаю */
+.req-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
+.req{display:flex;gap:20px;align-items:flex-start;background:var(--milk);border:1px solid var(--line);border-radius:24px;padding:26px 28px}
+.req i{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:22px}
+.req h3{font-size:24px;margin-bottom:4px}
+.req p{font-size:15.5px;color:var(--ink-soft)}
+
+/* Подход */
+.approach{background:linear-gradient(180deg,var(--sky),var(--cream))}
+.approach-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.quote{font-family:"Cormorant Garamond";font-size:clamp(28px,3.2vw,38px);font-style:italic;line-height:1.22;border-left:3px solid var(--blue);padding-left:28px}
+.quote cite{display:block;font:500 15px Manrope;font-style:normal;color:var(--ink-soft);margin-top:18px}
+.principles{list-style:none;display:grid;gap:14px;margin-top:28px}
+.principles li{background:var(--milk);border-radius:20px;padding:18px 22px;display:flex;gap:14px}
+.principles li::before{content:"✦";color:var(--rose-deep)}
+
+/* Как проходит */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px;counter-reset:s}
+.step{background:var(--milk);border-radius:var(--radius);padding:30px 26px;border:1px solid var(--line);position:relative}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:"Cormorant Garamond";font-size:54px;color:var(--rose);line-height:1;display:block;margin-bottom:14px}
+.step p{font-size:15.5px;color:var(--ink-soft)}
+
+/* Цены */
+.prices{background:var(--beige)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.price{background:var(--milk);border-radius:var(--radius);padding:38px 32px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow)}
+.price.feature{background:var(--ink);color:var(--milk)}
+.price.feature .muted{color:#d9cabb}
+.price .tag{align-self:flex-start;background:var(--pink);color:var(--ink);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}
+.price .sum{font-family:"Cormorant Garamond";font-size:62px;line-height:1;font-weight:500}
+.price .sum small{font-size:24px}
+.muted{color:var(--ink-soft);font-size:15.5px}
+.price ul{list-style:none;margin:10px 0 22px;display:grid;gap:8px;font-size:15.5px}
+.price li::before{content:"•";color:var(--rose-deep);margin-right:9px}
+.price .btn{margin-top:auto;justify-content:center}
+.price.feature .btn{background:var(--rose);color:var(--ink)}
+
+/* Образование */
+.edu-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.edu-photos{display:flex;justify-content:center}
+.edu-photos img{border-radius:28px;aspect-ratio:3/4;object-fit:cover;width:100%;max-width:440px;box-shadow:var(--shadow)}
+
+.timeline{list-style:none;position:relative;margin-top:30px}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--sand)}
+.timeline li{position:relative;padding:0 0 30px 42px}
+.timeline li::before{content:"";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--milk);border:2px solid var(--rose-deep)}
+.timeline li.now::before{background:var(--rose)}
+.timeline .when{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--rose-deep)}
+.timeline h3{font-size:24px;margin:4px 0}
+.timeline p{font-size:15.5px;color:var(--ink-soft)}
+
+/* Библиотека */
+.library{background:var(--milk)}
+.books{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.book{border-radius:22px;padding:26px 24px;display:flex;flex-direction:column;gap:8px;text-decoration:none;min-height:230px;transition:transform .25s}
+.book:hover{transform:translateY(-4px) rotate(-.4deg)}
+.book .who{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.book h3{font-size:25px}
+.book p{font-size:14.5px;color:var(--ink-soft)}
+.book .go{margin-top:auto;font-weight:600;font-size:14px}
+
+/* Истории */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.case{background:var(--milk);border-radius:var(--radius);padding:32px;border:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.case .req-tag{align-self:flex-start;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}
+.case .ba{display:grid;gap:10px;font-size:15.5px}
+.case .ba b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.case blockquote{font-family:"Cormorant Garamond";font-style:italic;font-size:22px;line-height:1.3;border-top:1px solid var(--line);padding-top:14px}
+.ethics{margin-top:28px;font-size:14.5px;color:var(--ink-soft);max-width:760px}
+
+/* Практика */
+.practice{background:var(--sage)}
+.practice-box{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.ground{background:var(--milk);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow);text-align:center;min-height:360px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px}
+.ground .big{font-family:"Cormorant Garamond";font-size:92px;line-height:1;color:var(--olive)}
+.ground .what{font-family:"Cormorant Garamond";font-size:30px;font-style:italic}
+.ground .hint{color:var(--ink-soft);font-size:15.5px;max-width:360px}
+.dots{display:flex;gap:8px}.dots span{width:10px;height:10px;border-radius:50%;background:var(--sand)}.dots span.on{background:var(--olive)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 18px}
+.tab{border:1.5px solid var(--olive);background:none;border-radius:999px;padding:10px 18px;font:600 15px Manrope;cursor:pointer;color:var(--ink)}
+.tab.on{background:var(--olive);color:var(--milk)}
+
+/* Обо мне */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-photos{position:relative}
+.about-photos{display:flex;justify-content:center}
+.about-photos img.main{border-radius:var(--radius);aspect-ratio:3/4;object-fit:cover;width:100%;max-width:460px;box-shadow:var(--shadow)}
+.about-photos img.small{position:absolute;right:0;bottom:-30px;width:46%;border-radius:22px;border:8px solid var(--cream);aspect-ratio:4/3;object-fit:cover}
+.credo{margin:26px 0;background:var(--pink);border-radius:24px;padding:24px 28px;font-size:30px;line-height:1.2;transform:rotate(-1deg)}
+.credo small{display:block;font-family:Manrope;font-size:13px;color:var(--ink-soft);margin-top:8px}
+.loves{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.loves span{background:var(--milk);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14.5px}
+
+/* Блог */
+.social{background:var(--ink);color:var(--milk)}
+.social .lead{color:#d9cabb}
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.soc{border-radius:var(--radius);padding:34px;text-decoration:none;display:flex;flex-direction:column;gap:10px;min-height:220px;color:var(--ink);transition:transform .25s}
+.soc:hover{transform:translateY(-4px)}
+.soc .net{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.soc h3{font-size:32px}
+.soc p{font-size:15px;color:var(--ink-soft)}
+.soc .go{margin-top:auto;font-weight:600}
+
+/* FAQ */
+.faq-list{margin-top:40px;display:grid;gap:12px;max-width:860px}
+details{background:var(--milk);border:1px solid var(--line);border-radius:22px;padding:22px 28px}
+summary{cursor:pointer;list-style:none;font-weight:600;font-size:18px;display:flex;justify-content:space-between;gap:20px}
+summary::after{content:"+";font-size:26px;line-height:1;color:var(--rose-deep);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:12px;color:var(--ink-soft);font-size:16px}
+
+/* Запись */
+.contact{background:radial-gradient(circle at 15% 20%,var(--pink),transparent 45%),radial-gradient(circle at 85% 80%,var(--sky),transparent 45%),var(--beige)}
+.contact-box{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.contact-links{display:grid;gap:14px;margin-top:30px}
+.contact-links .btn{justify-content:space-between;width:100%;max-width:440px}
+form{background:var(--milk);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);display:grid;gap:14px}
+form h3{font-size:30px}
+input,select,textarea{width:100%;border:1.5px solid var(--line);background:var(--cream);border-radius:16px;padding:16px 18px;font:500 16px Manrope;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rose-deep)}
+form .btn{justify-content:center}
+.consent{font-size:13px;color:var(--ink-soft)}
+
+footer{padding:44px 0;font-size:14px;color:var(--ink-soft)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.help{background:var(--milk);border-top:1px solid var(--line);padding:24px 0;font-size:14.5px;color:var(--ink-soft)}
+
+/* Плавающая кнопка записи на телефоне */
+.float{display:none;position:fixed;left:16px;right:16px;bottom:14px;z-index:60;justify-content:center;opacity:0;transform:translateY(24px);pointer-events:none;transition:opacity .35s,transform .35s}
+.float.show{opacity:1;transform:none;pointer-events:auto}
+.float .btn{padding:15px 22px;font-size:15px}
+
+/* Метки «уточнить у Насти» — видны в режиме макета */
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.rule{background:var(--milk);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px}
+.rule .ico{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:22px;margin-bottom:14px;background:var(--pink)}
+.rule:nth-child(3n+2) .ico{background:var(--sage)}.rule:nth-child(3n) .ico{background:var(--sky)}
+.rule h3{font-size:22px;margin-bottom:8px}
+.rule p,.rule li{font-size:15.5px;color:var(--ink-soft)}
+.rule ul{list-style:none;display:grid;gap:6px;margin-top:6px}.rule li::before{content:"•";color:var(--rose-deep);margin-right:9px}
+.rules-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;align-items:center}
+.rules-cta .muted{font-size:14.5px}
+.docs{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.lightbox{position:fixed;inset:0;background:rgba(59,48,42,.72);display:none;align-items:center;justify-content:center;padding:24px;z-index:60;cursor:zoom-out}
+.lightbox.on{display:flex}
+.lightbox figure{max-width:min(1100px,100%);max-height:100%;overflow:auto;background:var(--milk);border-radius:20px;padding:14px}
+.lightbox img{width:100%;height:auto;border-radius:12px;display:block}
+.lightbox figcaption{font-size:14px;color:var(--ink-soft);padding:10px 6px 2px}
+@media(max-width:900px){.rules-grid{grid-template-columns:1fr}}
+.todo{display:inline-block;background:#FFF1B8;border:1px dashed #D9B200;color:#6b5600;font:600 12px/1.3 Manrope;border-radius:8px;padding:3px 8px;margin:4px 4px 0 0;vertical-align:middle;letter-spacing:0;text-transform:none;font-style:normal}
+body.clean .todo{display:none}
+.mode{position:fixed;right:18px;bottom:18px;z-index:70;background:#FFF1B8;border:1.5px dashed #D9B200;border-radius:999px;padding:12px 18px;font:600 14px Manrope;cursor:pointer;color:#6b5600;box-shadow:var(--shadow)}
+
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+@media (max-width:1300px) and (min-width:701px){
+  .nav{flex-wrap:wrap;height:auto;padding-top:12px;padding-bottom:12px;row-gap:10px}
+  .menu{order:3;width:100%;justify-content:center;flex-wrap:wrap;gap:6px;font-size:13.5px}
+  .menu a{padding:7px 13px}
+}
+@media (max-width:700px){
+  .menu{display:none}.burger{display:block}.nav>.btn{display:none}
+  .menu.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--cream);padding:20px 24px 28px;border-bottom:1px solid var(--line);font-size:17px;align-items:flex-start;gap:10px}
+}
+@media (max-width:980px){
+  .hero-grid,.approach-grid,.edu-grid,.practice-box,.about-grid,.contact-box{grid-template-columns:1fr;gap:40px}
+  .hero-photo{max-width:420px;margin:0 auto}
+  .hero-note{left:-10px}
+  .know-grid,.price-grid,.cases-grid,.social-grid{grid-template-columns:1fr}
+  .req-grid{grid-template-columns:1fr}
+  .steps,.books{grid-template-columns:1fr 1fr}
+  .float{display:flex}
+  .mode{display:none}
+  body{padding-bottom:88px}
+  section{padding:72px 0}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 16px}
+  .steps,.books{grid-template-columns:1fr}
+  .btn{padding:18px 26px;width:100%;justify-content:center}
+  .hero-note{position:static;margin-top:-30px;margin-left:16px;max-width:none}
+  .ground{padding:28px}
+}
+</style>
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="clean">
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top">Вера Лунина <span>психолог</span></a>
+    <button class="burger" aria-label="Меню" onclick="document.querySelector('.menu').classList.toggle('open')">☰</button>
+    <ul class="menu" onclick="this.classList.remove('open')">
+      <li><a href="#requests">С чем работаю</a></li>
+      <li><a href="#approach">Подход</a></li>
+      <li><a href="#prices">Стоимость</a></li>
+      <li><a href="#rules">Правила</a></li>
+      <li><a href="#education">Образование</a></li>
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#faq">Вопросы</a></li>
+    </ul>
+    <a class="btn btn-main" href="#contact">Записаться</a>
+  </div>
+</header>
+
+<!-- 1. Первый экран -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Понимающая психотерапия Ф. Е. Василюка</span>
+      <h1>Давайте заглянем<br>в&nbsp;потаённые уголки<br><em>души вместе</em></h1>
+      <p class="lead">Я&nbsp;Вера, практикующий психолог. Помогаю тем, кто хочет проявляться и&nbsp;слышать себя. Бережно, без оценок и&nbsp;готовых советов, в&nbsp;пространстве, где ваши чувства принимают такими, какие они есть.</p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="#contact">Бесплатное знакомство <small>· 20 минут</small></a>
+        <a class="btn btn-soft" href="#approach">Как я работаю</a>
+      </div>
+      <div class="hero-facts">
+        <span class="chip">Онлайн по всему миру</span>
+        <span class="chip">Очно в Москве</span>
+        <span class="chip">Сессия 50 минут</span>
+        <span class="chip">Высшее психологическое образование</span>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <img src="img/hero.jpg" alt="Мягкая абстрактная иллюстрация">
+      
+    </div>
+  </div>
+</section>
+
+<!-- 2. Знакомо? -->
+<section class="know">
+  <div class="wrap">
+    <span class="eyebrow">Возможно, вы узнаете себя</span>
+    <h2 class="reveal">Если вам <em>знакомо</em> это чувство</h2>
+    <div class="know-grid">
+      <div class="know-card c-pink reveal"><p>«Я постоянно прокручиваю в&nbsp;голове ситуации из&nbsp;прошлого, не&nbsp;замечая, что происходит со&nbsp;мной сейчас»</p><span>Тревога · жизнь на автопилоте</span></div>
+      <div class="know-card c-sky reveal"><p>«Он снова пропал, а&nbsp;я&nbsp;схожу с&nbsp;ума от&nbsp;тревоги. Наверное, меня слишком много»</p><span>Отношения · привязанность</span></div>
+      <div class="know-card c-beige reveal"><p>«Нарядилась, сделала укладку, а&nbsp;выйти страшно: кажется, все смотрят и&nbsp;осуждают»</p><span>Страх проявленности</span></div>
+      <div class="know-card c-sage reveal"><p>«Всё время себя ругаю. Если не&nbsp;могу сделать идеально, лучше не&nbsp;делать вовсе»</p><span>Самокритика · перфекционизм</span></div>
+      <div class="know-card c-pink reveal"><p>«Отношения закончились, а&nbsp;рука всё тянется к&nbsp;телефону»</p><span>Расставание · горевание</span></div>
+      <div class="know-card c-sky reveal"><p>«Злюсь и&nbsp;молчу. Боюсь, что если покажу злость, от&nbsp;меня отвернутся»</p><span>Эмоции · границы</span></div>
+    </div>
+    <div class="know-cta reveal">
+      <a class="btn btn-main" href="#contact">Поговорить об этом</a>
+      <p class="muted">С&nbsp;этим можно работать. И&nbsp;то, что вы это заметили, уже большой шаг.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. С чем работаю -->
+<section id="requests">
+  <div class="wrap">
+    <span class="eyebrow">Запросы</span>
+    <h2 class="reveal">С чем ко мне <em>приходят</em></h2>
+    <div class="req-grid">
+      <div class="req reveal"><i class="c-pink">◌</i><div><h3>Тревога и сильные эмоции</h3><p>Стресс, тревожность, трудно справляться с&nbsp;гневом, виной, стыдом, обидой.</p></div></div>
+      <div class="req reveal"><i class="c-sky">◐</i><div><h3>Пустота и апатия</h3><p>Ощущение опустошённости, потеря интереса к&nbsp;жизни, усталость, которая стала фоном.</p></div></div>
+      <div class="req reveal"><i class="c-beige">✧</i><div><h3>Отношения с собой</h3><p>Недовольство собой, внутренний критик, трудности с&nbsp;решениями, страх проявляться.</p></div></div>
+      <div class="req reveal"><i class="c-sage">∞</i><div><h3>Отношения с другими</h3><p>С&nbsp;партнёром, родителями, коллегами. Тревожный и&nbsp;избегающий стиль привязанности</p></div></div>
+      <div class="req reveal"><i class="c-pink">↺</i><div><h3>Кризисы и перемены</h3><p>Расставание, переезд, потеря работы. Когда старое закончилось, а&nbsp;новое ещё не&nbsp;началось.</p></div></div>
+      <div class="req reveal"><i class="c-sky">✦</i><div><h3>Поиск себя</h3><p>Потеря ориентиров, нет ясности в&nbsp;выборе пути, непонятно, чего хочется на&nbsp;самом деле.</p></div></div>
+    </div>
+    <p class="ethics">Я&nbsp;не&nbsp;ставлю диагнозов и&nbsp;не&nbsp;назначаю лечение. Если понадобится помощь врача, я&nbsp;честно скажу об&nbsp;этом и&nbsp;подскажу, к&nbsp;кому обратиться.</p>
+  </div>
+</section>
+
+<!-- 4. Подход -->
+<section class="approach" id="approach">
+  <div class="wrap approach-grid">
+    <div class="reveal">
+      <span class="eyebrow">Подход</span>
+      <h2>Понимающая <em>психотерапия</em></h2>
+      <p class="lead">Это подход Фёдора Ефимовича Василюка. Мы&nbsp;исследуем ваши переживания, чтобы найти их&nbsp;глубинный смысл и&nbsp;скрытые ресурсы. Главное здесь в&nbsp;том, чтобы бережно понять, что для вас действительно важно.</p>
+      <ul class="principles">
+        <li>Каждый человек неповторим: у&nbsp;него свой путь, свой опыт и&nbsp;свой внутренний мир.</li>
+        <li>Эмоция не&nbsp;исчезает бесследно, но&nbsp;перестаёт управлять каждым шагом. Вы&nbsp;больше, чем то, что чувствуете прямо сейчас.</li>
+        <li>У&nbsp;каждой, даже самой трудной эмоции есть своя причина и&nbsp;свой смысл.</li>
+        <li>В&nbsp;терапии можно бояться вслух, и&nbsp;ваш страх не&nbsp;будут торопить, осуждать или ломать.</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <p class="quote">«В&nbsp;вас уже есть все ресурсы для нахождения ответов, важно лишь создать условия, чтобы их&nbsp;обнаружить. Моя роль не&nbsp;в&nbsp;постановке диагнозов или готовых решениях, а&nbsp;в&nbsp;том, чтобы с&nbsp;искренним вниманием и&nbsp;бережностью сопровождать вас в&nbsp;этом поиске»<cite>Вера</cite></p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Как проходит работа -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Как всё устроено</span>
+    <h2 class="reveal">Как проходит <em>работа</em></h2>
+    <div class="steps">
+      <div class="step reveal"><h3>Заявка</h3><p>Напишите мне в&nbsp;Telegram или оставьте заявку на&nbsp;сайте. Отвечу и&nbsp;подберём удобное время.</p></div>
+      <div class="step reveal"><h3>Знакомство</h3><p>Бесплатные 20&nbsp;минут: знакомимся, вы&nbsp;смотрите на&nbsp;подход, вместе формулируем запрос и&nbsp;намечаем план.</p></div>
+      <div class="step reveal"><h3>Сессии</h3><p>50&nbsp;минут онлайн или очно в&nbsp;Москве. Частоту встреч выбираем вместе</p></div>
+      <div class="step reveal"><h3>Изменения</h3><p>Шаг за&nbsp;шагом вы&nbsp;лучше слышите себя и&nbsp;находите собственные, подлинные ответы.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Стоимость -->
+<section class="prices" id="prices">
+  <div class="wrap">
+    <span class="eyebrow">Стоимость</span>
+    <h2 class="reveal">Форматы и <em>цены</em></h2>
+    <p class="lead reveal">Мы&nbsp;встречаемся раз в&nbsp;неделю в&nbsp;одно и&nbsp;то&nbsp;же время. Сессию нужно оплатить за&nbsp;24&nbsp;часа до&nbsp;встречи.</p>
+    <div class="price-grid">
+      <div class="price reveal">
+        <span class="tag">Первый шаг</span>
+        <h3>Знакомство</h3>
+        <div class="sum">0 <small>₽</small></div>
+        <p class="muted">20 минут · онлайн</p>
+        <ul><li>знакомимся и смотрим на подход</li><li>формулируем запрос</li><li>намечаем план работы</li></ul>
+        <a class="btn btn-soft" href="#contact">Записаться</a>
+      </div>
+      <div class="price feature reveal">
+        <span class="tag">Чаще всего выбирают</span>
+        <h3>Онлайн-сессия</h3>
+        <div class="sum">2 500 <small>₽</small></div>
+        <p class="muted">50 минут · видеосвязь</p>
+        <ul><li>из любой точки мира</li><li>в спокойной домашней обстановке</li><li>видеосвязь в&nbsp;Zoom</li></ul>
+        <a class="btn" href="#contact">Записаться</a>
+      </div>
+      <div class="price reveal">
+        <span class="tag" style="background:var(--sky)">Москва</span>
+        <h3>Очная сессия</h3>
+        <div class="sum">3 000 <small>₽</small></div>
+        <p class="muted">50 минут · кабинет в Москве</p>
+        <ul><li>живой контакт</li><li>уютный кабинет</li><li>адрес и метро</li></ul>
+        <a class="btn btn-soft" href="#contact">Записаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6б. Правила работы (по контракту на психотерапию) -->
+<section id="rules">
+  <div class="wrap">
+    <span class="eyebrow">Правила работы</span>
+    <h2 class="reveal">Наш <em>контракт</em></h2>
+    <p class="lead reveal">В&nbsp;психотерапевтическом контракте мы&nbsp;договариваемся о&nbsp;времени, оплате и&nbsp;границах нашей работы. Ясные правила дают безопасность и&nbsp;вам, и&nbsp;мне.</p>
+    <div class="rules-grid">
+      <div class="rule reveal"><div class="ico">🕰</div><h3>Время</h3><p>Раз в&nbsp;неделю, в&nbsp;один и&nbsp;тот&nbsp;же день и&nbsp;час. Время выбираем на&nbsp;знакомстве. Сессия длится 50&nbsp;минут и&nbsp;проходит онлайн в&nbsp;Zoom или очно в&nbsp;Москве.</p></div>
+      <div class="rule reveal"><div class="ico">↺</div><h3>Перенос и отмена</h3><p>Не&nbsp;позднее чем за&nbsp;сутки. Например, встречу во&nbsp;вторник в&nbsp;19:00 можно перенести до&nbsp;19:00 понедельника.</p></div>
+      <div class="rule reveal"><div class="ico">₽</div><h3>Оплата</h3><ul><li>Сессия оплачивается за&nbsp;24&nbsp;часа до&nbsp;встречи переводом на&nbsp;карту.</li><li>При поздней отмене или переносе оплачивается 50% стоимости.</li><li>Если вы&nbsp;не&nbsp;пришли и&nbsp;не&nbsp;предупредили, оплачивается вся сессия.</li></ul></div>
+      <div class="rule reveal"><div class="ico">♡</div><h3>Моя ответственность</h3><p>Если встречу пропустила&nbsp;я, она не&nbsp;оплачивается, а&nbsp;следующая стоит на&nbsp;50% меньше. Если я&nbsp;опоздаю, то&nbsp;добавлю это время к&nbsp;встрече.</p></div>
+      <div class="rule reveal"><div class="ico">🔒</div><h3>Конфиденциальность</h3><p>Всё сказанное остаётся между нами. Исключение одно: если есть угроза жизни или здоровью, я&nbsp;могу известить ваше доверенное лицо.</p></div>
+      <div class="rule reveal"><div class="ico">💬</div><h3>Единственное условие</h3><p>Готовность к&nbsp;диалогу. Я&nbsp;не&nbsp;заставляю раскрываться через силу и&nbsp;не&nbsp;тороплю. Если что-то в&nbsp;работе идёт не&nbsp;так, давайте это обсудим.</p></div>
+    </div>
+    <div class="rules-cta reveal">
+            <span class="muted">Перед началом работы вы&nbsp;знакомитесь с&nbsp;контрактом и&nbsp;соглашаетесь его соблюдать.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Образование -->
+<section id="education">
+  <div class="wrap edu-grid">
+    <div class="edu-photos reveal">
+      <img src="img/edu.jpg" alt="Мягкая абстрактная иллюстрация">
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Образование</span>
+      <h2>Учусь <em>непрерывно</em></h2>
+      <p class="lead">«Психологу важно учиться постоянно. Это не&nbsp;всегда легко, но&nbsp;чувствовать свой рост безумно приятно»</p>
+      <ul class="timeline">
+        <li><span class="when">Бакалавриат</span><h3>Психология</h3><p>Профиль «Психологическое консультирование». Очная форма, выпускная работа на&nbsp;«отлично».</p></li>
+        <li><span class="when">450 часов</span><h3>Профессиональная переподготовка</h3><p>«Понимающая психотерапия: практические методы работы с&nbsp;глубинными переживаниями». Год обучения, право на&nbsp;работу в&nbsp;сфере понимающей психотерапии.</p></li>
+        <li class="now"><span class="when">Сейчас · повышение квалификации</span><h3>Семейное консультирование и&nbsp;психотерапия</h3><p>Отношения в&nbsp;паре, кризисы партнёров, детско-родительские отношения.</p></li>
+        <li><span class="when">Супервизия</span><h3>Работаю под супервизией</h3><p>Обсуждаю сложные вопросы работы с&nbsp;опытными коллегами и&nbsp;никогда не&nbsp;называю сведений, по&nbsp;которым можно узнать клиента. Это стандарт этичной практики.</p></li>
+      </ul>
+          </div>
+  </div>
+</section>
+
+<!-- 8. Библиотека -->
+<section class="library">
+  <div class="wrap">
+    <span class="eyebrow">На что я опираюсь</span>
+    <h2 class="reveal">Книги и работы, <em>которые меня сформировали</em></h2>
+    <p class="lead reveal">Можно почитать самим. Это хорошее начало знакомства с&nbsp;подходом.</p>
+    <div class="books">
+      <a class="book c-sky reveal" href="https://ru.wikipedia.org/wiki/%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D1%8E%D0%BA,_%D0%A4%D1%91%D0%B4%D0%BE%D1%80_%D0%95%D1%84%D0%B8%D0%BC%D0%BE%D0%B2%D0%B8%D1%87" target="_blank" rel="noopener"><span class="who">Ф. Е. Василюк</span><h3>Психология переживания</h3><p>Основа понимающей психотерапии: как человек проживает кризисы и&nbsp;находит в&nbsp;них смысл.</p><span class="go">Об авторе →</span></a>
+      <a class="book c-pink reveal" href="https://psyjournals.ru/journals/cpp" target="_blank" rel="noopener"><span class="who">Ф. Е. Василюк</span><h3>Понимающая психотерапия как психотехническая система</h3><p>Как устроена работа терапевта в&nbsp;этом подходе. Журнал «Консультативная психология и&nbsp;психотерапия», где выходят статьи по&nbsp;подходу.</p><span class="go">Журнал →</span></a>
+      <a class="book c-beige reveal" href="https://ru.wikipedia.org/wiki/%D0%AF%D0%BB%D0%BE%D0%BC,_%D0%98%D1%80%D0%B2%D0%B8%D0%BD" target="_blank" rel="noopener"><span class="who">Ирвин Ялом</span><h3>Экзистенциальная психотерапия</h3><p>«Его работы повлияли на&nbsp;моё становление как психолога и&nbsp;сформировали гуманистический взгляд».</p><span class="go">Об авторе →</span></a>
+      <a class="book c-sage reveal" href="https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D0%BE%D1%80%D0%B8%D1%8F_%D0%BF%D1%80%D0%B8%D0%B2%D1%8F%D0%B7%D0%B0%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" target="_blank" rel="noopener"><span class="who">Теория привязанности</span><h3>Тревожный и избегающий стиль</h3><p>Тема, с&nbsp;которой ко&nbsp;мне часто приходят: почему одни и&nbsp;те&nbsp;же сценарии повторяются с&nbsp;разными людьми.</p><span class="go">Подробнее →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Практика -->
+<section class="practice">
+  <div class="wrap practice-box">
+    <div class="reveal">
+      <span class="eyebrow">Попробуйте прямо сейчас</span>
+      <h2>Вернуть себя в&nbsp;«здесь и&nbsp;<em>сейчас</em>» за&nbsp;5&nbsp;минут</h2>
+      <p class="lead">Простые техники из&nbsp;моего канала. Помогают, когда мысли разбегаются и&nbsp;накрывает тревога.</p>
+      <div class="tabs">
+        <button class="tab on" data-t="ground">Заземление</button>
+        <button class="tab" data-t="breath">Дыхание</button>
+        <button class="tab" data-t="thanks">Благодарность</button>
+      </div>
+    </div>
+    <div class="ground reveal" id="ground" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- 11. Обо мне -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-photos reveal">
+      <img class="main" src="img/about.jpg" alt="Мягкая абстрактная иллюстрация">
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Немного личного</span>
+      <h2>Обо <em>мне</em></h2>
+      <p class="lead">Живу и&nbsp;работаю в&nbsp;Москве. Верю, что быть психологом не&nbsp;значит быть идеальным. Это про то, чтобы оставаться живым, настоящим и&nbsp;достаточно смелым, чтобы встречаться со&nbsp;своими «неудобными» чувствами. Именно этот опыт помогает мне лучше понимать вас.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Блог -->
+<section class="social">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#d9cabb">Блог</span>
+    <h2 class="reveal">Психология <em style="color:var(--rose)">простым языком</em></h2>
+    <p class="lead reveal">Как двигаться к&nbsp;переменам, почему вы&nbsp;не&nbsp;одиноки и&nbsp;какая я&nbsp;как специалист. Оставайтесь, здесь безопасно и&nbsp;спокойно.</p>
+    <div class="social-grid">
+      <a class="soc c-sky reveal" href="#contact"><span class="net">Telegram</span><h3>Канал о&nbsp;психологии</h3><p>Длинные посты, техники и практики, мысли о терапии.</p><span class="go">Читать канал →</span></a>
+      <a class="soc c-pink reveal" href="#contact"><span class="net">Instagram</span><h3>Карусели и&nbsp;практики</h3><p>Короткие разборы, цены и&nbsp;образование, запись через директ.</p><span class="go">Смотреть →</span></a>
+      <a class="soc c-beige reveal" href="#contact"><span class="net">TikTok</span><h3>Короткие видео</h3><p>Короткие видео о тревоге, отношениях и любви к себе.</p><span class="go">Смотреть →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 13. Вопросы -->
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Частые вопросы</span>
+    <h2 class="reveal">Если вы <em>сомневаетесь</em></h2>
+    <div class="faq-list">
+      <details class="reveal"><summary>Что, если я не знаю, с чем прийти?</summary><p>Это нормально. Для этого и&nbsp;нужна бесплатная встреча-знакомство: за&nbsp;20&nbsp;минут мы&nbsp;вместе попробуем сформулировать, что с&nbsp;вами сейчас происходит, и&nbsp;наметим шаги.</p></details>
+      <details class="reveal"><summary>Вы дадите мне совет, как поступить?</summary><p>В&nbsp;понимающей психотерапии я&nbsp;не&nbsp;даю готовых советов. Мы&nbsp;исследуем ваши переживания, чтобы вы&nbsp;услышали себя и&nbsp;нашли собственные ответы. Они работают лучше чужих.</p></details>
+      <details class="reveal"><summary>Это конфиденциально?</summary><p>Да. Всё, что вы&nbsp;рассказываете на&nbsp;сессии, остаётся между нами. Это основа этики психолога. Исключение одно: угроза вашей жизни и&nbsp;здоровью или жизни других людей. На&nbsp;супервизиях я&nbsp;обсуждаю работу без сведений, по&nbsp;которым вас можно узнать.</p></details>
+      <details class="reveal"><summary>Онлайн работает так же, как очно?</summary><p>Да, для большинства запросов онлайн так же эффективен. Важно найти тихое место, где вас никто не&nbsp;услышит и&nbsp;не&nbsp;отвлечёт.</p></details>
+      <details class="reveal"><summary>Можно ли перенести или отменить сессию?</summary><p>Да, не&nbsp;позднее чем за&nbsp;24&nbsp;часа до&nbsp;встречи. При более поздней отмене оплачивается 50% стоимости, а&nbsp;при неявке без предупреждения оплачивается вся сессия. Подробнее об&nbsp;этом в&nbsp;разделе <a href="#rules">«Правила работы»</a>.</p></details>
+      <details class="reveal"><summary>Сколько встреч понадобится?</summary><p>Зависит от&nbsp;запроса. Иногда хватает нескольких встреч, иногда работа идёт месяцы. Мы&nbsp;регулярно сверяемся, что меняется.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 14. Запись -->
+<section class="contact" id="contact">
+  <div class="wrap contact-box">
+    <div class="reveal">
+      <span class="eyebrow">Запись</span>
+      <h2>Чтобы начать, <em>просто напишите мне</em></h2>
+      <p class="lead">Отвечу лично и&nbsp;подберём время для бесплатного знакомства.</p>
+      <div class="contact-links">
+        <a class="btn btn-main" href="#contact">Написать в Telegram <small>→</small></a>
+        <a class="btn btn-soft" href="#contact">Директ Instagram <small>→</small></a>
+      </div>
+    </div>
+    <form class="reveal" onsubmit="event.preventDefault();this.innerHTML='<h3>Спасибо!</h3><p class=muted>Заявка никуда не ушла. Это демо-сайт для портфолио, психолог вымышлен.</p>'">
+      <h3>Оставить заявку</h3>
+      <input required placeholder="Как к вам обращаться">
+      <input required placeholder="Telegram или телефон">
+      <select><option>Бесплатное знакомство · 20 мин</option><option>Онлайн-сессия · 2 500 ₽</option><option>Очная сессия в Москве · 3 000 ₽</option></select>
+      <textarea rows="3" placeholder="Что вас беспокоит? Можно пару слов или ничего"></textarea>
+      <button class="btn btn-main">Отправить заявку</button>
+      <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+    </form>
+  </div>
+</section>
+
+<div class="help"><div class="wrap">Если вам прямо сейчас очень плохо и&nbsp;есть мысли причинить себе вред, не&nbsp;ждите записи. Позвоните на&nbsp;линию экстренной психологической помощи МЧС: <b>+7 495 989-50-50</b> (круглосуточно, бесплатно) или в&nbsp;скорую <b>112</b>.</div></div>
+
+<footer>
+  <div class="wrap">
+    <span>Демо-сайт для портфолио · психолог и контакты вымышлены</span>
+    <span>Онлайн и очно в Москве</span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('on')"><figure><img alt=""><figcaption></figcaption></figure></div>
+
+<div class="float"><a class="btn btn-main" href="#contact" style="width:100%;justify-content:center">Записаться на знакомство</a></div>
+
+<script>
+// шапка с тенью при прокрутке
+addEventListener('scroll',()=>document.querySelector('header').classList.toggle('scrolled',scrollY>10));
+
+// просмотр дипломов
+const lb=document.getElementById('lb');
+document.querySelectorAll('[data-lb]').forEach(b=>b.onclick=()=>{lb.querySelector('img').src=b.dataset.lb;lb.querySelector('img').alt=b.dataset.cap;lb.querySelector('figcaption').textContent=b.dataset.cap;lb.classList.add('on')});
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+
+// кнопка записи внизу экрана на телефоне: после первого экрана и не у формы записи
+const fl=document.querySelector('.float'),ct=document.getElementById('contact');
+function floatBtn(){const r=ct.getBoundingClientRect();fl.classList.toggle('show',scrollY>innerHeight*.8&&r.top>innerHeight)}
+addEventListener('scroll',floatBtn,{passive:true});floatBtn();
+
+// плавное появление блоков
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// техники для блока «здесь и сейчас»
+const T={
+  ground:[["5","вещей, которые вы видите","Чашка, лист за окном, тень на стене. Назовите их мысленно или шёпотом."],
+          ["4","звука, которые слышите","Голоса, шум машин, пение птиц, собственное дыхание."],
+          ["3","ощущения на коже","Текстура ткани, прохлада воздуха, поверхность стула."],
+          ["✓","вы здесь","Заметьте, как стало чуть тише внутри. Вы вернулись в настоящее."]],
+  breath:[["5","спокойных вдохов","Сядьте удобно, прикройте веки. Наблюдайте, как воздух входит и выходит."],
+          ["◌","внимание к телу","Где чувствуете тепло? Где напряжение? Расслаблена ли челюсть?"],
+          ["◎","звуки вокруг","Далёкий шум, тиканье часов. Побудьте в этом ощущении пару минут."],
+          ["✓","контакт с собой","Гул мыслей стал тише. Так настраивается контакт с телом."]],
+  thanks:[["1","первая вещь","Вспомните, за что вы благодарны сегодня. Даже незначительное, но важное для вас."],
+          ["2","вторая вещь","Может, вкусный кофе, солнце в окне или чьё-то сообщение."],
+          ["3","третья вещь","Почувствуйте, как в груди становится немного теплее."],
+          ["✓","день стал полнее","Эта практика каждый день меняет то, как мы видим свою жизнь."]]
+};
+let cur='ground',i=0;
+const box=document.getElementById('ground');
+function draw(){
+  const s=T[cur][i],last=i===T[cur].length-1;
+  box.innerHTML=`<div class="big">${s[0]}</div><div class="what">${s[1]}</div><p class="hint">${s[2]}</p>
+  <div class="dots">${T[cur].map((_,k)=>`<span class="${k<=i?'on':''}"></span>`).join('')}</div>
+  <button class="btn ${last?'btn-soft':'btn-main'}" onclick="${last?'i=0':'i++'};draw()">${last?'Пройти ещё раз':'Дальше'}</button>
+  ${last?'<a class="btn btn-pink" href="#contact">Хочу разобраться глубже</a>':''}`;
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));b.classList.add('on');cur=b.dataset.t;i=0;draw()});
+draw();
+</script>
+</body>
+</html>
