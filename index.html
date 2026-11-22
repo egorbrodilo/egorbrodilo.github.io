@@ -161,6 +161,27 @@ h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:600;letter-spacing:-.02e
 @media (max-width:960px){.svcs{grid-template-columns:1fr 1fr}.svc{grid-column:span 1}}
 @media (max-width:600px){.svcs{grid-template-columns:1fr}.svc{grid-column:span 1;min-height:0}}
 
+
+/* как я работаю */
+.how{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:h}
+.how li{counter-increment:h;position:relative;padding:26px 22px 24px;border-radius:22px;background:var(--card);border:1px solid var(--line)}
+.how li::before{content:counter(h);display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--blue);color:#fff;font-family:"Unbounded";font-weight:600;font-size:16px;margin-bottom:18px}
+.how li::after{content:"";position:absolute;top:45px;left:72px;right:-17px;height:2px;background:linear-gradient(90deg,var(--blue),transparent)}
+.how li:last-child::after{display:none}
+.how b{display:block;font-family:"Unbounded";font-weight:600;font-size:17px;line-height:1.25;margin-bottom:10px;letter-spacing:-.01em}
+.how span{display:block;color:var(--muted);font-size:15px;line-height:1.55}
+.pay{margin:22px 0 0;padding:16px 20px;border-radius:16px;background:color-mix(in srgb,var(--blue) 9%,transparent);font-weight:600}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.faq details{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:0 20px}
+.faq summary{cursor:pointer;list-style:none;padding:18px 30px 18px 0;font-weight:600;font-size:16.5px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:4px;top:50%;width:10px;height:10px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:translateY(-70%) rotate(45deg);transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq details p{margin:0 0 18px;color:var(--muted);font-size:15.5px}
+@media (max-width:1100px){.how{grid-template-columns:repeat(3,1fr)}.how li::after{display:none}}
+@media (max-width:700px){.how{grid-template-columns:1fr}.faq{grid-template-columns:1fr}}
+.dlink{display:block;text-decoration:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.dlink:hover{transform:translateY(-6px)}
 /* блок направления в работах */
 .dir{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin:110px 0 40px;padding-top:28px;border-top:1px solid var(--line)}
 .dir.first{margin-top:0}
@@ -361,6 +382,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
     </a>
     <nav aria-label="Разделы">
       <a href="#services">Услуги</a>
+      <a href="#how">Как работаю</a>
       <a href="#works">Работы</a>
       <a href="#about">Обо мне</a>
       <a href="#contact">Контакты</a>
@@ -463,14 +485,38 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
     </div>
   </section>
 
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="rv">Как я работаю</h2>
+        <p class="rv" style="--d:.1s">Пять шагов от первого сообщения до готовых файлов. Цена и срок известны до старта, по ходу вы видите промежуточный результат.</p>
+      </div>
+      <ol class="how">
+        <li class="rv"><b>Бриф</b><span>Задаю вопросы о задаче, сроке и примерах, которые нравятся. Хватит переписки в Telegram или на почте.</span></li>
+        <li class="rv" style="--d:.06s"><b>Цена и срок до старта</b><span>Называю цену и срок и фиксирую их до начала работы. Если задача меняется, сначала согласуем, потом делаю.</span></li>
+        <li class="rv" style="--d:.12s"><b>Черновик на согласование</b><span>Показываю первый экран сайта, структуру отчёта или первый слайд, прежде чем делать всё целиком.</span></li>
+        <li class="rv" style="--d:.18s"><b>Правки</b><span>Правки в рамках согласованной задачи бесплатно. Новые блоки и функции обсуждаем отдельно.</span></li>
+        <li class="rv" style="--d:.24s"><b>Сдача</b><span>Передаю готовые файлы, исходники и доступы: код сайта, таблицы Excel, картинки.</span></li>
+      </ol>
+      <p class="pay rv">Оплата частями, порядок согласуем до старта. Работаю как самозанятый и выдаю чек.</p>
+      <div class="faq">
+        <details class="rv"><summary>Сколько времени займёт работа?</summary><p>Зависит от задачи: карточки и расчёт юнит-экономики от 2 дней, лендинг от 3-5 дней. Точный срок называю после брифа.</p></details>
+        <details class="rv"><summary>Сколько правок входит в цену?</summary><p>Правки в рамках согласованной задачи бесплатно. Если понадобится то, чего не было в брифе, заранее скажу, сколько это будет стоить.</p></details>
+        <details class="rv"><summary>Как оплачивать?</summary><p>Частями, порядок согласуем до старта. Можно через безопасную сделку на Kwork или напрямую: я самозанятый и выдаю чек.</p></details>
+        <details class="rv"><summary>Что нужно от вас?</summary><p>Задача своими словами, срок и материалы, которые уже есть: тексты, фото, логотип, выгрузки из кабинета WB или Ozon. Если чего-то не хватает, подскажу, как это собрать.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" id="works">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="rv">Работы</h2>
-        <p class="rv" style="--d:.1s">Все работы сделаны для портфолио: компании, товары и цифры вымышлены, чтобы не показывать чужие данные. Сайты, отчёт и калькулятор можно открыть и потрогать.</p>
+        <p class="rv" style="--d:.1s">Все работы сделаны для портфолио: компании, товары и цифры вымышлены, чтобы не показывать чужие данные. Сайты, отчёт, дашборд и калькулятор можно открыть и потрогать.</p>
       </div>
 
-      <div class="dir first rv" id="w-analytics"><h3>Аналитика</h3><span>3 работы</span></div>
+      <div class="dir first rv" id="w-analytics"><h3>Аналитика</h3><span>4 работы</span></div>
 
       <article class="work">
         <div class="media"><div class="fan" id="fan" data-g>
@@ -495,6 +541,23 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
       </article>
 
       <article class="work flip">
+        <div class="media rv"><a class="win dlink" href="dashboard/" target="_blank" rel="noopener" aria-label="Открыть живой дашборд продаж"><div class="bar"><i></i><i></i><i></i></div><img src="img/dashboard.jpg" width="1200" height="750" alt="Дашборд продаж WB и Ozon: фильтры, KPI, график и выводы" loading="lazy"></a></div>
+        <div class="rv">
+          <span class="tag">Демо, данные условные, магазин вымышлен</span>
+          <h4>Живой дашборд продаж на Wildberries и Ozon</h4>
+          <p>Тот же магазин домашнего текстиля, что в отчёте, теперь на двух площадках. Собственник сам выбирает площадку, месяцы и категорию и сразу видит, где теряются деньги.</p>
+          <ul>
+            <li>фильтры по площадке, периоду и категории;</li>
+            <li>выручка, прибыль, маржа, доля рекламы и возвраты с динамикой;</li>
+            <li>график по месяцам, ABC-таблица 25 товаров с сортировкой;</li>
+            <li>выводы, которые переписываются под выбранный фильтр.</li>
+          </ul>
+          <p class="res">Открывается в браузере и на телефоне, без установки программ и без сторонних библиотек.</p>
+          <div class="links"><a class="btn btn-main" href="dashboard/" target="_blank" rel="noopener">Открыть дашборд</a></div>
+        </div>
+      </article>
+
+      <article class="work">
         <div class="media rv">
           <div class="calc" id="calc">
             <div class="calc-top">Юнит-экономика товара на WB<span>подвигайте ползунки</span></div>
@@ -540,7 +603,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
         </div>
       </article>
 
-      <article class="work">
+      <article class="work flip">
         <div class="media rv">
           <div class="stack2" data-g>
             <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/dds.jpg"><img src="img/dds.jpg" alt="Лист ДДС: движение денег по месяцам" loading="lazy"></button></div>
@@ -573,7 +636,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           <p>Тёмный люкс для нишевой парфюмерии: тяжёлые флаконы, тёплый свет и плотная типографика. Тот же бренд, что на карточках ниже.</p>
           <ul><li>заставка, дым на холсте и свет, который идёт за курсором;</li><li>коллекция из трёх ароматов и пирамида нот, которая перестраивается под выбранный аромат;</li><li>подбор аромата по трём вопросам с анимированным результатом;</li><li>горизонтальная прокрутка «Ремесло» и форма подписки.</li></ul>
           <p class="res">Всё на чистом коде без библиотек, адаптив до 360 px, вес 1,6 МБ.</p>
-          <div class="links"><a class="btn btn-main" href="nocturne/" target="_blank" rel="noopener">Открыть сайт</a></div>
+          <div class="links"><a class="btn btn-main" href="nocturne/" target="_blank" rel="noopener">Открыть сайт</a><a class="btn btn-ghost" href="cases/nocturne.html">Кейс →</a></div>
         </div>
       </article>
 
@@ -588,7 +651,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           <p>Сайт для студии интерьеров: камень, графит и латунь, крупная типографика и много воздуха.</p>
           <ul><li>закреплённая горизонтальная галерея проектов с карточкой каждого объекта;</li><li>калькулятор стоимости: площадь, формат работ и авторский надзор;</li><li>текст манифеста загорается по словам при прокрутке;</li><li>форма заявки, в которую можно отправить расчёт из калькулятора.</li></ul>
           
-          <div class="links"><a class="btn btn-main" href="forma/" target="_blank" rel="noopener">Открыть сайт</a></div>
+          <div class="links"><a class="btn btn-main" href="forma/" target="_blank" rel="noopener">Открыть сайт</a><a class="btn btn-ghost" href="cases/forma.html">Кейс →</a></div>
         </div>
       </article>
 
@@ -602,7 +665,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           <h4>Стейкхаус «Угли»</h4>
           <p>Сайт ресторана высокой кухни: тёплая тёмно-коричневая гамма, бронза, кинематографичные кадры блюд и много воздуха.</p>
           <ul><li>первый экран раскрывается из узкой щели, как в кино;</li><li>фирменные блюда в горизонтальной прокрутке, меню по вкладкам;</li><li>дегустационный сет из семи подач и винная карта по регионам;</li><li>бронирование стола: дата, время, гости и анимация подтверждения.</li></ul>
-          <div class="links"><a class="btn btn-main" href="ugli/" target="_blank" rel="noopener">Открыть сайт</a></div>
+          <div class="links"><a class="btn btn-main" href="ugli/" target="_blank" rel="noopener">Открыть сайт</a><a class="btn btn-ghost" href="cases/ugli.html">Кейс →</a></div>
         </div>
       </article>
 

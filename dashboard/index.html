@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дашборд продаж на Wildberries и Ozon: демо. Егор Бродило</title>
+<meta name="description" content="Интерактивный дашборд продаж магазина домашнего текстиля на Wildberries и Ozon: фильтры, KPI, график выручки и прибыли, ABC-анализ и выводы. Данные условные, магазин вымышлен.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Живой дашборд продаж WB и Ozon">
+<meta property="og:description" content="Фильтры по площадке, месяцам и категории, KPI, ABC-анализ 25 товаров и выводы, которые меняются вместе с фильтром. Данные условные.">
+<meta property="og:image" content="https://egorbrodilo.github.io/img/dashboard.jpg">
+<meta property="og:url" content="https://egorbrodilo.github.io/dashboard/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233E6BFF'/%3E%3Cpath d='M9 23V15M16 23V9M23 23v-5' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF2FA; --panel:#FFFFFF; --line:#DCE3F1; --ink:#0D1530; --muted:#55607C; --soft:#F5F7FC;
+  --blue:#2B52F0; --wb:#7B2FD0; --oz:#1C64F2; --profit:#0B7A53; --bad:#D23A5A; --warn:#975700;
+  --shadow:0 18px 40px -28px rgba(20,40,110,.45);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;font-size:16px;line-height:1.5;font-variant-numeric:tabular-nums;overflow-x:clip}
+a{color:inherit}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 24px}
+@media (max-width:640px){.wrap{padding:0 14px}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* шапка */
+.top{background:#101A3C;color:#fff;padding:18px 0 96px;position:relative;overflow:hidden}
+.top::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 85% -10%,rgba(91,124,255,.45),transparent 70%),radial-gradient(500px 260px at 0% 120%,rgba(123,47,208,.35),transparent 70%)}
+.top .wrap{position:relative}
+.bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.bar a{font-size:14.5px;color:#C9D3F5;text-decoration:none}
+.bar a:hover{color:#fff}
+.demo{margin-left:auto;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22)}
+.top h1{font-size:clamp(28px,4vw,48px);line-height:1.08;font-weight:800;letter-spacing:-.025em;margin:34px 0 10px;max-width:16em}
+.top p{margin:0;color:#C9D3F5;max-width:44em;font-size:clamp(15.5px,1.3vw,17.5px)}
+
+/* фильтры */
+.filters{position:sticky;top:0;z-index:20;margin-top:-64px}
+.fbox{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end;padding:16px 18px;border-radius:20px;background:var(--panel);box-shadow:var(--shadow);border:1px solid var(--line)}
+.fl{display:grid;gap:6px}
+.fl>span{font-size:13px;font-weight:700;color:var(--muted)}
+.seg{display:inline-flex;padding:4px;border-radius:12px;background:var(--soft);border:1px solid var(--line)}
+.seg button{border:0;background:none;padding:8px 14px;border-radius:9px;font-weight:700;font-size:15px;cursor:pointer;color:var(--muted);min-height:38px}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 2px 8px -2px rgba(20,40,110,.25)}
+.seg button i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px}
+select{appearance:none;-webkit-appearance:none;min-height:46px;padding:0 38px 0 14px;border-radius:12px;border:1px solid var(--line);background:var(--soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2355607C' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;font-weight:700;font-size:15px;cursor:pointer}
+.period{display:flex;align-items:center;gap:8px}
+.period em{font-style:normal;color:var(--muted)}
+.reset{margin-left:auto;border:1px solid var(--line);background:none;border-radius:12px;min-height:46px;padding:0 16px;font-weight:700;cursor:pointer;color:var(--muted)}
+.reset:hover{color:var(--ink);border-color:var(--ink)}
+@media (max-width:760px){
+  .filters{position:relative}
+  .fbox{gap:12px}
+  .fl{width:100%}
+  .seg{width:100%}.seg button{flex:1}
+  .period select{flex:1}
+  #cat{width:100%}
+  .reset{margin-left:0;width:100%}
+}
+
+/* KPI */
+main{padding:22px 0 40px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.kpi{position:relative;padding:18px 18px 14px;border-radius:18px;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+.kpi small{display:block;font-size:13.5px;font-weight:700;color:var(--muted)}
+.kpi b{display:block;font-size:clamp(24px,2.3vw,32px);font-weight:800;letter-spacing:-.02em;margin:6px 0 2px;line-height:1.15}
+.kpi .d{font-size:13.5px;font-weight:700}
+.kpi .d.up{color:var(--profit)}.kpi .d.down{color:var(--bad)}.kpi .d.flat{color:var(--muted)}
+.kpi svg{display:block;width:100%;height:34px;margin-top:8px}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.kpis{grid-template-columns:1fr 1fr}.kpi:first-child{grid-column:1/-1}}
+
+/* сетка панелей */
+.grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}
+.panel h2{font-size:19px;font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+.panel .sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.grid.g2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.grid.g1{grid-template-columns:minmax(0,1fr)}
+@media (max-width:980px){.grid,.grid.g2{grid-template-columns:minmax(0,1fr)}}
+
+/* график */
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.legend i.line{height:3px;border-radius:2px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart .col{cursor:pointer;outline:none}
+.chart .col:focus-visible rect.hit{stroke:var(--blue);stroke-width:2}
+.tip{position:absolute;pointer-events:none;min-width:190px;padding:12px 14px;border-radius:12px;background:#101A3C;color:#fff;font-size:13.5px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);opacity:0;transform:translateY(6px);transition:opacity .15s,transform .15s}
+.tip.on{opacity:1;transform:none}
+.tip b{display:block;font-size:14.5px;margin-bottom:6px}
+.tip div{display:flex;justify-content:space-between;gap:14px}
+.tip span{color:#C9D3F5}
+
+/* структура 100 ₽ */
+.stack{display:flex;height:22px;border-radius:8px;overflow:hidden;gap:2px;margin:10px 0 14px}
+.stack i{display:block;height:100%;transition:flex-grow .5s cubic-bezier(.2,.8,.2,1)}
+.parts{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.parts li{display:grid;grid-template-columns:14px 1fr auto;gap:10px;align-items:center;font-size:14.5px}
+.parts li i{width:12px;height:12px;border-radius:3px}
+.parts li b{font-weight:800}
+.parts li.total{border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.chan{overflow-x:auto}
+@media (max-width:520px){.chan table{min-width:470px;font-size:13.5px}}
+.share{display:flex;height:22px;border-radius:8px;overflow:hidden;gap:2px;margin:4px 0 6px}.share i{display:block;height:100%;transition:flex-grow .5s}
+.sharel{display:flex;justify-content:space-between;font-size:13.5px;font-weight:700;color:var(--muted);margin-bottom:16px}
+.chan table{width:100%;border-collapse:collapse;font-size:14.5px}
+.chan th{font-size:12.5px;color:var(--muted);font-weight:700;text-align:right;padding:4px 0 6px}
+.chan th:first-child,.chan td:first-child{text-align:left}
+.chan td{white-space:nowrap;padding:7px 0 7px 10px;text-align:right;font-weight:700;border-top:1px solid var(--line)}
+.chan td i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+
+/* выводы */
+.notes{background:linear-gradient(160deg,#16235A,#101A3C);color:#fff;border:0}
+.notes h2{color:#fff}
+.notes .sub{color:#AFC0FF}
+.notes ol{margin:0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:n}
+.notes li{counter-increment:n;position:relative;padding:14px 16px 14px 52px;border-radius:14px;background:rgba(255,255,255,.07);font-size:15.5px;line-height:1.5}
+.notes li::before{content:counter(n);position:absolute;left:14px;top:13px;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-weight:800;font-size:13.5px}
+.notes li b{color:#FFD58A;font-weight:800}
+.notes li.flash{animation:flash .6s}
+@keyframes flash{from{background:rgba(255,213,138,.22)}}
+
+/* таблица */
+.tblhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:12px}
+.abcsum{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--soft)}
+.tw{overflow:auto;max-height:620px;border:1px solid var(--line);border-radius:14px;-webkit-overflow-scrolling:touch}
+table.abc{width:100%;border-collapse:collapse;min-width:860px;font-size:14.5px}
+.abc th{position:sticky;top:0;background:var(--soft);text-align:right;font-size:13px;color:var(--muted);font-weight:700;padding:0;border-bottom:1px solid var(--line);white-space:nowrap}
+.abc th button{all:unset;display:block;width:100%;box-sizing:border-box;padding:11px 12px;cursor:pointer;text-align:inherit}
+.abc th button:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.abc th[aria-sort] button::after{content:"";display:inline-block;margin-left:6px;border:5px solid transparent;vertical-align:1px}
+.abc th[aria-sort="descending"] button::after{border-top-color:var(--ink);border-bottom:0}
+.abc th[aria-sort="ascending"] button::after{border-bottom-color:var(--ink);border-top:0}
+.abc th:first-child,.abc td:first-child{text-align:left;position:sticky;left:0;background:inherit;z-index:1}
+.abc th:first-child{background:var(--soft);z-index:2}
+.abc td{padding:10px 12px;text-align:right;border-top:1px solid var(--line);white-space:nowrap;background:var(--panel)}
+.abc tr:first-child td{border-top:0}
+.abc td:first-child{white-space:normal;min-width:220px;max-width:280px}
+@media (max-width:520px){.abc td:first-child{min-width:150px;max-width:170px;font-size:13.5px}table.abc{min-width:760px}}
+.abc td:first-child small{display:block;color:var(--muted);font-size:12.5px}
+.abc td.neg{color:var(--bad);font-weight:700}
+.abc td.low{color:var(--warn);font-weight:700}
+.g{display:inline-grid;place-items:center;width:28px;height:26px;border-radius:7px;font-weight:800;font-size:13px}
+.g.A{background:#DDF5EA;color:#0B6B49}.g.B{background:#E6ECFF;color:#2443B8}.g.C{background:#FCE4E8;color:#A3243F}
+.foot{color:var(--muted);font-size:13.5px;margin-top:12px}
+footer{padding:26px 0 40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="bar"><a href="../">Егор Бродило, портфолио</a><a href="../report/">Отчёт по этому магазину</a><span class="demo">Данные условные, магазин вымышлен</span></div>
+    <h1>Продажи магазина домашнего текстиля на Wildberries и Ozon</h1>
+    <p>25 товаров, апрель-сентябрь 2026. Выберите площадку, месяцы и категорию: цифры, график, ABC-анализ и выводы пересчитаются сразу.</p>
+  </div>
+</header>
+
+<div class="filters">
+  <div class="wrap">
+    <div class="fbox" role="group" aria-label="Фильтры">
+      <div class="fl"><span id="l-mp">Маркетплейс</span>
+        <div class="seg" id="mp" role="group" aria-labelledby="l-mp">
+          <button type="button" data-v="all" aria-pressed="true">Все</button>
+          <button type="button" data-v="0" aria-pressed="false"><i style="background:var(--wb)"></i>WB</button>
+          <button type="button" data-v="1" aria-pressed="false"><i style="background:var(--oz)"></i>Ozon</button>
+        </div>
+      </div>
+      <div class="fl"><span>Период</span>
+        <div class="period"><label class="sr" for="m0">С месяца</label><select id="m0"></select><em>-</em><label class="sr" for="m1">По месяц</label><select id="m1"></select></div>
+      </div>
+      <div class="fl"><label for="cat"><span style="font-size:13px;font-weight:700;color:var(--muted)">Категория</span></label><select id="cat"></select></div>
+      <button class="reset" type="button" id="reset">Сбросить фильтры</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <section class="kpis" id="kpis" aria-label="Ключевые показатели" aria-live="polite"></section>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Выручка и прибыль по месяцам</h2>
+        <p class="sub" id="chartSub">Наведите или нажмите на месяц, чтобы увидеть цифры</p>
+        <div class="legend" id="legend"></div>
+        <div class="chart" id="chart"><div class="tip" id="tip" role="status"></div></div>
+      </section>
+      <section class="panel notes" aria-live="polite">
+        <h2>Выводы</h2>
+        <p class="sub" id="notesSub">Меняются вместе с фильтром</p>
+        <ol id="notes"></ol>
+      </section>
+    </div>
+
+    <div class="grid g2">
+      <section class="panel">
+        <h2>Куда уходят 100 ₽ выручки</h2>
+        <p class="sub">Переменные расходы за выбранный период</p>
+        <div class="stack" id="stack" aria-hidden="true"></div>
+        <ul class="parts" id="parts"></ul>
+      </section>
+      <section class="panel">
+        <h2>Wildberries и Ozon</h2>
+        <p class="sub">Сравнение площадок за выбранные месяцы и категорию</p>
+        <div class="chan" id="chan"></div>
+      </section>
+    </div>
+    <div class="grid g1">
+      <section class="panel">
+        <div class="tblhead">
+          <div><h2>ABC-анализ товаров</h2><p class="sub" style="margin:0">Нажмите на заголовок столбца, чтобы отсортировать</p></div>
+          <div class="abcsum" id="abcsum"></div>
+        </div>
+        <div class="tw" tabindex="0" aria-label="Таблица товаров, прокручивается вбок"><table class="abc" id="abc"><caption class="sr">ABC-анализ товаров за выбранный период</caption><thead></thead><tbody></tbody></table></div>
+        <p class="foot">A: товары, которые вместе дают первые 80% показателя, B: следующие 15%, C: остальные. Убыточные товары по прибыли сразу в C. Прибыль здесь маржинальная: выручка минус себестоимость, комиссия, логистика, реклама и налог 6%.</p>
+      </section>
+    </div>
+  </div>
+</main>
+<footer><div class="wrap"><span>Данные условные, магазин вымышлен. Совпадения с реальными магазинами случайны.</span><span>Демо-работа Егора Бродило · Telegram <a href="https://t.me/egorbrodilo" target="_blank" rel="noopener">@egorbrodilo</a></span></div></footer>
+
+<script>
+var D = {"months":["Апр","Май","Июн","Июл","Авг","Сен"],"sku":[["TX-101","Полотенце махровое 50×90","Полотенца"],["TX-102","Полотенце махровое 70×140","Полотенца"],["TX-103","Набор полотенец, 3 шт.","Полотенца"],["TX-104","Полотенца кухонные вафельные, 4 шт.","Полотенца"],["TX-105","Полотенце банное 100×150","Полотенца"],["TX-201","Халат вафельный женский","Одежда для дома"],["TX-301","КПБ 1,5-сп., сатин","Постельное бельё"],["TX-302","КПБ 2-сп., сатин","Постельное бельё"],["TX-303","КПБ евро, сатин","Постельное бельё"],["TX-304","КПБ евро, страйп-сатин премиум","Постельное бельё"],["TX-305","Простыня на резинке 160×200","Постельное бельё"],["TX-306","Наволочки 50×70, 2 шт.","Постельное бельё"],["TX-307","Пододеяльник 200×220","Постельное бельё"],["TX-401","Плед флисовый 150×200","Пледы и покрывала"],["TX-402","Плед вязаный 130×170","Пледы и покрывала"],["TX-403","Плед-покрывало 220×240","Пледы и покрывала"],["TX-404","Покрывало стёганое 200×220","Пледы и покрывала"],["TX-501","Одеяло всесезонное 172×205","Одеяла и подушки"],["TX-502","Подушка 50×70","Одеяла и подушки"],["TX-503","Подушка 70×70","Одеяла и подушки"],["TX-504","Наматрасник непромокаемый 160×200","Одеяла и подушки"],["TX-601","Шторы блэкаут 150×270, 2 шт.","Шторы и тюль"],["TX-602","Тюль вуаль 300×270","Шторы и тюль"],["TX-701","Скатерть водоотталкивающая 140×180","Кухня и ванная"],["TX-702","Коврик для ванной 50×80","Кухня и ванная"]],"rows":[[0,0,0,442,14,291040,64029,28972,14430,98440],[0,0,1,415,15,472000,103840,34290,32150,156000],[0,0,2,160,7,287640,63281,16382,17810,97920],[0,0,3,356,18,165620,36436,28576,17670,59150],[0,0,4,60,2,102660,22585,6548,5850,35960],[0,0,5,59,9,126500,29095,6706,10250,49000],[0,0,6,303,21,908040,208849,39282,54290,380700],[0,0,7,265,14,928700,213601,35854,51250,391560],[0,0,8,164,4,692800,159344,22376,54810,284800],[0,0,9,33,5,200480,46110,5570,42400,86800],[0,0,10,163,22,200220,46051,16640,15560,73320],[0,0,11,143,9,80400,18492,10178,4630,28140],[0,0,12,42,3,79170,18209,4560,6060,30810],[0,0,13,150,14,171360,41126,30548,13100,70720],[0,0,14,52,5,133010,31922,10282,10370,54050],[0,0,15,52,7,156600,37584,15808,26470,72000],[0,0,16,40,8,126080,30259,12592,27450,62400],[0,0,17,55,4,151980,31916,14242,11940,60180],[0,0,18,155,8,173460,36427,25176,10610,63210],[0,0,19,54,1,71550,15026,9290,4400,27560],[0,0,20,75,5,116900,24549,9530,7400,44800],[0,0,21,116,35,224370,56092,20474,14250,85050],[0,0,22,68,10,84100,21025,7988,5140,32480],[0,0,23,49,2,62040,13649,4282,3470,21620],[0,0,24,102,8,74260,16337,12720,5630,31020],[1,0,0,443,10,298770,65729,28586,17060,99590],[1,0,1,401,15,447760,98507,33198,28800,150540],[1,0,2,160,5,285200,62744,16090,22770,99200],[1,0,3,364,19,169050,37191,29292,17300,60375],[1,0,4,65,4,108580,23888,7376,7260,37820],[1,0,5,65,15,127500,29325,8110,10460,49000],[1,0,6,288,21,865080,198968,37512,55450,360450],[1,0,7,291,15,1037760,238685,39306,66010,430560],[1,0,8,187,18,740220,170251,27960,56790,300820],[1,0,9,31,2,199520,45890,4720,43180,89900],[1,0,10,179,12,237140,54542,16644,18070,86840],[1,0,11,148,3,88450,20344,9814,6470,30450],[1,0,12,47,4,85140,19582,5198,6550,33970],[1,0,13,131,6,163750,39300,25234,15830,65000],[1,0,14,40,5,99050,23772,8170,7920,40250],[1,0,15,40,9,110050,26412,13288,18190,49600],[1,0,16,32,4,109480,26275,9344,24760,54600],[1,0,17,47,0,140530,29511,11186,12130,55460],[1,0,18,163,6,186830,39234,25988,13950,67510],[1,0,19,54,2,72280,15179,9508,4870,27040],[1,0,20,72,6,110880,23285,9348,8350,42240],[1,0,21,143,36,279270,69818,23996,20650,112350],[1,0,22,81,19,91140,22785,10550,6040,34720],[1,0,23,52,5,60160,13235,4924,4460,21620],[1,0,24,120,11,83930,18465,15222,6370,35970],[2,0,0,409,17,266560,58643,27262,16720,90160],[2,0,1,397,17,456000,100320,33142,36150,148200],[2,0,2,176,8,320880,70594,18064,27720,107520],[2,0,3,400,21,185710,40856,32204,23350,66325],[2,0,4,70,1,122820,27020,7434,9870,42780],[2,0,5,65,16,121520,27950,8252,12130,48020],[2,0,6,308,19,953700,219351,39536,70580,390150],[2,0,7,281,21,956800,220064,39102,69870,405600],[2,0,8,177,11,725420,166847,25366,55240,295480],[2,0,9,31,1,213600,49128,4530,44250,93000],[2,0,10,153,20,190190,43744,15532,14560,69160],[2,0,11,158,5,91800,21114,10682,7110,32130],[2,0,12,41,5,70200,16146,4758,6140,28440],[2,0,13,95,7,114400,27456,18914,10750,45760],[2,0,14,31,2,79460,19070,5908,6390,33350],[2,0,15,33,4,103240,24778,9894,20290,46400],[2,0,16,25,3,88220,21173,7262,22910,42900],[2,0,17,32,0,96320,20227,7616,7090,37760],[2,0,18,168,9,184440,38732,27354,11830,68370],[2,0,19,56,0,77840,16346,9408,5010,29120],[2,0,20,81,12,113160,23764,11388,7960,44160],[2,0,21,118,24,258500,64625,18808,19980,98700],[2,0,22,80,13,99160,24790,9578,8950,37520],[2,0,23,55,4,65790,14474,5038,4670,23460],[2,0,24,107,7,80000,17600,13118,6710,33000],[3,0,0,452,11,308700,67914,29256,17750,101430],[3,0,1,471,16,555100,122122,38786,39270,177450],[3,0,2,201,10,362900,79838,20756,28220,122240],[3,0,3,431,24,195360,42979,34870,28060,71225],[3,0,4,74,5,122130,26869,8466,9710,42780],[3,0,5,66,14,129480,29780,8060,14720,50960],[3,0,6,299,15,957080,220128,37802,72540,383400],[3,0,7,298,27,1010830,232491,42300,72930,422760],[3,0,8,202,11,830850,191096,28666,72620,339980],[3,0,9,32,4,199640,45917,5240,50950,86800],[3,0,10,157,17,198800,45724,15466,18910,72800],[3,0,11,178,11,100200,23046,12646,6900,35070],[3,0,12,48,3,90000,20700,5148,9190,35550],[3,0,13,117,4,148030,35527,22222,15840,58760],[3,0,14,34,3,84010,20162,6662,7150,35650],[3,0,15,36,10,91000,21840,12552,20920,41600],[3,0,16,30,7,89240,21418,9748,24100,44850],[3,0,17,38,2,104400,21924,9620,9240,42480],[3,0,18,158,6,176320,37027,25228,12680,65360],[3,0,19,52,1,68850,14458,8954,5610,26520],[3,0,20,78,12,114180,23978,11040,10080,42240],[3,0,21,149,39,295900,73975,25262,28150,115500],[3,0,22,82,13,101430,25358,9770,8740,38640],[3,0,23,55,2,68900,15158,4774,5950,24380],[3,0,24,122,8,88920,19562,14960,8280,37620],[4,0,0,577,19,390600,85932,37902,26940,128340],[4,0,1,449,15,512120,112666,36942,41110,169260],[4,0,2,215,10,383350,84337,22100,36530,131200],[4,0,3,488,18,230300,50666,38344,32670,82250],[4,0,4,71,3,125120,27526,7846,10380,42160],[4,0,5,72,7,163800,37674,7618,19890,63700],[4,0,6,351,24,1105260,254210,45450,97300,441450],[4,0,7,308,13,1144600,263258,41096,87780,460200],[4,0,8,208,16,821760,189005,30368,80730,341760],[4,0,9,39,2,256410,58974,5840,57370,114700],[4,0,10,209,30,250600,57638,21576,25850,93080],[4,0,11,201,14,110330,25376,14460,7690,39270],[4,0,12,50,4,94300,21689,5492,9210,36340],[4,0,13,149,9,180600,43344,29206,18240,72800],[4,0,14,54,5,137200,32928,10634,14610,56350],[4,0,15,55,7,168480,40435,16594,38440,76800],[4,0,16,39,0,156390,37534,9906,48030,76050],[4,0,17,59,3,171920,36103,14906,16740,66080],[4,0,18,188,10,211820,44482,30596,16240,76540],[4,0,19,60,1,80830,16974,10298,6420,30680],[4,0,20,90,5,145350,30524,11270,15040,54400],[4,0,21,148,44,279760,69940,26008,30130,109200],[4,0,22,94,21,108040,27010,12090,9150,40880],[4,0,23,59,5,69660,15325,5498,6350,24840],[4,0,24,155,12,112970,24853,19304,11980,47190],[5,0,0,577,20,378760,83327,38014,30110,128110],[5,0,1,511,26,577150,126973,43186,50470,189150],[5,0,2,238,7,431970,95033,23870,43160,147840],[5,0,3,554,29,262500,57750,44592,34860,91875],[5,0,4,81,6,134250,29535,9348,9960,46500],[5,0,5,74,10,157440,36211,8228,16450,62720],[5,0,6,395,20,1263750,290662,49970,114190,506250],[5,0,7,385,29,1324320,304594,53614,110610,555360],[5,0,8,226,26,856000,196880,34564,81120,356000],[5,0,9,39,4,250950,57718,6220,72900,108500],[5,0,10,231,27,291720,67096,23022,28960,106080],[5,0,11,202,11,110780,25479,14182,9360,40110],[5,0,12,54,3,98430,22639,5736,9580,40290],[5,0,13,285,25,332800,79872,57670,34530,135200],[5,0,14,77,4,198560,47654,14456,18330,83950],[5,0,15,85,11,253820,60917,25702,60410,118400],[5,0,16,68,7,237290,56950,19400,68200,118950],[5,0,17,90,3,259260,54445,22284,29690,102660],[5,0,18,228,7,265200,55692,36070,20060,95030],[5,0,19,68,3,89050,18700,12078,7450,33800],[5,0,20,91,12,135880,28535,12548,12370,50560],[5,0,21,176,40,367200,91800,28784,33560,142800],[5,0,22,98,22,114760,28690,12620,10250,42560],[5,0,23,75,4,90170,19837,6678,7850,32660],[5,0,24,165,6,125610,27634,19452,14950,52470],[0,1,0,156,5,107210,21442,11409,3920,34730],[0,1,1,129,2,157480,31496,11517,7060,49530],[0,1,2,54,3,100980,20196,6336,6830,32640],[0,1,3,123,3,61200,12240,10638,4510,21000],[0,1,4,23,2,37170,7434,3020,2030,13020],[0,1,5,16,1,36900,7749,1811,2650,14700],[0,1,6,114,7,349890,73477,16392,18880,144450],[0,1,7,104,8,364800,76608,16272,15820,149760],[0,1,8,80,5,319500,67095,12880,20110,133500],[0,1,9,12,0,82320,17287,1884,9870,37200],[0,1,10,66,7,84370,17718,7282,4620,30680],[0,1,11,55,2,31800,6678,4224,1390,11130],[0,1,12,16,2,28420,5968,2100,1660,11060],[0,1,13,60,3,72960,16051,13032,5130,29640],[0,1,14,17,0,47600,10472,3349,2800,19550],[0,1,15,18,3,53850,11847,6333,4480,24000],[0,1,16,15,2,52260,11497,4948,5050,25350],[0,1,17,28,1,81000,15390,7803,4690,31860],[0,1,18,72,3,81420,15470,12930,3900,29670],[0,1,19,25,0,36000,6840,4700,1610,13000],[0,1,20,34,4,51000,9690,5180,2860,19200],[0,1,21,38,7,87110,20906,6675,4860,32550],[0,1,22,22,3,28500,6840,2880,1720,10640],[0,1,23,22,0,27940,5588,2024,1320,10120],[0,1,24,40,1,31980,6396,5185,1910,12870],[1,1,0,157,5,109440,21888,11478,4840,34960],[1,1,1,131,3,153600,30720,11838,8670,49920],[1,1,2,63,4,111510,22302,7476,6110,37760],[1,1,3,147,4,68640,13728,12773,6650,25025],[1,1,4,21,1,36000,7200,2612,1720,12400],[1,1,5,20,4,40320,8467,2712,2940,15680],[1,1,6,143,7,465120,97675,20220,24660,183600],[1,1,7,113,7,416580,87482,17340,19660,165360],[1,1,8,87,2,368900,77469,13292,21470,151300],[1,1,9,13,1,84240,17690,2258,8010,37200],[1,1,10,63,7,78960,16582,7000,4510,29120],[1,1,11,58,1,34770,7302,4308,1820,11970],[1,1,12,20,0,39000,8190,2200,2310,15800],[1,1,13,50,4,62100,13662,11256,4370,23920],[1,1,14,15,3,33600,7392,3726,2350,13800],[1,1,15,18,1,58480,12866,5627,6180,27200],[1,1,16,12,1,45210,9946,3752,5170,21450],[1,1,17,22,1,65730,12489,6201,3610,24780],[1,1,18,83,3,96000,18240,14800,5840,34400],[1,1,19,28,2,37960,7212,5760,1850,13520],[1,1,20,35,3,54080,10275,5120,3290,20480],[1,1,21,43,10,91740,22018,7967,5390,34650],[1,1,22,24,6,26820,6437,3600,1550,10080],[1,1,23,20,2,23220,4644,2144,1210,8280],[1,1,24,43,1,34020,6804,5560,2100,13860],[2,1,0,175,5,119000,23800,12720,4750,39100],[2,1,1,139,5,166160,33232,12828,10020,52260],[2,1,2,58,2,110880,22176,6600,7230,35840],[2,1,3,153,8,71050,14210,13843,7130,25375],[2,1,4,24,0,42480,8496,2784,2280,14880],[2,1,5,21,2,48830,10254,2489,4190,18620],[2,1,6,130,4,406980,85466,17928,26200,170100],[2,1,7,118,4,436620,91690,17442,27580,177840],[2,1,8,85,6,338120,71005,13828,21510,140620],[2,1,9,13,2,78870,16563,2475,7980,34100],[2,1,10,74,6,94520,19849,7880,6130,35360],[2,1,11,58,0,34220,7186,4176,2100,12180],[2,1,12,19,0,38570,8100,2090,2480,15010],[2,1,13,40,2,48260,10617,8688,3360,19760],[2,1,14,14,0,39340,8655,2758,2590,16100],[2,1,15,13,4,31410,6910,5221,2860,14400],[2,1,16,9,0,35910,7900,2556,4070,17550],[2,1,17,20,1,56240,10686,5667,3350,22420],[2,1,18,76,1,89250,16958,13150,5370,32250],[2,1,19,28,2,37700,7163,5760,2270,13520],[2,1,20,39,1,66500,12635,5260,4970,24320],[2,1,21,39,12,74250,17820,7809,4390,28350],[2,1,22,25,5,31200,7488,3540,2340,11200],[2,1,23,23,1,27940,5588,2268,1600,10120],[2,1,24,53,0,43460,8692,6625,3460,17490],[3,1,0,165,7,112180,22436,12288,5700,36340],[3,1,1,150,7,171600,34320,14079,10030,55770],[3,1,2,72,2,135100,27020,8112,10620,44800],[3,1,3,161,12,73010,14602,15079,8170,26075],[3,1,4,23,2,38430,7686,3020,1950,13020],[3,1,5,19,5,35420,7438,2772,3160,13720],[3,1,6,155,7,482480,101321,21804,30370,199800],[3,1,7,118,6,428960,90082,17844,25990,174720],[3,1,8,87,4,371840,78086,13708,24040,147740],[3,1,9,15,1,102480,21521,2572,12760,43400],[3,1,10,75,5,99400,20874,7820,5930,36400],[3,1,11,71,8,37800,7938,6168,2430,13230],[3,1,12,22,2,40200,8442,2760,2750,15800],[3,1,13,41,3,50920,11202,9156,3890,19760],[3,1,14,15,0,41550,9141,2955,2790,17250],[3,1,15,13,2,38060,8373,4515,3940,17600],[3,1,16,10,0,39400,8668,2840,4870,19500],[3,1,17,22,0,68860,13083,5874,4170,25960],[3,1,18,100,2,114660,21785,17460,5800,42140],[3,1,19,29,0,41180,7824,5452,2160,15080],[3,1,20,44,4,68000,12920,6480,5250,25600],[3,1,21,39,7,88960,21350,6814,6120,33600],[3,1,22,26,3,34040,8170,3312,2240,12880],[3,1,23,24,2,28820,5764,2512,1540,10120],[3,1,24,55,4,40290,8058,7615,3270,16830],[4,1,0,195,7,127840,25568,14358,6960,43240],[4,1,1,205,11,242500,48500,19452,16040,75660],[4,1,2,69,1,127160,25432,7620,10040,43520],[4,1,3,196,10,93000,18600,17698,10340,32550],[4,1,4,28,3,45250,9050,3776,3170,15500],[4,1,5,26,4,57420,12058,3330,4640,21560],[4,1,6,160,4,511680,107453,21888,31960,210600],[4,1,7,137,7,513500,107835,20724,33920,202800],[4,1,8,101,7,400440,84092,16404,32570,167320],[4,1,9,17,1,110560,23218,2886,14180,49600],[4,1,10,100,12,123200,25872,11248,8280,45760],[4,1,11,92,3,52510,11027,7020,3520,18690],[4,1,12,24,3,42420,8908,3150,2950,16590],[4,1,13,76,1,99750,21945,15768,7570,39000],[4,1,14,20,0,56000,12320,3940,3730,23000],[4,1,15,20,4,57440,12637,7272,7210,25600],[4,1,16,15,2,51220,11268,4948,6280,25350],[4,1,17,26,1,74000,14060,7269,6050,29500],[4,1,18,110,6,130000,24700,20080,8020,44720],[4,1,19,32,0,44160,8390,6016,3030,16640],[4,1,20,44,2,70980,13486,6100,4760,26880],[4,1,21,45,18,72090,17302,9837,5450,28350],[4,1,22,31,4,42120,10109,4020,2790,15120],[4,1,23,32,0,42880,8576,2944,2690,14720],[4,1,24,67,3,51840,10368,8930,4230,21120],[5,1,0,236,9,156630,31326,17445,7410,52210],[5,1,1,204,3,245220,49044,18189,13490,78390],[5,1,2,82,1,156330,31266,9024,10170,51840],[5,1,3,198,12,94860,18972,18150,8740,32550],[5,1,4,30,2,49840,9968,3832,2810,17360],[5,1,5,23,2,54600,11466,2695,4400,20580],[5,1,6,201,10,622660,130759,28452,40050,257850],[5,1,7,157,9,562400,118104,23946,33680,230880],[5,1,8,119,8,479520,100699,19276,33380,197580],[5,1,9,17,2,108900,22869,3103,14800,46500],[5,1,10,89,10,111390,23392,9906,7640,41080],[5,1,11,94,4,55800,11718,7296,3390,18900],[5,1,12,25,1,47760,10030,2920,3230,18960],[5,1,13,99,5,120320,26470,21516,9250,48880],[5,1,14,35,4,88970,19573,7923,7140,35650],[5,1,15,36,4,116160,25555,11960,15480,51200],[5,1,16,25,2,94760,20847,7788,11680,44850],[5,1,17,50,3,141470,26879,14331,11650,55460],[5,1,18,121,6,140300,26657,21950,9260,49450],[5,1,19,40,1,54600,10374,7768,3080,20280],[5,1,20,47,5,72660,13805,7060,5560,26880],[5,1,21,56,11,121500,29160,9973,7700,47250],[5,1,22,30,10,29400,7056,4920,2260,11200],[5,1,23,30,1,38860,7772,2912,2490,13340],[5,1,24,70,3,52260,10452,9305,4620,22110]]};
+(function(){
+  'use strict';
+  var TAX = 0.06, MON = D.months, MONF = ['апрель','май','июнь','июль','август','сентябрь'], MONG = ['апреля','мая','июня','июля','августа','сентября'], MONP = ['апреле','мае','июне','июле','августе','сентябре'];
+  var MPN = ['WB','Ozon'], MPC = ['#7B2FD0','#1C64F2'];
+  var CATS = []; D.sku.forEach(function(s){ if (CATS.indexOf(s[2]) < 0) CATS.push(s[2]); });
+  var st = {mp:'all', m0:0, m1:5, cat:'all'}, sort = {k:'rev', dir:-1};
+  var $ = function(s){ return document.querySelector(s); };
+
+  /* форматирование */
+  function nf(n, d){ return n.toLocaleString('ru-RU', {minimumFractionDigits:d||0, maximumFractionDigits:d||0}).replace(/ /g,' '); }
+  function money(n){ var a = Math.abs(n), s = n < 0 ? '-' : '';
+    if (a >= 1e6) return s + nf(a/1e6, a >= 1e8 ? 0 : (a >= 1e7 ? 1 : 2)) + ' млн ₽';
+    if (a >= 1e3) return s + nf(a/1e3) + ' тыс. ₽';
+    return s + nf(a) + ' ₽'; }
+  function th(n){ return nf(Math.round(n/1000)); }
+  function pct(x, d){ return nf(x*100, d==null?1:d) + '%'; }
+  function pp(x){ return (x >= 0 ? '+' : '-') + nf(Math.abs(x*100), 1) + ' п.п.'; }
+  function chg(a, b){ return a ? (b - a) / Math.abs(a) : 0; }
+  function signed(x){ return (x >= 0 ? '+' : '-') + nf(Math.abs(x*100), 0) + '%'; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  /* агрегаты */
+  function blank(){ return {units:0, ret:0, rev:0, comm:0, log:0, ads:0, cogs:0}; }
+  function add(a, r){ a.units += r[3]; a.ret += r[4]; a.rev += r[5]; a.comm += r[6]; a.log += r[7]; a.ads += r[8]; a.cogs += r[9]; }
+  function fin(a){ a.tax = a.rev * TAX; a.mp = a.rev - a.cogs - a.comm - a.log - a.ads - a.tax;
+    a.margin = a.rev ? a.mp / a.rev : 0; a.drr = a.rev ? a.ads / a.rev : 0; a.retp = a.units ? a.ret / a.units : 0; a.logp = a.rev ? a.log / a.rev : 0; return a; }
+  function pass(r, opt){ opt = opt || {};
+    if (!opt.anyMp && st.mp !== 'all' && r[1] !== +st.mp) return false;
+    if (!opt.anyMonth && (r[0] < st.m0 || r[0] > st.m1)) return false;
+    if (st.cat !== 'all' && D.sku[r[2]][2] !== st.cat) return false;
+    return true; }
+
+  function compute(){
+    var tot = blank(), months = [], sku = {}, chan = [blank(), blank()], allMonths = [];
+    for (var i = 0; i < 6; i++){ months.push(null); allMonths.push({all:blank(), mp:[blank(), blank()]}); }
+    D.rows.forEach(function(r){
+      if (pass(r, {anyMonth:true})) { var m = allMonths[r[0]]; add(m.all, r); add(m.mp[r[1]], r); }
+      if (pass(r, {anyMp:true})) add(chan[r[1]], r);
+      if (!pass(r)) return;
+      add(tot, r);
+      if (!sku[r[2]]) sku[r[2]] = blank();
+      add(sku[r[2]], r);
+    });
+    allMonths.forEach(function(m){ fin(m.all); fin(m.mp[0]); fin(m.mp[1]); });
+    fin(tot); chan.forEach(fin);
+    var list = Object.keys(sku).map(function(k){ var a = fin(sku[k]); a.k = +k; a.art = D.sku[k][0]; a.name = D.sku[k][1]; a.cat = D.sku[k][2]; return a; });
+    abc(list, 'rev', 'abcRev'); abc(list, 'mp', 'abcMp');
+    return {tot:tot, months:allMonths, list:list, chan:chan};
+  }
+  function abc(list, key, out){
+    var pos = list.filter(function(a){ return a[key] > 0; }).sort(function(a, b){ return b[key] - a[key]; });
+    var sum = pos.reduce(function(s, a){ return s + a[key]; }, 0), cum = 0;
+    pos.forEach(function(a){ var before = cum / sum; cum += a[key]; a[out] = before < .8 ? 'A' : (before < .95 ? 'B' : 'C'); });
+    list.forEach(function(a){ if (a[key] <= 0) a[out] = 'C'; });
+  }
+
+  /* фильтры */
+  var m0 = $('#m0'), m1 = $('#m1'), cat = $('#cat');
+  MON.forEach(function(m, i){ m0.add(new Option(m, i)); m1.add(new Option(m, i)); });
+  cat.add(new Option('Все категории', 'all')); CATS.forEach(function(c){ cat.add(new Option(c, c)); });
+  function syncUI(){ m0.value = st.m0; m1.value = st.m1; cat.value = st.cat;
+    [].forEach.call(document.querySelectorAll('#mp button'), function(b){ b.setAttribute('aria-pressed', b.dataset.v === st.mp ? 'true' : 'false'); }); }
+  document.getElementById('mp').addEventListener('click', function(e){ var b = e.target.closest('button'); if (!b) return; st.mp = b.dataset.v; render(); });
+  m0.addEventListener('change', function(){ st.m0 = +m0.value; if (st.m1 < st.m0) st.m1 = st.m0; render(); });
+  m1.addEventListener('change', function(){ st.m1 = +m1.value; if (st.m0 > st.m1) st.m0 = st.m1; render(); });
+  cat.addEventListener('change', function(){ st.cat = cat.value; render(); });
+  $('#reset').addEventListener('click', function(){ st = {mp:'all', m0:0, m1:5, cat:'all'}; render(); });
+
+  /* KPI */
+  function spark(vals, color){
+    var w = 200, h = 34, mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals), rg = (mx - mn) || 1;
+    var pts = vals.map(function(v, i){ return [(vals.length > 1 ? i * w / (vals.length - 1) : w/2).toFixed(1), (h - 4 - (v - mn) / rg * (h - 8)).toFixed(1)]; });
+    return '<svg viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="' + color + '" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linejoin="round" points="' + pts.map(function(p){ return p.join(','); }).join(' ') + '"/></svg>';
+  }
+  function kpis(R){
+    var sel = R.months.slice(st.m0, st.m1 + 1).map(function(m){ return st.mp === 'all' ? m.all : m.mp[+st.mp]; });
+    var f = sel[0], l = sel[sel.length - 1], multi = sel.length > 1, t = R.tot;
+    var lab = multi ? MON[st.m1] + ' к ' + MON[st.m0].toLowerCase() + ': ' : '';
+    function delta(a, b, isPct, goodUp){
+      if (!multi) return '<span class="d flat">один месяц</span>';
+      var d = isPct ? b - a : chg(a, b), good = goodUp ? d >= 0 : d <= 0;
+      if (Math.abs(d) < (isPct ? .0005 : .005)) return '<span class="d flat">' + lab + 'без изменений</span>';
+      return '<span class="d ' + (good ? 'up' : 'down') + '">' + lab + (isPct ? pp(d) : signed(d)) + '</span>';
+    }
+    var tiles = [
+      ['Выручка', money(t.rev), delta(f.rev, l.rev, false, true), sel.map(function(m){ return m.rev; }), '#2B52F0'],
+      ['Маржинальная прибыль', money(t.mp), delta(f.mp, l.mp, false, true), sel.map(function(m){ return m.mp; }), '#0E8A5F'],
+      ['Маржа', pct(t.margin), delta(f.margin, l.margin, true, true), sel.map(function(m){ return m.margin; }), '#0E8A5F'],
+      ['Доля рекламы (ДРР)', pct(t.drr), delta(f.drr, l.drr, true, false), sel.map(function(m){ return m.drr; }), '#B86A00'],
+      ['Возвраты', pct(t.retp), delta(f.retp, l.retp, true, false), sel.map(function(m){ return m.retp; }), '#D23A5A']
+    ];
+    $('#kpis').innerHTML = tiles.map(function(x){ return '<div class="kpi"><small>' + x[0] + '</small><b>' + x[1] + '</b>' + x[2] + spark(x[3], x[4]) + '</div>'; }).join('');
+  }
+
+  /* график */
+  var tip = $('#tip'), chartBox = $('#chart');
+  function chart(R){
+    var idx = []; for (var i = st.m0; i <= st.m1; i++) idx.push(i);
+    var stackMp = st.mp === 'all';
+    $('#legend').innerHTML = (stackMp ? '<span><i style="background:' + MPC[0] + '"></i>Выручка WB</span><span><i style="background:' + MPC[1] + '"></i>Выручка Ozon</span>'
+      : '<span><i style="background:' + MPC[+st.mp] + '"></i>Выручка ' + MPN[+st.mp] + '</span>') + '<span><i class="line" style="background:#0E8A5F"></i>Маржинальная прибыль</span>';
+    var W = Math.max(chartBox.clientWidth, 280), H = W < 520 ? 250 : (W < 700 ? 320 : 440), pl = W < 520 ? 44 : 56, pr = 8, pt = 14, pb = 30;
+    var vals = idx.map(function(i){ var m = R.months[i]; return stackMp ? m.all : m.mp[+st.mp]; });
+    var max = Math.max.apply(null, vals.map(function(v){ return v.rev; })) || 1;
+    var step = niceStep(max / 4), top = Math.ceil(max / step) * step;
+    var y = function(v){ return pt + (H - pt - pb) * (1 - v / top); };
+    var cw = (W - pl - pr) / idx.length, bw = Math.min(cw * .56, 74);
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Выручка и маржинальная прибыль по месяцам">';
+    for (var g = 0; g <= top + 1; g += step){
+      s += '<line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + y(g) + '" y2="' + y(g) + '" stroke="#DCE3F1"/>';
+      s += '<text x="' + (pl - 8) + '" y="' + (y(g) + 4) + '" text-anchor="end" font-size="12" fill="#55607C" font-weight="600">' + axis(g) + '</text>';
+    }
+    var line = [];
+    idx.forEach(function(i, j){
+      var m = R.months[i], cx = pl + cw * j + cw / 2, x = cx - bw / 2, v = vals[j];
+      s += '<g class="col" tabindex="0" data-j="' + j + '" aria-label="' + MONF[i] + ': выручка ' + money(v.rev) + ', прибыль ' + money(v.mp) + '">';
+      s += '<rect class="hit" x="' + (pl + cw * j + 2) + '" y="' + pt + '" width="' + (cw - 4) + '" height="' + (H - pt - pb) + '" rx="8" fill="transparent"/>';
+      if (stackMp){
+        var y0 = y(m.mp[0].rev);
+        s += '<rect x="' + x + '" y="' + y0 + '" width="' + bw + '" height="' + (y(0) - y0) + '" fill="' + MPC[0] + '" rx="3"/>';
+        var y1 = y(m.mp[0].rev + m.mp[1].rev);
+        s += '<rect x="' + x + '" y="' + y1 + '" width="' + bw + '" height="' + Math.max(y0 - y1 - 2, 0) + '" fill="' + MPC[1] + '" rx="3"/>';
+      } else {
+        s += '<rect x="' + x + '" y="' + y(v.rev) + '" width="' + bw + '" height="' + (y(0) - y(v.rev)) + '" fill="' + MPC[+st.mp] + '" rx="3"/>';
+      }
+      s += '<text x="' + cx + '" y="' + (H - 9) + '" text-anchor="middle" font-size="12.5" fill="#55607C" font-weight="700">' + MON[i] + '</text></g>';
+      line.push([cx, y(Math.max(v.mp, 0))]);
+    });
+    s += '<polyline fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" points="' + line.map(function(p){ return p.join(','); }).join(' ') + '"/>';
+    s += '<polyline fill="none" stroke="#0E8A5F" stroke-width="3.5" stroke-linejoin="round" points="' + line.map(function(p){ return p.join(','); }).join(' ') + '"/>';
+    line.forEach(function(p){ s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="5" fill="#fff" stroke="#0E8A5F" stroke-width="3"/>'; });
+    s += '</svg>';
+    var old = chartBox.querySelector('svg'); if (old) old.remove();
+    chartBox.insertAdjacentHTML('afterbegin', s);
+    tip.classList.remove('on');
+    [].forEach.call(chartBox.querySelectorAll('.col'), function(gEl){
+      function show(){ var j = +gEl.dataset.j, i = idx[j], v = vals[j], m = R.months[i];
+        var h = '<b>' + MONF[i][0].toUpperCase() + MONF[i].slice(1) + '</b>';
+        if (stackMp) h += '<div><span>WB</span>' + money(m.mp[0].rev) + '</div><div><span>Ozon</span>' + money(m.mp[1].rev) + '</div>';
+        h += '<div><span>Выручка</span>' + money(v.rev) + '</div><div><span>Прибыль</span>' + money(v.mp) + '</div><div><span>Маржа</span>' + pct(v.margin) + '</div><div><span>ДРР</span>' + pct(v.drr) + '</div>';
+        tip.innerHTML = h; tip.classList.add('on');
+        var cx = pl + cw * j + cw / 2, tw = tip.offsetWidth, left = Math.min(Math.max(cx - tw / 2, 0), W - tw);
+        tip.style.left = left + 'px'; tip.style.top = Math.max(y(v.rev) - tip.offsetHeight - 10, 0) + 'px'; }
+      gEl.addEventListener('mouseenter', show); gEl.addEventListener('focus', show); gEl.addEventListener('click', show);
+      gEl.addEventListener('mouseleave', function(){ tip.classList.remove('on'); }); gEl.addEventListener('blur', function(){ tip.classList.remove('on'); });
+    });
+  }
+  function niceStep(x){ var p = Math.pow(10, Math.floor(Math.log10(x))), n = x / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; }
+  function axis(v){ if (v >= 1e6) return nf(v / 1e6, v % 1e6 ? 1 : 0) + ' млн'; if (v >= 1e3) return nf(v / 1e3) + ' тыс.'; return '0'; }
+
+  /* структура 100 ₽ и площадки */
+  function structure(R){
+    var t = R.tot, parts = [['Себестоимость', t.cogs, '#8C97B5'], ['Комиссия площадки', t.comm, '#5B7CFF'], ['Логистика', t.log, '#9F7AEA'], ['Реклама', t.ads, '#E79A2E'], ['Налог 6%', t.tax, '#C3CAD9'], ['Прибыль', Math.max(t.mp, 0), '#0E8A5F']];
+    $('#stack').innerHTML = parts.map(function(p){ return '<i style="flex-grow:' + Math.max(p[1], 0) + ';flex-basis:0;background:' + p[2] + '"></i>'; }).join('');
+    $('#parts').innerHTML = parts.map(function(p, i){ var v = i === 5 ? t.mp : p[1];
+      return '<li' + (i === 5 ? ' class="total"' : '') + '><i style="background:' + p[2] + '"></i><span>' + p[0] + '</span><b>' + nf(t.rev ? v / t.rev * 100 : 0, 1) + ' ₽</b></li>'; }).join('');
+    var c = R.chan, rows = [0, 1].map(function(k){ var a = c[k]; return '<tr><td><i style="background:' + MPC[k] + '"></i>' + MPN[k] + '</td><td>' + money(a.rev) + '</td><td>' + money(a.mp) + '</td><td>' + pct(a.margin) + '</td><td>' + pct(a.drr) + '</td><td>' + pct(a.retp) + '</td></tr>'; }).join('');
+    var sh = c[0].rev + c[1].rev; $('#chan').innerHTML = '<div class="share" aria-hidden="true"><i style="flex-grow:' + c[0].rev + ';flex-basis:0;background:' + MPC[0] + '"></i><i style="flex-grow:' + c[1].rev + ';flex-basis:0;background:' + MPC[1] + '"></i></div><div class="sharel"><span>Доля WB в выручке ' + pct(sh ? c[0].rev / sh : 0, 0) + '</span><span>Ozon ' + pct(sh ? c[1].rev / sh : 0, 0) + '</span></div><table><thead><tr><th>Площадка</th><th>Выручка</th><th>Прибыль</th><th>Маржа</th><th>ДРР</th><th>Возвраты</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  }
+
+  /* таблица ABC */
+  var COLS = [['name','Товар'], ['rev','Выручка, тыс. ₽'], ['mp','Прибыль, тыс. ₽'], ['margin','Маржа'], ['drr','ДРР'], ['logp','Логистика'], ['retp','Возвраты'], ['abcRev','ABC выручка'], ['abcMp','ABC прибыль']];
+  function table(R){
+    var list = R.list.slice(), k = sort.k, d = sort.dir;
+    list.sort(function(a, b){ var x = a[k], y = b[k]; if (typeof x === 'string') return x.localeCompare(y, 'ru') * d; return (x - y) * d; });
+    $('#abc thead').innerHTML = '<tr>' + COLS.map(function(c){ return '<th scope="col"' + (c[0] === k ? ' aria-sort="' + (d < 0 ? 'descending' : 'ascending') + '"' : '') + '><button type="button" data-k="' + c[0] + '">' + c[1] + '</button></th>'; }).join('') + '</tr>';
+    $('#abc tbody').innerHTML = list.length ? list.map(function(a){
+      return '<tr><td>' + esc(a.name) + '<small>' + a.art + ' · ' + esc(a.cat) + '</small></td><td>' + th(a.rev) + '</td><td class="' + (a.mp < 0 ? 'neg' : '') + '">' + th(a.mp) + '</td>' +
+        '<td class="' + (a.margin < 0 ? 'neg' : a.margin < .07 ? 'low' : '') + '">' + pct(a.margin) + '</td><td>' + pct(a.drr) + '</td><td>' + pct(a.logp) + '</td><td>' + pct(a.retp) + '</td>' +
+        '<td><span class="g ' + a.abcRev + '">' + a.abcRev + '</span></td><td><span class="g ' + a.abcMp + '">' + a.abcMp + '</span></td></tr>'; }).join('') : '<tr><td colspan="9">Нет продаж под этот фильтр</td></tr>';
+    var cnt = {A:0, B:0, C:0}, shareA = 0, totMp = R.list.reduce(function(s, a){ return s + Math.max(a.mp, 0); }, 0);
+    R.list.forEach(function(a){ cnt[a.abcMp]++; if (a.abcMp === 'A') shareA += a.mp; });
+    $('#abcsum').innerHTML = '<span class="chip">По прибыли: A ' + cnt.A + ' · B ' + cnt.B + ' · C ' + cnt.C + '</span><span class="chip">Группа A даёт ' + pct(totMp ? shareA / totMp : 0, 0) + ' прибыли</span>';
+  }
+  document.getElementById('abc').addEventListener('click', function(e){ var b = e.target.closest('th button'); if (!b) return;
+    var k = b.dataset.k; if (sort.k === k) sort.dir *= -1; else { sort.k = k; sort.dir = k === 'name' ? 1 : -1; } table(last);
+    var nb = document.querySelector('#abc th button[data-k="' + k + '"]'); if (nb) nb.focus(); });
+
+  /* выводы */
+  function notes(R){
+    var out = [], t = R.tot, sel = R.months.slice(st.m0, st.m1 + 1).map(function(m){ return st.mp === 'all' ? m.all : m.mp[+st.mp]; });
+    var f = sel[0], l = sel[sel.length - 1], scope = (st.mp === 'all' ? 'на обеих площадках' : 'на ' + MPN[+st.mp]) + (st.cat === 'all' ? '' : ' в категории «' + st.cat + '»');
+    if (!t.rev) { $('#notes').innerHTML = '<li>Под этот фильтр продаж нет. Сбросьте фильтры или выберите другую категорию.</li>'; return; }
+    if (sel.length > 1){
+      var gr = chg(f.rev, l.rev), gp = chg(f.mp, l.mp);
+      if (gr > gp + .03) out.push('Выручка ' + scope + ' за период выросла на <b>' + signed(gr) + '</b>, а прибыль только на <b>' + signed(gp) + '</b>: маржа сжалась с ' + pct(f.margin) + ' до ' + pct(l.margin) + '. Рост покупается всё дороже.');
+      else if (gp > gr + .03) out.push('Прибыль ' + scope + ' растёт быстрее выручки: <b>' + signed(gp) + '</b> против <b>' + signed(gr) + '</b>. Маржа выросла с ' + pct(f.margin) + ' до ' + pct(l.margin) + '.');
+      else out.push('Выручка и прибыль ' + scope + ' меняются вместе: <b>' + signed(gr) + '</b> и <b>' + signed(gp) + '</b>, маржа держится около ' + pct(t.margin) + '.');
+      var dd = l.drr - f.drr, dm = l.margin - f.margin;
+      if (dd > .005) out.push('Доля рекламы выросла с ' + pct(f.drr) + ' до <b>' + pct(l.drr) + '</b>' + (dm < -.002 ? ', на неё приходится ' + nf(Math.min(dd / -dm, 1) * 100, 0) + '% падения маржи' : '') + '. Реклама растёт быстрее продаж: нужен лимит ДРР по товарам.');
+      else if (dd < -.005) out.push('Доля рекламы снизилась с ' + pct(f.drr) + ' до <b>' + pct(l.drr) + '</b>: продажи держатся с меньшими вложениями в рекламу.');
+    } else {
+      out.push('В ' + MONP[st.m0] + ' ' + scope + ': выручка <b>' + money(t.rev) + '</b>, прибыль <b>' + money(t.mp) + '</b>, маржа ' + pct(t.margin) + ' при доле рекламы ' + pct(t.drr) + '.');
+    }
+    var A = R.list.filter(function(a){ return a.abcMp === 'A'; }), pos = R.list.reduce(function(s, a){ return s + Math.max(a.mp, 0); }, 0), sA = A.reduce(function(s, a){ return s + a.mp; }, 0);
+    if (R.list.length > 3) out.push('Прибыль держится на <b>' + A.length + ' из ' + R.list.length + '</b> товаров: они дают ' + pct(pos ? sA / pos : 0, 0) + ' прибыли. Лидер: «' + esc(A.sort(function(a, b){ return b.mp - a.mp; })[0].name) + '».');
+    var weak = R.list.filter(function(a){ return a.margin < .07; }).sort(function(a, b){ return a.mp - b.mp; }), neg = weak.filter(function(a){ return a.mp < 0; });
+    if (weak.length){
+      var w = weak[0], why = w.drr > t.drr * 2 ? 'реклама (ДРР ' + pct(w.drr) + ')' : w.logp > t.logp * 1.8 ? 'логистика (' + pct(w.logp) + ' выручки)' : w.retp > t.retp * 2 ? 'возвраты (' + pct(w.retp) + ')' : 'низкая наценка';
+      out.push('<b>' + weak.length + '</b> ' + plural(weak.length, 'товар зарабатывает', 'товара зарабатывают', 'товаров зарабатывают') + ' меньше 7 ₽ со 100 ₽ выручки' + (neg.length ? ', из них ' + neg.length + ' в минусе на ' + money(-neg.reduce(function(s, a){ return s + a.mp; }, 0)) : '') + '. Хуже всех «' + esc(w.name) + '», прибыль съедает ' + why + '.');
+    } else out.push('Ни один товар не опускается ниже 7 ₽ прибыли со 100 ₽ выручки: ассортимент под этим фильтром здоровый.');
+    var hiRet = R.list.filter(function(a){ return a.retp > Math.max(t.retp * 2, .1) && a.units > 20; }).sort(function(a, b){ return b.retp - a.retp; });
+    if (hiRet.length) out.push('Возвраты выше среднего вдвое: ' + hiRet.slice(0, 3).map(function(a){ return '«' + esc(a.name) + '» <b>' + pct(a.retp, 0) + '</b>'; }).join(', ') + ' при ' + pct(t.retp) + ' в среднем. Первое, что проверить: размеры и фото в карточке.');
+    if (st.mp === 'all' && R.chan[0].rev && R.chan[1].rev){
+      var c = R.chan, better = c[1].margin > c[0].margin ? 1 : 0;
+      out.push(MPN[better] + ' приносит ' + pct(c[better].rev / (c[0].rev + c[1].rev), 0) + ' выручки, но маржа там <b>' + pct(c[better].margin) + '</b> против ' + pct(c[1 - better].margin) + ' на ' + MPN[1 - better] + ', в основном за счёт рекламы: ДРР ' + pct(c[better].drr) + ' и ' + pct(c[1 - better].drr) + '.');
+    }
+    $('#notes').innerHTML = out.slice(0, 5).map(function(s){ return '<li class="flash">' + s + '</li>'; }).join('');
+    $('#notesSub').textContent = (st.m0 === st.m1 ? MONF[st.m0][0].toUpperCase() + MONF[st.m0].slice(1) : 'С ' + MONG[st.m0] + ' по ' + MONF[st.m1]) + ', ' + (st.mp === 'all' ? 'WB и Ozon' : MPN[+st.mp]) + (st.cat === 'all' ? ', все категории' : ', ' + st.cat.toLowerCase());
+  }
+  function plural(n, a, b, c){ var m = n % 10, h = n % 100; return m === 1 && h !== 11 ? a : m >= 2 && m <= 4 && (h < 10 || h >= 20) ? b : c; }
+
+  var last;
+  function render(){ syncUI(); last = compute(); kpis(last); chart(last); structure(last); table(last); notes(last); }
+  var rt; addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ chart(last); }, 120); });
+  render();
+})();
+</script>
+</body>
+</html>
