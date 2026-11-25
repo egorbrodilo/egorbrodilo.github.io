@@ -182,6 +182,30 @@ h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:600;letter-spacing:-.02e
 @media (max-width:700px){.how{grid-template-columns:1fr}.faq{grid-template-columns:1fr}}
 .dlink{display:block;text-decoration:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .dlink:hover{transform:translateY(-6px)}
+
+/* пакеты на постоянку */
+.pk{border:1px solid var(--line);border-radius:30px;background:var(--card);padding:34px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,2.15fr);gap:34px;margin-bottom:22px}
+.pk-info h3{font-size:clamp(22px,2.2vw,30px);line-height:1.15;margin-bottom:14px}
+.pk-info p{margin:0 0 14px;color:var(--muted);font-size:15.5px}
+.pk-info .hl{color:var(--text);font-weight:500;padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--blue) 9%,transparent)}
+.pk-info .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.pk-info .links .btn{min-height:46px;font-size:15px;padding:0 20px}
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tier{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;padding:24px 22px;background:var(--bg)}
+.tier b.nm{font-family:"Unbounded";font-weight:600;font-size:18px;letter-spacing:-.01em}
+.tier .pr{font-family:"Unbounded";font-weight:700;font-size:clamp(24px,2.2vw,30px);letter-spacing:-.02em;margin:14px 0 4px;line-height:1.1}
+.tier .pr small{display:block;font-family:"Golos Text";font-size:14.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px}
+ .tier .st b{display:block;font-size:15px;color:var(--text);margin-top:2px}
+.tier .st{font-size:13.5px;font-weight:600;color:var(--blue);padding:8px 12px;border-radius:12px;background:color-mix(in srgb,var(--blue) 10%,transparent);margin:6px 0 16px}
+.tier ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.tier li{position:relative;padding-left:20px;font-size:15px;line-height:1.45}
+.tier li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border:2px solid var(--blue)}
+.pk-terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:6px}
+.pk-terms div{padding:20px 22px;border-radius:20px;background:color-mix(in srgb,var(--blue) 9%,transparent)}
+.pk-terms b{display:block;font-size:16.5px;margin-bottom:6px}
+.pk-terms span{display:block;color:var(--muted);font-size:15px;line-height:1.5}
+@media (max-width:1100px){.pk{grid-template-columns:1fr}}
+@media (max-width:820px){.tiers,.pk-terms{grid-template-columns:1fr}.pk{padding:22px 18px;border-radius:24px}}
 /* блок направления в работах */
 .dir{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin:110px 0 40px;padding-top:28px;border-top:1px solid var(--line)}
 .dir.first{margin-top:0}
@@ -383,6 +407,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
     <nav aria-label="Разделы">
       <a href="#services">Услуги</a>
       <a href="#how">Как работаю</a>
+      <a href="#plans">Пакеты</a>
       <a href="#works">Работы</a>
       <a href="#about">Обо мне</a>
       <a href="#contact">Контакты</a>
@@ -433,8 +458,8 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
 
   <div class="marquee" aria-hidden="true">
     <div class="mq">
-      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы<i></i><em>Тексты без следов ИИ</em></span>
-      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы<i></i><em>Тексты без следов ИИ</em></span>
+      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы<i></i><em>Тексты без следов ИИ</em><i></i>SMM под ключ<i></i><em>Финансы селлеров</em></span>
+      <span><i></i><em>Юнит-экономика</em><i></i>ДДС и ОПиУ<i></i><em>Отчёты по продажам</em><i></i>Лендинги<i></i><em>Карточки WB и Ozon</em><i></i>Презентации<i></i><em>ИИ-помощники</em><i></i>Excel и Google Таблицы<i></i><em>Тексты без следов ИИ</em><i></i>SMM под ключ<i></i><em>Финансы селлеров</em></span>
     </div>
   </div>
 
@@ -505,6 +530,57 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
         <details class="rv"><summary>Сколько правок входит в цену?</summary><p>Правки в рамках согласованной задачи бесплатно. Если понадобится то, чего не было в брифе, заранее скажу, сколько это будет стоить.</p></details>
         <details class="rv"><summary>Как оплачивать?</summary><p>Частями, порядок согласуем до старта. Можно через безопасную сделку на Kwork или напрямую: я самозанятый и выдаю чек.</p></details>
         <details class="rv"><summary>Что нужно от вас?</summary><p>Задача своими словами, срок и материалы, которые уже есть: тексты, фото, логотип, выгрузки из кабинета WB или Ozon. Если чего-то не хватает, подскажу, как это собрать.</p></details>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sec" id="plans">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="rv">Пакеты на постоянку</h2>
+        <p class="rv" style="--d:.1s">Для тех, кому нужен не разовый заказ, а человек, который каждый месяц ведёт соцсети или финансы магазина. Объём и цена известны заранее, отчёт в цифрах в начале каждого месяца.</p>
+      </div>
+
+      <div class="pk rv" id="plan-smm">
+        <div class="pk-info">
+          <h3>SMM под ключ для местного бизнеса</h3>
+          <p>Клиники, стоматологии, салоны красоты, барбершопы, кафе, фитнес- и танцевальные студии, мастера с кабинетом.</p>
+          <p class="hl">Отчёт не про лайки, а про заявки: метки в ссылках на запись, промокод из соцсетей и вопрос администратора «откуда узнали». Раз в месяц видно, сколько заявок пришло из соцсетей, какие посты их привели и сколько стоила одна заявка.</p>
+          <p>Отдельно и по договорённости: настройка таргета и рекламный бюджет, съёмка в Москве, конкурсы с призами, работа с блогерами.</p>
+          <div class="links"><a class="btn btn-main" href="cases/smm-vishnya.html">Пример: соцсети студии за месяц</a></div>
+        </div>
+        <div class="tiers">
+          <div class="tier"><b class="nm">Старт</b><div class="pr">25&nbsp;000&nbsp;₽<small>в месяц</small></div><div class="st">Первым 2 клиентам<b>15&nbsp;000&nbsp;₽ в месяц, первые 2 месяца</b></div>
+            <ul><li>1 соцсеть на выбор</li><li>12 постов в месяц, 3 в неделю</li><li>8-10 сторис</li><li>контент-план на месяц</li><li>шаблоны постов</li><li>отчёт раз в месяц: охваты, подписчики, переходы</li></ul></div>
+          <div class="tier"><b class="nm">Рост</b><div class="pr">45&nbsp;000&nbsp;₽<small>в месяц</small></div><div class="st">Первым 2 клиентам<b>30&nbsp;000&nbsp;₽ в месяц, первые 2 месяца</b></div>
+            <ul><li>2 соцсети</li><li>12 постов и 4 рилс</li><li>15-20 сторис</li><li>контент-план на месяц</li><li>шапка, обложки, шаблоны</li><li>ответы в директ в будни 10:00-19:00 по скрипту</li><li>отчёт раз в месяц: заявки по источникам, лучшие посты, что меняем</li></ul></div>
+          <div class="tier"><b class="nm">Под ключ</b><div class="pr">70&nbsp;000&nbsp;₽<small>в месяц</small></div><div class="st">Первым 2 клиентам<b>50&nbsp;000&nbsp;₽ в месяц, первые 2 месяца</b></div>
+            <ul><li>до 3 соцсетей и карточка на Яндекс Картах или 2ГИС</li><li>16 постов и 8 рилс</li><li>сторис каждый будний день</li><li>контент-план, рубрики и акции на квартал</li><li>полный фирменный стиль соцсетей</li><li>ответы в директ каждый день по скрипту, запись в таблицу заявок</li><li>короткий отчёт каждую неделю и месячный дашборд: заявки, стоимость заявки, окупаемость</li></ul></div>
+        </div>
+      </div>
+
+      <div class="pk rv" id="plan-seller">
+        <div class="pk-info">
+          <h3>Финансист для селлера WB и Ozon</h3>
+          <p>Магазины на Wildberries и Ozon с оборотом примерно от 500 тыс. ₽ в месяц и от 20 артикулов, где владелец хочет видеть, какие товары реально зарабатывают.</p>
+          <p class="hl">Работаю с отчётами о реализации и токеном API только на чтение, плюс ваша себестоимость. Доступ к деньгам и товарам не нужен. Первый месяц включает настройку: отдельного платежа за внедрение нет.</p>
+          <div class="links"><a class="btn btn-main" href="#w-analytics">Примеры отчётов и дашбордов</a></div>
+        </div>
+        <div class="tiers">
+          <div class="tier"><b class="nm">Контроль</b><div class="pr">15&nbsp;000&nbsp;₽<small>в месяц</small></div><div class="st">Первым 2 клиентам<b>10&nbsp;000&nbsp;₽ в месяц, первые 2 месяца</b></div>
+            <ul><li>1 площадка: WB или Ozon, до 50 артикулов</li><li>каждую неделю отчёт: выручка, заказы, выкуп, реклама, прибыль по топ-артикулам</li><li>ОПиУ (P&amp;L) раз в месяц и 3 рекомендации</li><li>вопросы в чате, ответ в течение дня</li></ul></div>
+          <div class="tier"><b class="nm">Финансист</b><div class="pr">30&nbsp;000&nbsp;₽<small>в месяц</small></div><div class="st">Первым 2 клиентам<b>20&nbsp;000&nbsp;₽ в месяц, первые 2 месяца</b></div>
+            <ul><li>WB и Ozon, до 300 артикулов</li><li>каждую неделю отчёт и юнит-экономика всех артикулов</li><li>ДДС, ОПиУ, план-факт и 3-5 рекомендаций по ценам, ассортименту и рекламе</li><li>дашборд в Google Таблицах, открывается с телефона</li><li>созвон 30 минут раз в месяц</li></ul></div>
+          <div class="tier"><b class="nm">Финдиректор</b><div class="pr">50&nbsp;000&nbsp;₽<small>в месяц</small></div><div class="st">Первым 2 клиентам<b>35&nbsp;000&nbsp;₽ в месяц, первые 2 месяца</b></div>
+            <ul><li>WB, Ozon, свой сайт или опт, артикулы без ограничения</li><li>всё из «Финансиста», плюс остатки и что дозаказать</li><li>бюджет на следующий месяц и платёжный календарь</li><li>ABC/XYZ и план закупок</li><li>дашборд и сценарии: поставка, кредит, акция</li><li>чат в будни с ответом за 2-3 часа, созвон каждую неделю</li></ul></div>
+        </div>
+      </div>
+
+      <div class="pk-terms">
+        <div class="rv"><b>Оплата помесячно</b><span>100% за месяц вперёд. В первый месяц 50% на старте и 50% через 2 недели. Работаю как самозанятый и выдаю чек.</span></div>
+        <div class="rv" style="--d:.06s"><b>Стартовая цена</b><span>Для первых 2 клиентов каждого пакета на 2 месяца, в обмен на отзыв и разрешение показать цифры в портфолио, без названия, если вы против.</span></div>
+        <div class="rv" style="--d:.12s"><b>Начинаем с разбора</b><span>Бесплатно разберу ваш профиль или посчитаю юнит-экономику 3 топ-товаров, чтобы вы оценили подход до оплаты.</span></div>
       </div>
     </div>
   </section>
@@ -923,6 +999,24 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
             <li>фирменный стиль кофейни: цвета, шрифты, акценты.</li>
           </ul>
           <p class="res">Слайды листаются сами, можно нажать на любой.</p>
+        </div>
+      </article>
+
+      <div class="dir rv" id="w-smm"><h3>SMM</h3><span>Демо на месяц, студия вымышлена</span></div>
+      <article class="work">
+        <div class="media rv"><a class="win dlink" href="cases/smm-vishnya.html" aria-label="Открыть кейс: соцсети студии «Вишня» за месяц"><div class="bar"><i></i><i></i><i></i></div><img src="img/smm-cover.jpg" width="1600" height="1000" style="height:auto" alt="Профиль студии «Вишня» на телефоне, посты и отчёт по заявкам" loading="lazy"></a></div>
+        <div class="rv">
+          <span class="tag">Демо, студия и цифры вымышлены</span>
+          <h4>Соцсети студии маникюра и бровей за месяц</h4>
+          <p>Что получает клиент на тарифе «Рост» за первый месяц: план, готовые публикации, оформленный профиль и отчёт, где видно, сколько записей дали соцсети.</p>
+          <ul>
+            <li>контент-план на декабрь: 12 постов, 4 рилс и 16 сторис, таблица в Excel;</li>
+            <li>9 постов 1080 × 1350 с подписями, закреп и 4 сторис;</li>
+            <li>аватар, обложка сообщества и 5 обложек актуальных сторис;</li>
+            <li>отчёт по заявкам: источники, лучшие посты, стоимость заявки.</li>
+          </ul>
+          <p class="res">Без фото чужих людей: вся графика нарисована, поэтому стиль легко перенести на ваш бизнес.</p>
+          <div class="links"><a class="btn btn-main" href="cases/smm-vishnya.html">Открыть кейс</a><a class="btn btn-ghost" href="#plan-smm">Пакеты и цены</a></div>
         </div>
       </article>
 
