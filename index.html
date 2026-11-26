@@ -221,6 +221,7 @@ h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:600;letter-spacing:-.02e
 .work ul{margin:0 0 18px;padding:0;list-style:none}
 .work li{position:relative;padding-left:22px;margin-bottom:8px}
 .work li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border:2px solid var(--blue)}
+.work .note-s{font-size:.9em;color:var(--muted,inherit);opacity:.85;margin-top:10px}
 .work .res{color:var(--text);font-weight:500;padding:14px 18px;border-radius:14px;background:color-mix(in srgb,var(--blue) 9%,transparent)}
 .work .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 .work .links .btn{min-height:48px;font-size:15px;padding:0 22px}
@@ -603,10 +604,10 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
     <div class="wrap">
       <div class="sec-head">
         <h2 class="rv">Работы</h2>
-        <p class="rv" style="--d:.1s">Все работы сделаны для портфолио: компании, товары и цифры вымышлены, чтобы не показывать чужие данные. Сайты, отчёт, дашборд и калькулятор можно открыть и потрогать.</p>
+        <p class="rv" style="--d:.1s">Демо-работы сделаны для портфолио: компании, товары и цифры в них вымышлены. Реальные задачи показаны обезличенно, на условных или замаскированных данных, чтобы не раскрывать чужие сведения. Сайты, отчёт, дашборд и калькулятор можно открыть и потрогать.</p>
       </div>
 
-      <div class="dir first rv" id="w-analytics"><h3>Аналитика</h3><span>5 работ</span></div>
+      <div class="dir first rv" id="w-analytics"><h3>Аналитика</h3><span>6 работ</span></div>
 
       <article class="work">
         <div class="media"><div class="fan" id="fan" data-g>
@@ -732,6 +733,30 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           </ul>
           <p class="res">Пример вывода: выручка всего на 1,9% ниже плана, а прибыль на 91%: Ozon недобрал объём, рост WB куплен скидками, реклама вышла за план.</p>
           <div class="links"><a class="btn btn-main" href="budget-plan-fact.xlsx" download>Скачать модель, .xlsx</a></div>
+        </div>
+      </article>
+
+      <article class="work flip" id="w-sverka">
+        <div class="media rv" data-g>
+          <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/sverka-itog.jpg"><img src="img/sverka-itog.jpg" width="1600" height="1000" alt="Итог сверки: доля позиций без отклонений, отклонения по воздуховодам, фасонным деталям и изоляции, что можно брать из Larix без проверки" loading="lazy"></button></div>
+          <div class="stack2" style="margin-top:22px">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/sverka-problems.jpg"><img src="img/sverka-problems.jpg" width="1440" height="900" alt="Вкладка «Проблемы»: ошибки правил выгрузки Larix с приоритетом и подсказкой, что исправить" loading="lazy"></button></div>
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/sverka-zayavka.jpg"><img src="img/sverka-zayavka.jpg" width="1600" height="1000" alt="Вкладка «Недостающие материалы»: черновик заявки с отметками инженера" loading="lazy"></button></div>
+          </div>
+        </div>
+        <div class="rv">
+          <span class="tag">Реальная работа, данные обезличены</span>
+          <h4>Сверка спецификации Revit и выгрузки Larix: вентиляция</h4>
+          <p>Интерактивный отчёт для инженера ПТО. Сравнивает объёмы из модели Revit с выгрузкой сметной программы Larix и сразу показывает, где выгрузке можно верить, а что нужно исправить до заявки на материалы.</p>
+          <ul>
+            <li>сравнение объёмов по 71 группе позиций: совпадает, погрешность, расхождение, нет в выгрузке;</li>
+            <li>проверки: объём работы равен сумме материалов, коды есть в справочнике, контрольные суммы источника и отчёта сходятся;</li>
+            <li>ошибки в правилах выгрузки Larix с приоритетом и подсказкой, что поправить;</li>
+            <li>черновик заявки на недостающие материалы и комментарий для заказчика.</li>
+          </ul>
+          <p class="res">Главное видно на первом экране: какие разделы брать из Larix без проверки, а какие доработать. По найденным ошибкам правила выгрузки исправили, и в следующей версии позиций без отклонений стало 48 из 69 вместо 44.</p>
+          <p class="note-s">Скриншоты сделаны с обезличенной копии: объект, коды, системы и производители заменены условными.</p>
+          <div class="links"><a class="btn btn-main" href="#contact">Обсудить похожую сверку</a></div>
         </div>
       </article>
 
@@ -1062,7 +1087,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
         </div>
       </article>
 
-      <div class="dir rv" id="w-excel"><h3>Таблицы Excel и Google</h3><span>Демо, склад вымышлен, данные условные</span></div>
+      <div class="dir rv" id="w-excel"><h3>Таблицы Excel и Google</h3><span>2 работы, данные в примерах условные</span></div>
       <article class="work">
         <div class="media rv" data-g>
           <div class="stack2">
@@ -1083,6 +1108,29 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           </ul>
           <p class="res">Без макросов, поэтому работает и в Excel, и в Google Таблицах. От 500 ₽ за задачу, срок 1 день.</p>
           <div class="links"><a class="btn btn-main" href="excel-zadachi-demo.xlsx" download>Скачать пример, .xlsx</a><a class="btn btn-ghost" href="#contact">Обсудить задачу</a></div>
+        </div>
+      </article>
+
+      <article class="work flip" id="w-avto">
+        <div class="media rv" data-g>
+          <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/avto-sales.jpg"><img src="img/avto-sales.jpg" width="1440" height="850" alt="Лист «Продажи»: себестоимость, прибыль и маржа по каждой сделке считаются формулами" loading="lazy"></button></div>
+          <div class="stack2" style="margin-top:22px">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/avto-summary.jpg"><img src="img/avto-summary.jpg" width="1600" height="1066" alt="Лист «Сводка»: прибыль и убытки, остаток денег, итоги по товарам" loading="lazy"></button></div>
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/avto-stock.jpg"><img src="img/avto-stock.jpg" width="1600" height="969" alt="Листы «Поставки» и «Склад»: статусы партий и остатки" loading="lazy"></button></div>
+          </div>
+        </div>
+        <div class="rv">
+          <span class="tag">Реальная работа, данные в примере условные</span>
+          <h4>Учёт перепродажи автозапчастей: фары и рули</h4>
+          <p>Таблица для двух партнёров, которые возят запчасти партиями и продают на нескольких площадках. Отвечает на главные вопросы: что в пути, что лежит на складе, сколько заработали и кто сколько вложил.</p>
+          <ul>
+            <li>поставки по партиям: себестоимость штуки с доставкой и таможней, срок поставки, статус «В пути», «На складе», «Распродано»;</li>
+            <li>продажи: выбрали партию, и себестоимость, прибыль и маржа считаются сами;</li>
+            <li>касса партнёров: кто сколько внёс и снял по месяцам, отдельный лист для Б/У;</li>
+            <li>сводка: прибыль, расчётный остаток денег, товар по себестоимости, итоги по товарам, площадкам и месяцам.</li>
+          </ul>
+          <p class="res">Собрана за день по правкам владельцев (три версии) и переведена в Google Таблицы с общим доступом для обоих партнёров.</p>
+          <div class="links"><a class="btn btn-main" href="uchet-avtozapchastei-demo.xlsx" download>Скачать демо, .xlsx</a><a class="btn btn-ghost" href="#contact">Обсудить таблицу</a></div>
         </div>
       </article>
 
