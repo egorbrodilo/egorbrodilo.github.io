@@ -158,8 +158,9 @@ h1,h2,h3{font-family:"Unbounded",sans-serif;font-weight:600;letter-spacing:-.02e
 .svc p{margin:0 0 22px;color:var(--muted);font-size:15.5px}
 .svc .price{display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:16px;padding-top:18px;border-top:1px solid var(--line)}
 .svc .price span{color:var(--blue)}
-@media (max-width:960px){.svcs{grid-template-columns:1fr 1fr}.svc{grid-column:span 1}}
-@media (max-width:600px){.svcs{grid-template-columns:1fr}.svc{grid-column:span 1;min-height:0}}
+.svc.half{grid-column:span 3}
+@media (max-width:960px){.svcs{grid-template-columns:1fr 1fr}.svc,.svc.half{grid-column:span 1}}
+@media (max-width:600px){.svcs{grid-template-columns:1fr}.svc,.svc.half{grid-column:span 1;min-height:0}}
 
 
 /* как я работаю */
@@ -468,7 +469,7 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
     <div class="wrap">
       <div class="sec-head">
         <h2 class="rv">Чем могу помочь</h2>
-        <p class="rv" style="--d:.1s">Шесть направлений, в каждом беру задачу целиком. Цены ориентировочные, точную назову после короткого брифа.</p>
+        <p class="rv" style="--d:.1s">Восемь направлений, в каждом беру задачу целиком. Цены ориентировочные, точную назову после короткого брифа.</p>
       </div>
       <div class="svcs">
         <a class="svc rv" href="#w-analytics">
@@ -506,6 +507,18 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
           <h3>Тексты без следов ИИ</h3>
           <p>Переписываю тексты после нейросети живым языком, рерайт с уникальностью от 95% по text.ru.</p>
           <div class="price">Цена<span>от 200 ₽ за 1 000 знаков</span></div>
+        </a>
+        <a class="svc half rv" href="#w-deck-ba">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M6 9h6M6 13h4M15 9h3v5h-3z"/></svg></div>
+          <h3>Оформление презентации</h3>
+          <p>До 5 слайдов в едином стиле за 2 дня: сетка, шрифты, цвета, графики по вашим цифрам. Результат в PDF, исходник PPTX по желанию.</p>
+          <div class="price">Цена<span>1 000 ₽ за 5 слайдов</span></div>
+        </a>
+        <a class="svc half rv" style="--d:.08s" href="#w-excel">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div>
+          <h3>Таблицы Excel и Google</h3>
+          <p>Сделаю или исправлю таблицу за 1 день: формулы, сводная, автоподсчёт, выпадающие списки, подсветка ошибок.</p>
+          <div class="price">Цена<span>от 500 ₽ за задачу</span></div>
         </a>
       </div>
     </div>
@@ -1000,6 +1013,52 @@ dialog img{max-width:min(94vw,1400px);max-height:84vh;width:auto;height:auto;mar
             <li>фирменный стиль кофейни: цвета, шрифты, акценты.</li>
           </ul>
           <p class="res">Слайды листаются сами, можно нажать на любой.</p>
+        </div>
+      </article>
+
+      <article class="work flip" id="w-deck-ba">
+        <div class="media rv">
+          <div class="stack2" data-g>
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/deck-ba.jpg"><img src="img/deck-ba.jpg" width="1320" height="880" alt="Слайд до и после оформления: сплошной текст против трёх крупных цифр" loading="lazy"></button></div>
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/deck-5.jpg"><img src="img/deck-5.jpg" width="1320" height="880" alt="Пять слайдов презентации фулфилмента «Полка» в едином стиле" loading="lazy"></button></div>
+          </div>
+        </div>
+        <div class="rv">
+          <span class="tag">Демо, компания «Полка» вымышлена, цифры условные</span>
+          <h4>Оформление презентации: было и стало</h4>
+          <p>Короткий формат для тех, у кого текст и цифры уже есть, а слайды выглядят как черновик. До 5 слайдов за 2 дня.</p>
+          <ul>
+            <li>одна мысль на слайд, заголовок говорит вывод;</li>
+            <li>единая сетка, шрифты и фирменные цвета на всех слайдах;</li>
+            <li>графики и таблицы по вашим цифрам, цифры сходятся между слайдами;</li>
+            <li>PDF для показа, исходник PPTX для правок по желанию.</li>
+          </ul>
+          <p class="res">1 000 ₽ за 5 слайдов, ещё 5 слайдов +1 000 ₽, срочно за 1 день +500 ₽.</p>
+          <div class="links"><a class="btn btn-main" href="#contact">Обсудить презентацию</a></div>
+        </div>
+      </article>
+
+      <div class="dir rv" id="w-excel"><h3>Таблицы Excel и Google</h3><span>Демо, склад вымышлен, данные условные</span></div>
+      <article class="work">
+        <div class="media rv" data-g>
+          <div class="stack2">
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/xl-ba.jpg"><img src="img/xl-ba.jpg" width="1320" height="880" alt="Журнал продаж до и после: единый формат и итог формулой" loading="lazy"></button></div>
+            <div class="win"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/xl-pivot.jpg"><img src="img/xl-pivot.jpg" width="1320" height="880" alt="Сводная таблица продаж по менеджерам и месяцам с графиком" loading="lazy"></button></div>
+          </div>
+          <div class="win" style="margin-top:22px"><div class="bar"><i></i><i></i><i></i></div><button data-src="img/xl-auto.jpg"><img src="img/xl-auto.jpg" width="1320" height="880" alt="Счёт клиенту с автоподсчётом и контроль остатков с подсветкой" loading="lazy"></button></div>
+        </div>
+        <div class="rv">
+          <span class="tag">Демо, склад «Клякса» вымышлен</span>
+          <h4>Формулы, сводная и автоподсчёт за 1 день</h4>
+          <p>Цена за одну задачу: одну доработку, которую можно описать парой предложений. Делаю новую таблицу или навожу порядок в старой.</p>
+          <ul>
+            <li>журнал продаж в едином формате, цена из прайса, сумма и месяц считаются сами;</li>
+            <li>сводная по менеджерам и месяцам на СУММЕСЛИМН, итог сходится с журналом до рубля;</li>
+            <li>счёт клиенту: товар из списка, скидка и НДС считаются сами;</li>
+            <li>остатки: ячейка краснеет, когда пора дозаказать.</li>
+          </ul>
+          <p class="res">Без макросов, поэтому работает и в Excel, и в Google Таблицах. От 500 ₽ за задачу, срок 1 день.</p>
+          <div class="links"><a class="btn btn-main" href="excel-zadachi-demo.xlsx" download>Скачать пример, .xlsx</a><a class="btn btn-ghost" href="#contact">Обсудить задачу</a></div>
         </div>
       </article>
 
